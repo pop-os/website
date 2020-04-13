@@ -1,22 +1,28 @@
-# pop-os
+<div align="center">
+  <h1>@pop-os/website</h1>
+  <h3>The Pop!_OS website</h3>
+  <br>
+  <br>
+</div>
 
-> My priceless Nuxt.js project
+---
 
-## Build Setup
+This repository is the [Nuxt.JS](https://nuxtjs.org/) single page website for
+Pop!_OS. It is viewable at https://pop.system76.com.
 
-```bash
-# install dependencies
-$ npm install
+## Developing
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+You will need a modern (10.x >) nodejs version installed. Then simply clone the
+repository and run the following commands:
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+```
+# Install all the dependencies
+npm ci
+# Run the server
+npm start
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+### Deploying
+
+When changes get pushed into master, GitHub actions will start a deploy. No
+extra work is needed as a developer.

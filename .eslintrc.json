@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "@system76",
+    "plugin:testcafe/recommended"
+  ],
+  "plugins": [
+    "testcafe"
+  ]
+}

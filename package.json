@@ -1,17 +1,26 @@
 {
-  "name": "pop-os",
+  "name": "@pop-os/website",
   "version": "1.0.0",
-  "description": "My priceless Nuxt.js project",
-  "author": "Blake Kostner",
+  "description": "The Pop!_OS website",
+  "author": "System76 (hosting@system76.com)",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "start": "nuxt dev",
+    "build": "nuxt generate",
+    "lint": "eslint --ext js,vue --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ext js,vue --ignore-path .gitignore .",
+    "test:browser": "testcafe remote --qr-code ./test/browser/**"
+  },
+  "engines": {
+    "node": ">=10"
   },
   "dependencies": {
     "nuxt": "^2.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@system76/eslint-config": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-testcafe": "^0.2.1",
+    "http-server": "^0.12.1"
+  }
 }

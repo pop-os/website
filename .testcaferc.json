@@ -1,0 +1,8 @@
+{
+  "appCommand": "http-server ./dist -s -p 3001",
+  "screenshots": {
+    "path": "test/screenshots",
+    "pathPattern": "results/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png",
+    "takeOnFails": true
+  }
+}
