@@ -181,4 +181,5 @@ jobs:
           aws s3 cp \
             --recursive \
             --acl public-read \
+            --delete \
             ./dist/ "s3://$AWS_BUCKET"
