@@ -178,7 +178,7 @@ jobs:
 
       - name: Upload
         run: |
-          aws s3 cp \
+          aws s3 sync \
             --recursive \
             --acl public-read \
             --delete \
