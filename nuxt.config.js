@@ -15,7 +15,25 @@ export default {
     ]
   },
 
+  css: [
+    '@system76/design/dist/index.common.css',
+    '@system76/components/dist/index.common.css',
+    '@system76/forms/dist/index.common.css',
+    '~/assets/styles/main.css'
+  ],
+
   loading: {
     color: '#fff'
-  }
+  },
+
+  buildModules: [
+    '@nuxtjs/color-mode'
+  ],
+
+  plugins: [
+    '~/plugins/asset-components',
+    '~/plugins/components',
+    '~/plugins/design',
+    '~/plugins/forms'
+  ]
 }

@@ -1,7 +1,3 @@
-<script>
-  export default {
-    fetch ({ redirect }) {
-      return redirect(307, 'https://system76.com/pop')
-    }
-  }
-</script>
+<template>
+  <h1>test</h1>
+</template>
