@@ -7,6 +7,8 @@
         Toggle Color
       </button>
     </div>
+
+    <index-foot />
   </main>
 </template>
 
@@ -23,14 +25,16 @@
 </style>
 
 <script>
+  import IndexFoot from '~/components/index/foot'
   import IndexHead from '~/components/index/head'
   import color from '~/mixins/color'
 
   export default {
-
     components: {
-      IndexHead
+      IndexHead,
+      IndexFoot
     },
+
     mixins: [
       color
     ]

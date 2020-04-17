@@ -72,8 +72,6 @@
   }
 
   h1 {
-    font-family: var(--font-family-slab);
-    font-size: 2.3375rem;
     margin-top: 0;
   }
 
