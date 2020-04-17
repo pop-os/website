@@ -23,17 +23,16 @@
 </style>
 
 <script>
+  import IndexHead from '~/components/index/head'
   import color from '~/mixins/color'
 
-  import IndexHead from '~/components/index/head'
-
   export default {
-    mixins: [
-      color
-    ],
 
     components: {
       IndexHead
-    }
+    },
+    mixins: [
+      color
+    ]
   }
 </script>

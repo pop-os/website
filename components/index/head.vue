@@ -25,8 +25,8 @@
       </div>
 
       <div
-        v-html="require('~/assets/images/index/logo.svg?include')"
         class="logo"
+        v-html="require('~/assets/images/index/logo.svg?include')"
       />
     </div>
   </section>
@@ -95,12 +95,12 @@
 </style>
 
 <script>
-import color from '~/mixins/color'
+  import color from '~/mixins/color'
 
-export default {
-  mixins: [
-    color
-  ]
-}
+  export default {
+    mixins: [
+      color
+    ]
+  }
 
 </script>
