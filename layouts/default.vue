@@ -24,9 +24,7 @@
       url-login="https://system76.com/my-account"
     />
 
-    <div :class="$style.page">
-      <nuxt />
-    </div>
+    <nuxt :class="$style.page" />
 
     <sys-footerbar
       url-contact="https://system76.com/contact"

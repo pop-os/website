@@ -27,7 +27,8 @@ export default {
   },
 
   buildModules: [
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@aceforth/nuxt-optimized-images'
   ],
 
   plugins: [
@@ -35,5 +36,9 @@ export default {
     '~/plugins/components',
     '~/plugins/design',
     '~/plugins/forms'
-  ]
+  ],
+
+  optimizedImages: {
+    optimizeImages: true
+  }
 }
