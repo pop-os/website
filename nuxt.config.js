@@ -35,7 +35,8 @@ export default {
     '~/plugins/asset-components',
     '~/plugins/components',
     '~/plugins/design',
-    '~/plugins/forms'
+    '~/plugins/forms',
+    '~/plugins/lazyload'
   ],
 
   optimizedImages: {

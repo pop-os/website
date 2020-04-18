@@ -8,8 +8,18 @@ export default {
       }
     },
 
+    color: {
+      get () {
+        return this.$colorMode.preference
+      },
+
+      set (value) {
+        this.$colorMode.preference = value
+      }
+    },
+
     isDark () {
-      return (this.$colorMode.preference === 'dark')
+      return (this.color === 'dark')
     },
 
     isLight () {
@@ -19,11 +29,11 @@ export default {
 
   methods: {
     setDark () {
-      this.$colorMode.preference = 'dark'
+      this.color = 'dark'
     },
 
     setLight () {
-      this.$colorMode.preference = 'light'
+      this.color = 'light'
     },
 
     toggleColor () {

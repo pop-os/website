@@ -2,11 +2,7 @@
   <main :class="classes">
     <index-head />
 
-    <div>
-      <button @click.prevent="toggleColor">
-        Toggle Color
-      </button>
-    </div>
+    <index-other-features />
 
     <index-foot />
   </main>
@@ -27,12 +23,14 @@
 <script>
   import IndexFoot from '~/components/index/foot'
   import IndexHead from '~/components/index/head'
+  import IndexOtherFeatures from '~/components/index/other-features'
   import color from '~/mixins/color'
 
   export default {
     components: {
+      IndexFoot,
       IndexHead,
-      IndexFoot
+      IndexOtherFeatures
     },
 
     mixins: [
