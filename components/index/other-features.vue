@@ -1,9 +1,9 @@
 <template>
-  <section :class="[$style.section, classes]">
+  <section :class="classes">
     <sys-header-2>Other Features</sys-header-2>
 
-    <div :class="$style.block">
-      <div :class="$style.text">
+    <div class="block">
+      <div class="text">
         <sys-header-3>Hybrid Graphics</sys-header-3>
 
         <sys-paragraph-1>
@@ -13,7 +13,7 @@
         </sys-paragraph-1>
       </div>
 
-      <div :class="$style.image">
+      <div class="image">
         <img
           v-if="isLight"
           v-lazy="require('~/assets/images/index/other-features-hybrid-light.jpg')"
@@ -29,8 +29,8 @@
       </div>
     </div>
 
-    <div :class="$style.block">
-      <div :class="$style.text">
+    <div class="block">
+      <div class="text">
         <sys-header-3>Gaming</sys-header-3>
 
         <sys-paragraph-1>
@@ -40,11 +40,11 @@
         </sys-paragraph-1>
       </div>
 
-      <div :class="$style.image" />
+      <div class="image" />
     </div>
 
-    <div :class="$style.block">
-      <div :class="$style.text">
+    <div class="block">
+      <div class="text">
         <sys-header-3>Do Not Disturb</sys-header-3>
 
         <sys-paragraph-1>
@@ -53,7 +53,7 @@
         </sys-paragraph-1>
       </div>
 
-      <div :class="$style.image">
+      <div class="image">
         <img
           v-if="isLight"
           v-lazy="require('~/assets/images/index/other-features-dnd-light.jpg')"
@@ -69,8 +69,8 @@
       </div>
     </div>
 
-    <div :class="$style.block">
-      <div :class="$style.text">
+    <div class="block">
+      <div class="text">
         <sys-header-3>Dark mode</sys-header-3>
 
         <sys-paragraph-1>
@@ -79,7 +79,7 @@
           action.
         </sys-paragraph-1>
 
-        <label :class="[$style.switch, classes]">
+        <label class="switch">
           <input
             :checked="isDark"
             aria-label="Dark Mode"
@@ -89,7 +89,7 @@
         </label>
       </div>
 
-      <div :class="$style.image">
+      <div class="image">
         <img
           v-if="isLight"
           v-lazy="require('~/assets/images/index/other-features-mode-light.jpg')"
@@ -107,8 +107,8 @@
   </section>
 </template>
 
-<style module>
-  .section {
+<style scoped>
+  section {
     display: grid;
     grid-gap: 1rem;
     grid-template-rows: repeat(5, auto);
@@ -117,7 +117,7 @@
     padding: 0 1rem;
   }
 
-  .section h2 {
+  h2 {
     grid-column: 1 / 2;
     margin-top: 0;
     text-align: center;
@@ -143,11 +143,11 @@
     color: #ccc;
   }
 
-  .block .text {
+  .text {
     flex: 1 1 auto;
   }
 
-  .block h3 {
+  h3 {
     margin-top: 0;
     text-align: center;
   }
@@ -161,13 +161,13 @@
     width: 86px;
   }
 
-  .switch.light-mode {
+  .light-mode .switch {
     background-color: #C8C8C8;
     border-color: #fff;
     box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.15);
   }
 
-  .switch.dark-mode {
+  .dark-mode .switch {
     background-color: #FBB86C;
     border-color: #000;
     box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25);
@@ -185,12 +185,12 @@
     width: 36px;
   }
 
-  .switch.light-mode input {
+  .light-mode .switch input {
     background-color: #fff;
     left: 4px;
   }
 
-  .switch.dark-mode input {
+  .dark-mode .switch input {
     background-color: #303030;
     left: 46px;
   }
@@ -219,23 +219,23 @@
   }
 
   @media (width >= 120ch) {
-    .section {
+    section {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto repeat(2, 1fr)
     }
 
-    .section h2 {
+    h2 {
       grid-column: 1 / 3;
     }
   }
 
   @media (width >= 1280px) {
-    .section {
+    section {
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto 1fr auto;
     }
 
-    .section h2 {
+    h2 {
       grid-column: 1 / 4;
     }
 
@@ -275,12 +275,6 @@
   export default {
     mixins: [
       color
-    ],
-
-    methods: {
-      onChange (e) {
-        console.log(e.target.value)
-      }
-    }
+    ]
   }
 </script>

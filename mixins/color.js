@@ -2,9 +2,9 @@ export default {
   computed: {
     classes () {
       if (this.isDark) {
-        return this.$style['dark-mode']
+        return 'dark-mode'
       } else {
-        return this.$style['light-mode']
+        return 'light-mode'
       }
     },
 

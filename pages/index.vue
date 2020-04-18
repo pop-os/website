@@ -8,7 +8,7 @@
   </main>
 </template>
 
-<style module>
+<style scoped>
   .light-mode {
     background-color: #E5E5E5;
     color: #272727;

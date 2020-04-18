@@ -61,26 +61,6 @@
   </section>
 </template>
 
-<style module>
-  .light-mode {
-    background-image: url("~assets/images/index/foot-light.png?webp");
-    color: #000;
-  }
-
-  .light-mode {
-    background-image: url("~assets/images/index/foot-light.png");
-  }
-
-  .dark-mode {
-    background-image: url("~assets/images/index/foot-dark.png?webp");
-    color: #574F4A;
-  }
-
-  .dark-mode {
-    background-image: url("~assets/images/index/foot-dark.png");
-  }
-</style>
-
 <style scoped>
   section {
     background-origin: center;
@@ -88,6 +68,24 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
+  }
+
+  section.light-mode {
+    background-image: url("~assets/images/index/foot-light.png?webp");
+    color: #000;
+  }
+
+  section.light-mode {
+    background-image: url("~assets/images/index/foot-light.png");
+  }
+
+  section.dark-mode {
+    background-image: url("~assets/images/index/foot-dark.png?webp");
+    color: #574F4A;
+  }
+
+  section.dark-mode {
+    background-image: url("~assets/images/index/foot-dark.png");
   }
 
   .content {
