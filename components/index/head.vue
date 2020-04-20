@@ -1,5 +1,10 @@
 <template>
   <section :class="classes">
+    <template v-if="isLight">
+      <img class="bg-texture" src="~/assets/images/index/head-texture-light.png" />
+      <img class="bg-planets" src="~/assets/images/index/head-planet-light.png" />
+    </template>
+
     <div class="content">
       <div>
         <sys-subheader-1>
@@ -35,7 +40,9 @@
 <style scoped>
   section {
     clip-path: ellipse(140% calc(100vw + 6rem) at 50% calc(100% - 6rem - 100vw));
+    position: relative;
     width: 100%;
+    overflow: hidden;
   }
 
   section.light-mode {
@@ -48,13 +55,37 @@
     color: #574F4A;
   }
 
+  .bg-planets {
+    position: absolute;
+    top: 1rem;
+    left: calc(50% - 900px);
+    width: 1600px;
+    z-index: 2;
+    opacity: 0.2;
+  }
+
+  .bg-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    mix-blend-mode: luminosity;
+    opacity: 0.5;
+  }
+
   .content {
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 1fr;
-    margin: 0 auto 4rem;
+    margin: 0 auto 3rem;
     max-width: 1280px;
-    padding: 2rem 1rem 6rem;
+    padding: 2rem 1rem 0;
+    position: relative;
+    z-index: 10;
   }
 
   h1 {
@@ -67,13 +98,30 @@
     max-width: 100%;
   }
 
+  @media (width >= 40rem) {
+    .content {
+      margin-bottom: 5rem;
+    }
+  }
+
   @media (width >= 70rem) {
     .content {
       grid-template-columns: 1fr 1fr;
+      margin-bottom: 7rem;
     }
 
     .logo {
       display: block;
+    }
+  }
+
+  @media (width >= 1280px) {
+    section {
+      clip-path: ellipse(calc(53vw + 242px) 140% at 45vw -40%);
+    }
+
+    .content {
+      padding-bottom: 4rem;
     }
   }
 </style>
