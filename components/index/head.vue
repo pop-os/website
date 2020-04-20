@@ -1,8 +1,26 @@
 <template>
   <section :class="classes">
     <template v-if="isLight">
-      <img class="bg-texture" src="~/assets/images/index/head-texture-light.png" />
-      <img class="bg-planets" src="~/assets/images/index/head-planet-light.png" />
+      <img
+        alt="Planet Texture"
+        class="bg-texture"
+        importance="low"
+        src="~/assets/images/index/head-texture-light.png?size=1000"
+      >
+      <img
+        alt="Planets"
+        class="bg-planets"
+        importance="low"
+        src="~/assets/images/index/head-planet-light.png?size=1600"
+      >
+    </template>
+    <template v-if="isDark">
+      <img
+        alt="Moon Texture"
+        class="bg-moon"
+        importance="low"
+        src="~/assets/images/index/head-moon-dark.svg"
+      >
     </template>
 
     <div class="content">
@@ -55,6 +73,18 @@
     color: #574F4A;
   }
 
+  section.dark-mode::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+    z-index: 2;
+  }
+
   .bg-planets {
     position: absolute;
     top: 1rem;
@@ -75,6 +105,19 @@
     z-index: 1;
     mix-blend-mode: luminosity;
     opacity: 0.5;
+  }
+
+  .bg-moon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+    object-position: bottom center;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 
   .content {
@@ -121,7 +164,8 @@
     }
 
     .content {
-      padding-bottom: 4rem;
+      padding-top: 4vw;
+      padding-bottom: calc(8rem - 4vw);
     }
   }
 </style>
