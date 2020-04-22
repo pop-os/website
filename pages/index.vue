@@ -39,6 +39,7 @@
 </style>
 
 <script>
+  import IndexDevelopment from '~/components/index/development'
   import IndexFoot from '~/components/index/foot'
   import IndexFootnotes from '~/components/index/footnotes'
   import IndexHead from '~/components/index/head'
@@ -48,6 +49,7 @@
 
   export default {
     components: {
+      IndexDevelopment,
       IndexFoot,
       IndexFootnotes,
       IndexHead,

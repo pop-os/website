@@ -71,6 +71,7 @@
     margin: 4rem auto;
     max-width: 1280px;
     padding: 0 1rem;
+    width: 100%;
   }
 
   .copy {
