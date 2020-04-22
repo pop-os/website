@@ -27,7 +27,7 @@
           title="Steam"
           :data-src="require('~/assets/images/index/apps/steam.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/steam.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -40,7 +40,7 @@
           title="Chromium"
           :data-src="require('~/assets/images/index/apps/chromium.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/chromium.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -53,7 +53,7 @@
           title="Firefox"
           :data-src="require('~/assets/images/index/apps/firefox.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/firefox.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -66,7 +66,7 @@
           title="Visual Studio Code"
           :data-src="require('~/assets/images/index/apps/vscode.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/vscode.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -79,7 +79,7 @@
           title="Atom"
           :data-src="require('~/assets/images/index/apps/atom.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/atom.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -92,7 +92,7 @@
           title="Spotify"
           :data-src="require('~/assets/images/index/apps/spotify.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/spotify.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -105,7 +105,7 @@
           title="VLC"
           :data-src="require('~/assets/images/index/apps/vlc.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/vlc.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -118,7 +118,7 @@
           title="Plex"
           :data-src="require('~/assets/images/index/apps/plex.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/plex.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -131,7 +131,7 @@
           title="Dropbox"
           :data-src="require('~/assets/images/index/apps/dropbox.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/dropbox.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -144,7 +144,7 @@
           title="Alacritty"
           :data-src="require('~/assets/images/index/apps/alacritty.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/alacritty.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -157,7 +157,7 @@
           title="Blender"
           :data-src="require('~/assets/images/index/apps/blender.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/blender.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -170,7 +170,7 @@
           title="Inkscape"
           :data-src="require('~/assets/images/index/apps/inkscape.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/inkscape.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -183,7 +183,7 @@
           title="Gimp"
           :data-src="require('~/assets/images/index/apps/gimp.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/gimp.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -196,7 +196,7 @@
           title="Discord"
           :data-src="require('~/assets/images/index/apps/discord.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/discord.png?lqip')"
-        />
+        >
       </a>
 
       <a
@@ -209,7 +209,7 @@
           title="Telegram"
           :data-src="require('~/assets/images/index/apps/telegram.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/telegram.png?lqip')"
-        />
+        >
       </a>
     </div>
 

@@ -23,9 +23,7 @@
         displays.
       </sys-paragraph-1>
 
-      <div class="video">
-
-      </div>
+      <div class="video" />
     </div>
 
     <div class="block">
@@ -37,9 +35,7 @@
         Problem solved.
       </sys-paragraph-1>
 
-      <div class="video">
-
-      </div>
+      <div class="video" />
     </div>
 
     <div class="block">
@@ -56,9 +52,7 @@
         </ul>
       </sys-paragraph-1>
 
-      <div class="video">
-
-      </div>
+      <div class="video" />
     </div>
   </section>
 </template>

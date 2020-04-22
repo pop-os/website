@@ -30,9 +30,9 @@
 
       <div>
         <sys-form-button
+          ref="noopener"
           color="primary"
           ghost
-          ref="noopener"
           target="_blank"
         >
           AHHHHHHHHHHHHH
@@ -60,9 +60,9 @@
 
       <div>
         <sys-form-button
+          ref="noopener"
           color="primary"
           ghost
-          ref="noopener"
           target="_blank"
         >
           ERRRRRRRRRRRRRRR
@@ -90,9 +90,9 @@
 
       <div>
         <sys-form-button
+          ref="noopener"
           color="primary"
           ghost
-          ref="noopener"
           target="_blank"
         >
           OOOOOOHHHHHHHHHHHH
@@ -120,10 +120,10 @@
 
       <div>
         <sys-form-button
+          ref="noopener"
           color="primary"
           ghost
           href="https://support.system76.com/articles/bioinformatics-moritz-beber-dtu"
-          ref="noopener"
           target="_blank"
         >
           See user story

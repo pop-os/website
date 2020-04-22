@@ -6,9 +6,18 @@
 
     <div class="image">
       <picture>
-        <source type="image/webp" :srcset="require('~/assets/images/index/security.png?webp&size=700')" />
-        <source type="image/png" :srcset="require('~/assets/images/index/security.png?size=700')" />
-        <img alt="Security robot" src="~/assets/images/index/security.png?size=700" />
+        <source
+          type="image/webp"
+          :srcset="require('~/assets/images/index/security.png?webp&size=700')"
+        >
+        <source
+          type="image/png"
+          :srcset="require('~/assets/images/index/security.png?size=700')"
+        >
+        <img
+          alt="Security robot"
+          src="~/assets/images/index/security.png?size=700"
+        >
       </picture>
     </div>
 
