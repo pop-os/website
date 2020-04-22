@@ -4,6 +4,7 @@
 
     <index-streamline />
     <index-development />
+    <index-security />
     <index-software />
     <index-other-features />
 
@@ -45,6 +46,7 @@
   import IndexFootnotes from '~/components/index/footnotes'
   import IndexHead from '~/components/index/head'
   import IndexOtherFeatures from '~/components/index/other-features'
+  import IndexSecurity from '~/components/index/security'
   import IndexSoftware from '~/components/index/software'
   import IndexStreamline from '~/components/index/streamline'
   import color from '~/mixins/color'
@@ -56,6 +58,7 @@
       IndexFootnotes,
       IndexHead,
       IndexOtherFeatures,
+      IndexSecurity,
       IndexSoftware,
       IndexStreamline
     },
