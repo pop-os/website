@@ -1,151 +1,126 @@
 <template>
   <section :class="classes">
-    <div class="content">
-      <div class="actions">
-        <sys-paragraph-1>
-          Pop!_OS is free to download. If you want to try it out before you
-          commit, you can download the .iso file to a USB and boot the OS from
-          there. Here’s how.  Like what we’re doing? Subscribe to fund more
-          awesome features down the road. We’ve always got something exciting in
-          the works for you to experience.
-        </sys-paragraph-1>
-
-        <div>
-          <sys-form-button color="secondary">
-            Download
-          </sys-form-button>
-
-          <sys-form-button color="primary">
-            Support Pop
-          </sys-form-button>
-        </div>
-      </div>
-
-      <sys-subheader-1
-        class="links"
-        tag="p"
+    <template v-if="isLight">
+      <img
+        alt="Planet Texture"
+        class="bg-texture"
+        importance="low"
+        src="~/assets/images/index/foot-texture-light.png?size=1000"
       >
-        <a
-          href="https://support.system76.com/#pop-ubuntu"
-          rel="noopener"
-          target="_blank"
-        >
-          <font-awesome-icon :icon="faBookOpen" />
-          Pop!_Docs
-        </a>
+    </template>
+    <template v-if="isDark">
+      <img
+        alt="Moon Texture"
+        class="bg-moon"
+        importance="low"
+        src="~/assets/images/index/foot-moon-dark.svg"
+      >
+    </template>
 
-        <a
-          href="https://chat.pop-os.org"
-          rel="noopener"
-          target="_blank"
-        >
-          <font-awesome-icon :icon="faMattermost" />
-          Pop!_community
-        </a>
+    <div class="content">
+      <sys-paragraph-1>
+        Pop!_OS is free to download. If you want to try it out before you
+        commit, you can download the .iso file to a USB and boot the OS from
+        there. Here’s how.  Like what we’re doing? Subscribe to fund more
+        awesome features down the road. We’ve always got something exciting in
+        the works for you to experience.
+      </sys-paragraph-1>
 
-        <a
-          href="https://github.com/pop-os"
-          rel="noopener"
-          target="_blank"
-        >
-          <font-awesome-icon :icon="faGithub" />
-          Github
-        </a>
+      <div>
+        <sys-form-button color="secondary">
+          Download
+        </sys-form-button>
 
-        <a>
-          <font-awesome-icon :icon="faCog" />
-          Tech details
-        </a>
-      </sys-subheader-1>
+        <sys-form-button color="primary">
+          Support Pop
+        </sys-form-button>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
   section {
-    background-origin: center;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: cover;
+    clip-path: ellipse(120% 100% at 50% 100%);
+    position: relative;
     width: 100%;
+    overflow: hidden;
   }
 
   section.light-mode {
-    background-image: url("~assets/images/index/foot-light.png?webp");
+    background: linear-gradient(#e1d5dc 0%, #f2d8db 10%, #d0d9d1 30%, #a8ebe0 100%);
     color: #000;
   }
 
-  section.light-mode {
-    background-image: url("~assets/images/index/foot-light.png");
-  }
-
   section.dark-mode {
-    background-image: url("~assets/images/index/foot-dark.png?webp");
+    background: linear-gradient(#fcfbf7 0%, #fff 100%);
     color: #574F4A;
   }
 
-  section.dark-mode {
-    background-image: url("~assets/images/index/foot-dark.png");
+  section.dark-mode::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+    z-index: 2;
+  }
+
+  .bg-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    mix-blend-mode: luminosity;
+    opacity: 0.3;
+  }
+
+  .bg-moon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+    object-position: top center;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 
   .content {
     margin: 0 auto;
-    max-width: 1280px;
-    padding: calc(2rem + 4vw) 1rem calc(3rem + 6vw);
-  }
-
-  .actions {
-    padding-bottom: calc(4rem + 8vw);
+    text-align: center;
     max-width: 84ch;
-    text-align: center;
-    margin: 0 auto;
+    padding: 4rem 1rem calc(4rem + 14vw);
+    position: relative;
+    z-index: 10;
   }
 
-  .links {
-    align-content: stretch;
-    align-items: stretch;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: stretch;
-    text-align: center;
-    margin: -0.5rem;
-  }
+  @media (width >= 100ch) {
+    section {
+      clip-path: ellipse(60% 100% at 50% 100%);
+    }
 
-  .links a {
-    color: inherit;
-    flex: 1 1 auto;
-    padding: 0.5rem;
-    text-decoration: none;
-  }
-
-  .links svg {
-    display: block;
-    margin: 0 auto 1rem;
+    .content {
+      padding: 8rem 1rem 14vw;
+    }
   }
 </style>
 
 <script>
-  import { faGithub } from '@fortawesome/free-brands-svg-icons'
-  import { faCog, faBookOpen } from '@fortawesome/free-solid-svg-icons'
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-  import faMattermost from '~/icons/faMattermost'
   import color from '~/mixins/color'
 
   export default {
-    components: {
-      FontAwesomeIcon
-    },
-
     mixins: [
       color
-    ],
-
-    computed: {
-      faGithub: () => faGithub,
-      faMattermost: () => faMattermost,
-      faCog: () => faCog,
-      faBookOpen: () => faBookOpen
-    }
+    ]
   }
 </script>
