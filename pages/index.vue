@@ -2,6 +2,7 @@
   <main :class="classes">
     <index-head />
 
+    <index-streamline />
     <index-other-features />
 
     <index-foot />
@@ -24,13 +25,15 @@
   import IndexFoot from '~/components/index/foot'
   import IndexHead from '~/components/index/head'
   import IndexOtherFeatures from '~/components/index/other-features'
+  import IndexStreamline from '~/components/index/streamline'
   import color from '~/mixins/color'
 
   export default {
     components: {
       IndexFoot,
       IndexHead,
-      IndexOtherFeatures
+      IndexOtherFeatures,
+      IndexStreamline
     },
 
     mixins: [
