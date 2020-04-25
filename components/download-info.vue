@@ -19,7 +19,13 @@
     </template>
 
     <template v-else-if="$fetchState.error">
-      Error: {{ $fetchState.error }}
+      <sys-header-2>
+        An Error Occured
+      </sys-header-2>
+
+      <sys-paragraph-1>
+        Please try again
+      </sys-paragraph-1>
     </template>
 
     <template v-else>
