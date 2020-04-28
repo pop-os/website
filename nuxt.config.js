@@ -1,3 +1,5 @@
+import config from './config/index'
+
 export default {
   mode: 'spa',
 
@@ -21,6 +23,8 @@ export default {
     '@system76/forms/dist/index.common.css',
     '~/assets/styles/main.css'
   ],
+
+  env: config,
 
   loading: {
     color: '#fff'

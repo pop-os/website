@@ -17,7 +17,10 @@
           Download
         </sys-form-button>
 
-        <sys-form-button color="primary">
+        <sys-form-button
+          color="primary"
+          @click.prevent="togglePayment"
+        >
           Support Pop
         </sys-form-button>
       </div>
@@ -130,6 +133,11 @@
         // TODO: analytics
         this.$store.dispatch('download/detectChannel')
         this.$store.commit('download/toggleShowing')
+      },
+
+      togglePayment () {
+        // TODO: analytics
+        this.$store.commit('payment/toggleShowing')
       }
     }
   }

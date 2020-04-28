@@ -1,0 +1,58 @@
+<template>
+  <div>
+    <img
+      alt="Zoe"
+      src="~/assets/images/payment/zoe.png"
+    />
+
+    <sys-paragraph-1>
+      System76 is continuing to make Pop!_OS the most convenient, fun-to-use OS
+      known to man, woman, child, and machine. And you can help make it happen.
+    </sys-paragraph-1>
+
+    <div class="buttons">
+      <sys-form-button
+        ghost
+        @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
+      >
+        <font-awesome-icon :icon="faChevronLeft" />
+        <span>Back</span>
+      </sys-form-button>
+
+      <sys-form-button
+        color="primary"
+        @click.prevent="$store.dispatch('payment/gotoNextPage')"
+      >
+        Pay Now
+      </sys-form-button>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  p {
+    max-width: 40ch;
+  }
+</style>
+
+<script>
+  import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+  export default {
+    name: 'PaymentInfoSupport',
+
+    components: {
+      FontAwesomeIcon
+    },
+
+    computed: {
+      faChevronLeft: () => faChevronLeft
+    }
+  }
+</script>

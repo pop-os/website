@@ -42,10 +42,17 @@
     />
 
     <light-box
-      :active="showing"
+      :active="isDownloadActive"
       @input="toggleDownload"
     >
       <download-info />
+    </light-box>
+
+    <light-box
+      :active="isPaymentActive"
+      @input="togglePayment"
+    >
+      <payment-info />
     </light-box>
   </div>
 </template>
@@ -67,16 +74,19 @@
   import { mapGetters } from 'vuex'
 
   import DownloadInfo from '~/components/download-info'
+  import PaymentInfo from '~/components/payment-info'
   import LightBox from '~/components/light-box'
 
   export default {
     components: {
       DownloadInfo,
+      PaymentInfo,
       LightBox
     },
 
     computed: {
-      ...mapGetters('download', ['showing'])
+      ...mapGetters('download', { isDownloadActive: 'showing' }),
+      ...mapGetters('payment', { isPaymentActive: 'showing' })
     },
 
     methods: {
@@ -84,6 +94,11 @@
         // TODO: Analytics
         this.$store.dispatch('download/detectChannel')
         this.$store.commit('download/toggleShowing')
+      },
+
+      togglePayment () {
+        // TODO: Analytics
+        this.$store.commit('payment/toggleShowing')
       }
     }
   }
