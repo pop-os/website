@@ -52,7 +52,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NODE_ENV: production
+          NODE_ENV: test
 
       - name: Test
         run: |
@@ -100,7 +100,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NODE_ENV: production
+          NODE_ENV: test
 
       - name: Test
         run: npx testcafe ${{ matrix.browser }} test/browser/**
@@ -157,24 +157,26 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build
-        run: npm run build
-        env:
-          NODE_ENV: production
-
       - name: Environment
         run: |
           if [ $GITHUB_REF == "refs/heads/master" ]; then
+            echo "::set-env name=DEPLOY_ENV::production"
+
             echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets.PRODUCTION_ACCESS_KEY }}"
             echo "::set-env name=AWS_SECRET_ACCESS_KEY::${{ secrets.PRODUCTION_ACCESS_SECRET }}"
             echo "::set-env name=AWS_DEFAULT_REGION::${{ secrets.PRODUCTION_REGION }}"
             echo "::set-env name=AWS_BUCKET::${{ secrets.PRODUCTION_BUCKET }}"
           elif [ $GITHUB_REF == "refs/heads/20.04-release" ]; then
+            echo "::set-env name=DEPLOY_ENV::staging"
+
             echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets.STAGING_ACCESS_KEY }}"
             echo "::set-env name=AWS_SECRET_ACCESS_KEY::${{ secrets.STAGING_ACCESS_SECRET }}"
             echo "::set-env name=AWS_DEFAULT_REGION::${{ secrets.STAGING_REGION }}"
             echo "::set-env name=AWS_BUCKET::${{ secrets.STAGING_BUCKET }}"
           fi
+
+      - name: Build
+        run: npm run build
 
       - name: Upload
         run: |
