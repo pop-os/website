@@ -1,5 +1,5 @@
 <template>
-  <section :class="classes">
+  <section>
     <div class="top">
       <gradient-br />
 
@@ -16,6 +16,7 @@
 
     <div class="grid">
       <a
+        :class="classes"
         href="https://system76.com/laptops/lemur"
         target="_blank"
         rel="noopener"
@@ -26,6 +27,7 @@
       </a>
 
       <a
+        :class="classes"
         href="https://system76.com/desktops"
         target="_blank"
         rel="noopener"
@@ -39,6 +41,7 @@
       </a>
 
       <a
+        :class="classes"
         href="https://system76.com/desktops/meerkat"
         target="_blank"
         rel="noopener"
@@ -99,13 +102,13 @@
     position: relative;
   }
 
-  .light-mode .grid a {
+  .grid a.light-mode {
     background-color: #fff;
     border-color: #C8C8C8;
     color: #272727;
   }
 
-  .dark-mode .grid a {
+  .grid a.dark-mode {
     background-color: #272727;
     border-color: #171717;
     color: #ccc;

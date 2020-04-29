@@ -1,8 +1,8 @@
 <template>
-  <section :class="classes">
+  <section>
     <sys-header-2>Other Features</sys-header-2>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <div class="text">
         <sys-header-3>Hybrid Graphics</sys-header-3>
 
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <div class="text">
         <sys-header-3>Gaming</sys-header-3>
 
@@ -60,7 +60,7 @@
       </div>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <div class="text">
         <sys-header-3>Do Not Disturb</sys-header-3>
 
@@ -88,7 +88,7 @@
       </div>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <div class="text">
         <sys-header-3>Dark mode</sys-header-3>
 
@@ -98,7 +98,7 @@
           action.
         </sys-paragraph-1>
 
-        <label class="switch">
+        <label :class="[classes, 'switch']">
           <input
             :checked="isDark"
             aria-label="Dark Mode"
@@ -152,13 +152,13 @@
     padding: 1rem;
   }
 
-  .light-mode .block {
+  .light-mode.block {
     background-color: #fff;
     border-color: #C8C8C8;
     color: #272727;
   }
 
-  .dark-mode .block {
+  .dark-mode.block {
     background-color: #272727;
     border-color: #171717;
     color: #ccc;
@@ -182,13 +182,13 @@
     width: 86px;
   }
 
-  .light-mode .switch {
+  .light-mode.switch {
     background-color: #C8C8C8;
     border-color: #fff;
     box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.15);
   }
 
-  .dark-mode .switch {
+  .dark-mode.switch {
     background-color: #FBB86C;
     border-color: #000;
     box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25);
@@ -206,18 +206,14 @@
     width: 36px;
   }
 
-  .light-mode .switch input {
+  .light-mode.switch input {
     background-color: #fff;
     left: 4px;
   }
 
-  .dark-mode .switch input {
+  .dark-mode.switch input {
     background-color: #303030;
     left: 46px;
-  }
-
-  .switch input:focus {
-    background-color: #6ac9d7;
   }
 
   .block .image {

@@ -1,5 +1,5 @@
 <template>
-  <section :class="classes">
+  <section>
     <div class="copy">
       <sys-header-2>Development toolkits work flawlessly</sys-header-2>
 
@@ -10,7 +10,7 @@
       </sys-paragraph-1>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Deep Learning</sys-header-3>
 
       <sys-paragraph-1>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Engineering</sys-header-3>
 
       <sys-paragraph-1>
@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Media Production</sys-header-3>
 
       <sys-paragraph-1>
@@ -100,7 +100,7 @@
       </div>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Bioinformatics</sys-header-3>
 
       <sys-paragraph-1>
@@ -172,13 +172,13 @@
     max-width: 700px;
   }
 
-  .light-mode .block {
+  .light-mode.block {
     background-color: #fff;
     border-color: #C8C8C8;
     color: #272727;
   }
 
-  .dark-mode .block {
+  .dark-mode.block {
     background-color: #272727;
     border-color: #171717;
     color: #ccc;

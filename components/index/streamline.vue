@@ -1,5 +1,5 @@
 <template>
-  <section :class="classes">
+  <section>
     <div class="copy">
       <sys-header-2>Streamline your workflow</sys-header-2>
 
@@ -11,7 +11,7 @@
       </sys-paragraph-1>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Auto-Tiling With Pop Shell</sys-header-3>
 
       <sys-paragraph-1>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Workspaces</sys-header-3>
 
       <sys-paragraph-1>
@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Keyboard Navigation</sys-header-3>
 
       <sys-paragraph-1>
@@ -108,6 +108,7 @@
         >
       </div>
     </div>
+
     <light-box v-model="active">
       <div class="youtube">
         <youtube-responsive :video="video" />
@@ -150,13 +151,13 @@
     padding: 1rem;
   }
 
-  .light-mode .block {
+  .light-mode.block {
     background-color: #fff;
     border-color: #C8C8C8;
     color: #272727;
   }
 
-  .dark-mode .block {
+  .dark-mode.block {
     background-color: #272727;
     border-color: #171717;
     color: #ccc;
@@ -307,6 +308,7 @@
       active: false,
       video: null
     }),
+
     methods: {
       toggleVideo (video) {
         this.video = video

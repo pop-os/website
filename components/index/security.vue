@@ -1,5 +1,5 @@
 <template>
-  <section :class="classes">
+  <section>
     <div class="copy">
       <sys-header-2>Keep your computer secure</sys-header-2>
     </div>
@@ -21,7 +21,7 @@
       </picture>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Encryption out of the box</sys-header-3>
 
       <sys-paragraph-1>
@@ -32,7 +32,7 @@
       </sys-paragraph-1>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Update on Your Terms</sys-header-3>
 
       <sys-paragraph-1>
@@ -43,7 +43,7 @@
       </sys-paragraph-1>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Privacy</sys-header-3>
 
       <sys-paragraph-1>
@@ -54,7 +54,7 @@
       </sys-paragraph-1>
     </div>
 
-    <div class="block">
+    <div :class="[classes, 'block']">
       <sys-header-3>Firmware Management</sys-header-3>
 
       <sys-paragraph-1>
@@ -108,13 +108,13 @@
     margin: 0 auto;
   }
 
-  .light-mode .block {
+  .light-mode.block {
     background-color: #fff;
     border-color: #C8C8C8;
     color: #272727;
   }
 
-  .dark-mode .block {
+  .dark-mode.block {
     background-color: #272727;
     border-color: #171717;
     color: #ccc;
