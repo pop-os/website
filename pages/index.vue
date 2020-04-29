@@ -25,7 +25,7 @@
   }
 
   .light-mode {
-    background-color: #E5E5E5;
+    background-color: #F6F6F6;
     color: #272727;
   }
 
