@@ -10,20 +10,20 @@ export default {
 
     color: {
       get () {
-        return this.$colorMode.preference
+        return this.$store.state['color/color']
       },
 
       set (value) {
-        this.$colorMode.preference = value
+        this.$store.commit('color/setColor', value)
       }
     },
 
     isDark () {
-      return (this.color === 'dark')
+      return this.$store.getters['color/isDark']
     },
 
     isLight () {
-      return (!this.isDark)
+      return this.$store.getters['color/isLight']
     }
   },
 

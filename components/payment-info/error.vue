@@ -39,10 +39,6 @@
   export default {
     name: 'PaymentInfoError',
 
-    components: {
-      FontAwesomeIcon
-    },
-
     computed: {
       ...mapState('payment', ['error'])
     }

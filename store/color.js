@@ -23,11 +23,11 @@ export const getters = {
 }
 
 export const mutations = {
+  setColor ({ color }, value) {
+    color = value
+  },
+
   toggleColor ({ color }) {
-    if (color === 'dark') {
-      color = 'light'
-    } else {
-      color = 'dark'
-    }
+    color = (color === 'dark') ? 'light' : 'dark'
   }
 }
