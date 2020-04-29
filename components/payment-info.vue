@@ -4,6 +4,15 @@
       v-if="!isErrorPage && !isSuccessPage"
       class="header"
     >
+      <div class="close">
+        <span @click="closeLightBox">
+          <font-awesome-icon
+            :icon="faTimes"
+            size="1x"
+          />
+        </span>
+      </div>
+
       <sys-header-2>Support Pop!_OS</sys-header-2>
 
       <progress-dots
@@ -58,6 +67,14 @@
     margin: 0 1rem !important;
   }
 
+  .close {
+    text-align: right;
+  }
+
+  .close span {
+    cursor: pointer;
+  }
+
   @media (width > 600px) {
     .container {
       width: 500px;
@@ -67,6 +84,8 @@
 </style>
 
 <script>
+  import { faTimes } from '@fortawesome/free-solid-svg-icons'
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
   import { mapGetters } from 'vuex'
 
   import PaymentInfoBillingCreate from './payment-info/billing-create'
@@ -81,6 +100,7 @@
 
   export default {
     components: {
+      FontAwesomeIcon,
       ProgressDots
     },
 
@@ -117,13 +137,19 @@
           return PaymentInfoSupport
         }
       },
-
+      faTimes: () => faTimes,
       isErrorPage () {
         return (this.currentPage === 'error')
       },
 
       isSuccessPage () {
         return (this.currentPage === 'success')
+      }
+    },
+
+    methods: {
+      closeLightBox () {
+        this.$parent.close()
       }
     }
   }

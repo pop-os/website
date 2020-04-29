@@ -4,7 +4,7 @@
       <span @click="closeLightBox">
         <font-awesome-icon
           :icon="faTimes"
-          size="2x"
+          size="1x"
         />
       </span>
     </div>
