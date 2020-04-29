@@ -12,6 +12,7 @@ export const state = () => ({
 
   address: null,
   source: null,
+  subscription: null,
 
   addresses: [],
   sources: []
@@ -160,6 +161,10 @@ export const mutations = {
     state.source = data
   },
 
+  setSubscription (state, data) {
+    state.subscription = data
+  },
+
   setSources (state, data) {
     state.sources = data
   },
@@ -186,7 +191,16 @@ export const actions = {
     }
   },
 
-  async fetchData ({ commit, rootState }) {
+  async fetchData ({ dispatch }) {
+    const [apiRes, sponsorRes] = await Promise.all([
+      dispatch('fetchApiData'),
+      dispatch('fetchSponsorData')
+    ])
+
+    return (apiRes && sponsorRes)
+  },
+
+  async fetchApiData ({ commit, rootState }) {
     const res = await fetch(`${process.env.API_URL}/transactions/sources?filter[type]=stripe&include=address`, {
       method: 'GET',
       headers: new Headers({
@@ -202,6 +216,32 @@ export const actions = {
 
       commit('setSources', body.data || [])
       commit('setAddresses', body.included || [])
+
+      return true
+    } else {
+      commit('setError', 'Unable to talk to server')
+
+      return false
+    }
+  },
+
+  async fetchSponsorData ({ commit, rootState }) {
+    const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions`, {
+      method: 'GET',
+      headers: new Headers({
+        ...REQUEST_HEADERS,
+        Authorization: `Token ${rootState.session.jwt}`
+      })
+    })
+
+    if (res.ok) {
+      const body = await res.json()
+
+      if (body.length > 0) {
+        commit('setSubscription', body[0])
+      } else {
+        commit('setSubscription', null)
+      }
 
       return true
     } else {
@@ -287,9 +327,28 @@ export const actions = {
     }
   },
 
-  async createSubscription ({ commit }) {
-    commit('setPage', 'success')
+  async createSubscription ({ commit, rootState }, { stripeId }) {
+    const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions`, {
+      method: 'POST',
+      headers: new Headers({
+        ...REQUEST_HEADERS,
+        Authorization: `Token ${rootState.session.jwt}`
+      }),
+      body: JSON.stringify({
+        stripe_customer_id: stripeId
+      })
+    })
 
-    return true
+    if (res.ok) {
+      const body = await res.json()
+
+      commit('setSubscription', body)
+
+      return true
+    } else {
+      commit('setError', 'Error creating subscription')
+
+      return false
+    }
   }
 }

@@ -145,6 +145,7 @@
 
         await this.$store.dispatch('session/authenticate', { email, password })
 
+        await this.$store.dispatch('payment/fetchData')
         await this.$store.dispatch('payment/gotoNextPage')
       }
     }
