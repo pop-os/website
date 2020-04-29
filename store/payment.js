@@ -350,5 +350,26 @@ export const actions = {
 
       return false
     }
+  },
+
+  async deleteSubscription ({ commit, rootState }) {
+    const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions`, {
+      method: 'DELETE',
+      headers: new Headers({
+        ...REQUEST_HEADERS,
+        Authorization: `Token ${rootState.session.jwt}`
+      }),
+      body: JSON.stringify({ id: state.subscription.id })
+    })
+
+    if (res.ok) {
+      commit('setSubscription', null)
+
+      return true
+    } else {
+      commit('setError', 'Error deleting subscription')
+
+      return false
+    }
   }
 }

@@ -1,23 +1,25 @@
 <template>
   <div>
-    <!-- eslint-disable vue/no-v-html -->
-    <sys-paragraph-1 class="head">
-      Payment method
-    </sys-paragraph-1>
+    <template v-if="source">
+      <sys-paragraph-1 class="head">
+        Payment method
+      </sys-paragraph-1>
 
-    <payment-method
-      class="payment"
-      :brand="source.attributes.brand"
-      :reference="source.attributes.reference"
-      :expiration-month="source.attributes['expiration-month']"
-      :expiration-year="source.attributes['expiration-year']"
-    />
+      <payment-method
+        class="payment"
+        :brand="source.attributes.brand"
+        :reference="source.attributes.reference"
+        :expiration-month="source.attributes['expiration-month']"
+        :expiration-year="source.attributes['expiration-year']"
+      />
+    </template>
 
     <template v-if="address">
       <sys-paragraph-1 class="head">
         Billing address
       </sys-paragraph-1>
 
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <div v-html="formattedAddress" />
     </template>
 
@@ -63,13 +65,23 @@
         <span>Back</span>
       </sys-form-button>
 
-      <sys-form-button
-        color="primary"
-        :disabled="!canReview"
-        @click.prevent="$store.dispatch('payment/createSubscription')"
-      >
-        Confirm
-      </sys-form-button>
+      <div>
+        <sys-form-button
+          v-if="subscription"
+          :disabled="!canReview"
+          @click.prevent="$store.dispatch('payment/deleteSubscription')"
+        >
+          Delete
+        </sys-form-button>
+
+        <sys-form-button
+          color="primary"
+          :disabled="!canReview"
+          @click.prevent="$store.dispatch('payment/createSubscription')"
+        >
+          Confirm
+        </sys-form-button>
+      </div>
     </div>
   </div>
 </template>
@@ -116,7 +128,7 @@
     },
 
     computed: {
-      ...mapState('payment', ['source', 'address']),
+      ...mapState('payment', ['source', 'address', 'subscription']),
       ...mapGetters('payment', ['canReview']),
 
       faChevronLeft: () => faChevronLeft,
