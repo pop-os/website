@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- eslint-disable vue/no-v-html -->
     <sys-paragraph-1 class="head">
       Payment method
     </sys-paragraph-1>

@@ -1,5 +1,6 @@
 <template>
   <section :class="classes">
+    <!-- eslint-disable vue/no-v-html -->
     <div class="content">
       <div class="copy">
         <sys-subheader-1>

@@ -8,7 +8,6 @@
         />
       </span>
     </div>
-    </span>
     <template v-if="$fetchState.pending">
       <font-awesome-icon
         :icon="faSpinner"
