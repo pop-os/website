@@ -1,5 +1,14 @@
 <template>
   <div :class="[classes, 'container']">
+    <div class="close">
+      <span @click="closeLightBox">
+        <font-awesome-icon
+          :icon="faTimes"
+          size="2x"
+        />
+      </span>
+    </div>
+    </span>
     <template v-if="$fetchState.pending">
       <font-awesome-icon
         :icon="faSpinner"
@@ -211,10 +220,17 @@
   a.download:hover {
     color: #FFAD00
   }
+
+  .close {
+    text-align: right;
+  }
+  .close span {
+    cursor: pointer;
+  }
 </style>
 
 <script>
-  import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+  import { faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
   import { mapGetters, mapMutations, mapActions } from 'vuex'
 
@@ -251,7 +267,8 @@
         'preferNvidia'
       ]),
 
-      faSpinner: () => faSpinner
+      faSpinner: () => faSpinner,
+      faTimes: () => faTimes
     },
 
     async fetch () {
@@ -268,6 +285,10 @@
       ...mapActions('download', [
         'fetch'
       ]),
+
+      closeLightBox () {
+        this.$parent.close()
+      },
 
       toggle () {
         this.switchRelease()
