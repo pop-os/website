@@ -23,7 +23,11 @@
         displays.
       </sys-paragraph-1>
 
-      <div class="video" />
+      <img
+        src="https://i.ytimg.com/vi/-fltwBKsMY0/maxresdefault.jpg"
+        class="video"
+        @click.prevent="toggleVideo('-fltwBKsMY0')"
+      >
     </div>
 
     <div class="block">
@@ -35,7 +39,11 @@
         Problem solved.
       </sys-paragraph-1>
 
-      <div class="video" />
+      <img
+        src="https://i.ytimg.com/vi/v9oVZwJrjOc/maxresdefault.jpg"
+        class="video"
+        @click.prevent="toggleVideo('v9oVZwJrjOc')"
+      >
     </div>
 
     <div class="block">
@@ -52,8 +60,17 @@
         </ul>
       </sys-paragraph-1>
 
-      <div class="video" />
+      <img
+        src="https://i.ytimg.com/vi/aqj0cRTZaVE/maxresdefault.jpg"
+        class="video"
+        @click.prevent="toggleVideo('aqj0cRTZaVE')"
+      >
     </div>
+    <light-box v-model="active">
+      <div class="youtube">
+        <youtube-responsive :video="video" />
+      </div>
+    </light-box>
   </section>
 </template>
 
@@ -132,7 +149,6 @@
   .block .video {
     margin: 1rem 0 0;
     overflow: hidden;
-    padding-bottom: 56.25%;
     position: relative;
     width: 100%;
   }
@@ -145,6 +161,11 @@
     right: 0;
     top: 0;
     width: 100%;
+    cursor: pointer;
+  }
+
+  .youtube {
+    width: 100vw;
   }
 
   @media (width >= 120ch) {
@@ -195,15 +216,37 @@
       grid-row: 1 / 3;
       width: 20ch;
     }
+    .youtube {
+      width: 60vw;
+    }
   }
 </style>
 
 <script>
+  import LightBox from '~/components/light-box'
+  import YoutubeResponsive from '~/components/youtube-responsive'
   import color from '~/mixins/color'
 
   export default {
+
+    components: {
+      LightBox,
+      YoutubeResponsive
+    },
+
     mixins: [
       color
-    ]
+    ],
+
+    data: () => ({
+      active: false,
+      video: null
+    }),
+    methods: {
+      toggleVideo (video) {
+        this.video = video
+        this.active = true
+      }
+    }
   }
 </script>
