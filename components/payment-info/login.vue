@@ -4,8 +4,7 @@
       New to System76?
       <a
         href="#"
-        @click.prevent="register"
-      >
+        @click.prevent="$store.commit('payment/setPage', 'register')">
         Create Account
       </a>
     </p>
@@ -53,11 +52,6 @@
   p {
     margin: 2rem 0;
   }
-
-  a {
-    color: #AF5C02;
-    text-decoration: none;
-  }
 </style>
 
 <script>
@@ -80,23 +74,14 @@
       faChevronLeft: () => faChevronLeft
     },
 
-    mounted () {
-      // HACK: vee-validate is not initiating corretly preventing the submit
-      // button from ever being _not_ disabled. This is a hacky hack fix
-      this.$children[0].$children[0].validate({ silent: true })
-    },
-
     methods: {
-      register () {
-        this.$store.commit('payment/gotoPage', 'register')
-      },
-
       async submit () {
         await this.$store.dispatch('session/authenticate', {
           email: this.email,
           password: this.password
         })
 
+        await this.$store.dispatch('payment/fetchData')
         await this.$store.dispatch('payment/gotoNextPage')
       }
     }

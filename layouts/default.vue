@@ -71,7 +71,7 @@
 </style>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapState } from 'vuex'
 
   import DownloadInfo from '~/components/download-info'
   import LightBox from '~/components/light-box'
@@ -86,7 +86,7 @@
 
     computed: {
       ...mapGetters('download', { isDownloadActive: 'showing' }),
-      ...mapGetters('payment', { isPaymentActive: 'showing' })
+      ...mapState('payment', { isPaymentActive: 'showing' })
     },
 
     methods: {
@@ -98,7 +98,7 @@
 
       togglePayment () {
         // TODO: Analytics
-        this.$store.commit('payment/toggleShowing')
+        this.$store.commit('payment/setShowing')
       }
     }
   }

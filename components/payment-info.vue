@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div
-      v-if="!isErrorPage && !isSuccessPage"
+      v-if="showProgress"
       class="header"
     >
       <div class="close">
@@ -86,7 +86,7 @@
 <script>
   import { faTimes } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapState } from 'vuex'
 
   import PaymentInfoBillingCreate from './payment-info/billing-create'
   import PaymentInfoBillingSelect from './payment-info/billing-select'
@@ -105,13 +105,13 @@
     },
 
     computed: {
-      ...mapGetters('payment', [
-        'currentPage',
-        'currentProgress'
-      ]),
+      ...mapGetters('payment', ['currentProgress', 'showProgress']),
+      ...mapState('payment', ['page']),
+
+      faTimes: () => faTimes,
 
       currentComponent () {
-        switch (this.currentPage) {
+        switch (this.page) {
         case 'login':
           return PaymentInfoLogin
 
@@ -136,14 +136,6 @@
         default:
           return PaymentInfoSupport
         }
-      },
-      faTimes: () => faTimes,
-      isErrorPage () {
-        return (this.currentPage === 'error')
-      },
-
-      isSuccessPage () {
-        return (this.currentPage === 'success')
       }
     },
 

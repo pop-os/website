@@ -21,7 +21,6 @@ export const getters = {
 
 export const mutations = {
   login (state, data) {
-    console.log('data', data)
     state.userId = data.relationships.user.data.id
 
     state.token = data.attributes.token

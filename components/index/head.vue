@@ -187,7 +187,7 @@
 
       togglePayment () {
         // TODO: analytics
-        this.$store.commit('payment/toggleShowing')
+        this.$store.commit('payment/setShowing')
       }
     }
   }

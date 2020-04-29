@@ -5,20 +5,21 @@
       Payment method
     </sys-paragraph-1>
 
-    <div class="payment">
-      <font-awesome-icon :icon="faCreditCard" />
+    <payment-method
+      class="payment"
+      :brand="source.attributes.brand"
+      :reference="source.attributes.reference"
+      :expirationMonth="source.attributes['expiration-month']"
+      :expirationYear="source.attributes['expiration-year']"
+    />
 
-      <div>
-        <span>Ending in: {{ stripeRef }}</span>
-        <span>Expires: {{ stripeExpMonth }}/{{ stripeExpYear }}</span>
-      </div>
-    </div>
+    <template v-if="address">
+      <sys-paragraph-1 class="head">
+        Billing address
+      </sys-paragraph-1>
 
-    <sys-paragraph-1 class="head">
-      Billing address
-    </sys-paragraph-1>
-
-    <div v-html="formattedAddress" />
+      <div v-html="formattedAddress" />
+    </template>
 
     <a
       class="change"
@@ -65,7 +66,7 @@
       <sys-form-button
         color="primary"
         :disabled="!canReview"
-        @click.prevent="$store.dispatch('payment/complete')"
+        @click.prevent="$store.dispatch('payment/createSubscription')"
       >
         Confirm
       </sys-form-button>
@@ -76,22 +77,6 @@
 <style scoped>
   .head {
     font-weight: bold;
-  }
-
-  .payment {
-    display: flex;
-  }
-
-  .payment svg {
-    font-size: 3rem;
-    color: #574F4A;
-  }
-
-  .payment div {
-    margin-left: 1rem;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 
   .change {
@@ -114,41 +99,37 @@
 </style>
 
 <script>
-
-  import { faChevronLeft, faCreditCard } from '@fortawesome/free-solid-svg-icons'
+  import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
   import { mapGetters, mapState } from 'vuex'
 
   import SubscriptionPrice from '~/components/subscription-price'
+  import PaymentMethod from '~/components/payment-method'
 
   export default {
     name: 'PaymentInfoReview',
 
     components: {
       FontAwesomeIcon,
-      SubscriptionPrice
+      SubscriptionPrice,
+      PaymentMethod
     },
 
     computed: {
-      ...mapState('payment', [
-        'stripeRef',
-        'stripeExpMonth',
-        'stripeExpYear',
-        'address'
-      ]),
-
+      ...mapState('payment', ['source', 'address']),
       ...mapGetters('payment', ['canReview']),
 
       faChevronLeft: () => faChevronLeft,
-      faCreditCard: () => faCreditCard,
 
       formattedAddress () {
+        const { attributes } = this.address
+
         const lines = [
-          [this.address.firstName, this.address.lastName],
-          [this.address.address1],
-          [this.address.address2],
-          [this.address.city, this.address.state, this.address.zip],
-          [this.address.country]
+          [attributes['first-name'], attributes['last-name']],
+          [attributes.address1],
+          [attributes.address2],
+          [attributes.city, attributes.state, attributes.zip],
+          [attributes.country]
         ]
           .map((l) => l.filter((v) => (v != null)))
           .map((l) => l.join(' '))

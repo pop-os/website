@@ -1,5 +1,13 @@
 <template>
   <sys-form :submit-function="submit">
+    <p v-if="canSelectSources">
+      <a
+        href="#"
+        @click.prevent="$store.commit('payment/setPage', 'billing-select')">
+        Select an existing payment method
+      </a>
+    </p>
+
     <div>
       <sys-label for="stripe-card-input">
         Card number
@@ -1595,6 +1603,10 @@
     margin: 0 -1rem;
   }
 
+  form p {
+    margin: 0 1rem 2rem;
+  }
+
   form >>> > div {
     margin: 0.6rem 1rem 0;
     flex: 1 1 100%;
@@ -1638,6 +1650,7 @@
 <script>
   import { faChevronLeft, faSpinner } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'PaymentInfoBillingCreate',
@@ -1672,6 +1685,8 @@
     }),
 
     computed: {
+      ...mapGetters('payment', ['canSelectSources']),
+
       faChevronLeft: () => faChevronLeft,
       faSpinner: () => faSpinner,
 
@@ -1695,8 +1710,8 @@
     },
 
     methods: {
-      commitAddress () {
-        this.$store.commit('payment/setAddress', {
+      async createAddress () {
+        return this.$store.dispatch('payment/createAddress', {
           firstName: this.firstName,
           lastName: this.lastName,
           address1: this.address1,
@@ -1708,7 +1723,7 @@
         })
       },
 
-      async createStripeToken () {
+      async createSource () {
         const stripe = await this.waitForStripe()
         const { token, error } = await stripe.createToken(this.stripeCard, {
           name: `${this.firstName} ${this.lastName}`,
@@ -1722,14 +1737,18 @@
         })
 
         if (token != null) {
-          this.$store.commit('payment/setStripeToken', token)
+          return this.$store.dispatch('payment/createSource', {
+            addressId: this.$store.state.payment.address.id,
+            token: token.id
+          })
         } else {
-          throw new Error(error.message)
+          this.$store.commit('payment/setError', error.message)
+          return false
         }
       },
 
       maybeGrabFromStore () {
-        const storeData = this.$store.getters['payment/address']
+        const storeData = this.$store.state['payment/address']
 
         if (storeData != null) {
           this.firstName = storeData.firstName || ''
@@ -1794,10 +1813,15 @@
       },
 
       async submit () {
-        this.commitAddress()
-        await this.createStripeToken()
+        const addressRes = await this.createAddress()
 
-        await this.$store.dispatch('payment/gotoNextPage')
+        if (addressRes) {
+          const sourceRes = await this.createSource()
+
+          if (sourceRes) {
+            await this.$store.dispatch('payment/gotoNextPage')
+          }
+        }
       },
 
       async waitForStripe () {

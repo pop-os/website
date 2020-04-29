@@ -4,7 +4,7 @@
       Already have an account?
       <a
         href="#"
-        @click.prevent="login"
+        @click.prevent="$store.commit('payment/setPage', 'login')"
       >
         Log In
       </a>
@@ -136,10 +136,6 @@
     },
 
     methods: {
-      login () {
-        this.$store.commit('payment/gotoPage', 'login')
-      },
-
       async submit () {
         const { firstName, lastName, email, phoneNumber, password, newsletter } = this
 

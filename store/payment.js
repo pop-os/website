@@ -7,39 +7,23 @@ const REQUEST_HEADERS = {
 export const state = () => ({
   showing: false,
 
-  page: 'support',
-  forwardPageDisabled: false,
-
   error: null,
+  page: 'support',
 
-  stripeId: null,
-  stripeRef: null,
-  stripeExpMonth: null,
-  stripeExpYear: null,
-  stripeToken: null,
-
-  addressId: null,
   address: null,
+  source: null,
 
-  sources: [],
-  sourceId: null
+  addresses: [],
+  sources: []
 })
 
 export const getters = {
-  address (state) {
-    return state.address
-  },
-
-  showing (state) {
-    return state.showing
-  },
-
   canReview (state) {
-    return (state.stripeToken != null && state.address != null)
+    return (state.source != null)
   },
 
-  currentPage (state) {
-    return state.page
+  canSelectSources (state) {
+    return (state.sources.length > 0)
   },
 
   currentProgress (state) {
@@ -59,7 +43,16 @@ export const getters = {
         return 4
 
       case 'success':
+      case 'error':
         return 5
+    }
+  },
+
+  defaultBillingPage (state) {
+    if (getters.canSelectSources) {
+      return 'billing-select'
+    } else {
+      return 'billing-create'
     }
   },
 
@@ -70,14 +63,14 @@ export const getters = {
         if (getters.canReview) {
           return 'review'
         } else if (rootGetters['session/isLoggedIn']) {
-          return 'billing-select'
+          return getters.defaultBillingPage
         } else {
           return 'login'
         }
 
       case 'login':
       case 'register':
-        return 'billing-select'
+        return getters.defaultBillingPage
 
       case 'billing-select':
       case 'billing-create':
@@ -94,7 +87,7 @@ export const getters = {
     }
   },
 
-  previousPage (state) {
+  previousPage (state, getters) {
     switch (state.page) {
       case 'login':
         return 'support'
@@ -106,7 +99,7 @@ export const getters = {
         return 'support'
 
       case 'billing-create':
-        if (state.sources.length) {
+        if (getters.canSelectSources) {
           return 'billing-select'
         } else {
           return 'support'
@@ -121,44 +114,23 @@ export const getters = {
       default:
         return null
     }
+  },
+
+  showProgress (state) {
+    return (state.page !== 'success' && state.page !== 'error')
+  },
+
+  sourceId (state) {
+    if (state.source != null) {
+      return state.source.id
+    } else {
+      return null
+    }
   }
 }
 
 export const mutations = {
-  setAddress (state, value) {
-    state.address = value
-  },
-
-  setError (state, error) {
-    state.error = error
-    state.page = 'error'
-  },
-
-  setAddressId (state, value) {
-    state.addressId = value
-  },
-
-  setSources (state, value) {
-    state.sources = value
-  },
-
-  setSourceData (state, value) {
-    state.stripeId = value.attributes.stripe_id
-    state.sourceId = value.id
-  },
-
-  setStripeToken (state, value) {
-    if (value.type !== 'card') {
-      throw new Error('Only able to subscribe to cards')
-    } else {
-      state.stripeRef = value.card.last4
-      state.stripeExpMonth = value.card.exp_month
-      state.stripeExpYear = value.card.exp_year
-      state.stripeToken = value.id
-    }
-  },
-
-  toggleShowing (state, value) {
+  setShowing (state, value) {
     const absValue = (value != null) ? value : !state.showing
 
     if (absValue) {
@@ -166,52 +138,80 @@ export const mutations = {
     } else {
       state.showing = false
       state.page = 'support'
+      this.error = null
     }
   },
 
-  toggleForwardPageDisabled (state, value) {
-    if (value != null) {
-      state.forwardButtonDisabled = value
-    } else {
-      state.forwardButtonDisabled = !state.forwardButtonDisabled
-    }
+  setError (state, message) {
+    state.error = message
+    state.page = 'error'
   },
 
-  gotoPage (state, page) {
+  setPage (state, page) {
     state.page = page
+    this.error = null
+  },
+
+  setAddress (state, data) {
+    state.address = data
+  },
+
+  setSource (state, data) {
+    state.source = data
+  },
+
+  setSources (state, data) {
+    state.sources = data
+  },
+
+  setAddresses (state, data) {
+    state.addresses = data
   }
 }
 
 export const actions = {
   async gotoPreviousPage ({ commit, getters }) {
     if (getters.previousPage == null) {
-      commit('toggleShowing', false)
+      commit('setShowing', false)
     } else {
-      commit('gotoPage', getters.previousPage)
+      commit('setPage', getters.previousPage)
     }
   },
 
   async gotoNextPage ({ commit, getters }) {
-    commit('gotoPage', getters.nextPage)
-  },
-
-  async complete ({ commit, dispatch, getters, rootState, state }) {
-    if (!getters.canReview) {
-      return
-    }
-
-    const addressId = await dispatch('completeAddress')
-
-    if (addressId !== false) {
-      const sourceId = await dispatch('completeTransaction')
-
-      if (sourceId !== false) {
-        return dispatch('gotoNextPage')
-      }
+    if (getters.nextPage == null) {
+      commit('setShowing', false)
+    } else {
+      commit('setPage', getters.nextPage)
     }
   },
 
-  async completeAddress ({ commit, rootState, state }) {
+  async fetchData ({ commit, rootState }) {
+    const res = await fetch(`${process.env.API_URL}/transactions/sources?filter[type]=stripe&include=address`, {
+      method: 'GET',
+      headers: new Headers({
+        ...REQUEST_HEADERS,
+        Authorization: `Token ${rootState.session.token}`,
+        'Content-Type': 'application/vnd.api+json',
+        Accept: 'application/vnd.api+json'
+      })
+    })
+
+    if (res.ok) {
+      const body = await res.json()
+
+      commit('setSources', body.data || [])
+      commit('setAddresses', body.included || [])
+
+      return true
+    } else {
+      commit('setError', 'Unable to talk to server')
+
+      return false
+    }
+  },
+
+  async createAddress ({ commit, rootState, state }, fields) {
     const res = await fetch(`${process.env.API_URL}/geography/addresses`, {
       method: 'POST',
       headers: new Headers({
@@ -222,15 +222,15 @@ export const actions = {
       }),
       body: JSON.stringify({
         address: {
-          first_name: state.address.firstName,
-          last_name: state.address.lastName,
-          company_name: state.address.companyName,
-          address1: state.address.address1,
-          address2: state.address.address2,
-          state: state.address.state,
-          city: state.address.city,
-          zip: state.address.zip,
-          country: state.address.country,
+          first_name: fields.firstName,
+          last_name: fields.lastName,
+          company_name: fields.companyName,
+          address1: fields.address1,
+          address2: fields.address2,
+          state: fields.state,
+          city: fields.city,
+          zip: fields.zip,
+          country: fields.country,
           user_id: rootState.session.userId,
           shipping: false
         }
@@ -240,15 +240,17 @@ export const actions = {
     if (res.ok) {
       const body = await res.json()
 
-      commit('setAddressId', body.data.id)
-      return body.data.id
+      commit('setAddress', body.data)
+
+      return true
     } else {
       commit('setError', 'Error creating address')
+
       return false
     }
   },
 
-  async completeTransaction ({ commit, rootState, state }) {
+  async createSource ({ commit, rootState, state }, { addressId, token }) {
     const res = await fetch(`${process.env.API_URL}/transactions/sources`, {
       method: 'POST',
       headers: new Headers({
@@ -261,12 +263,12 @@ export const actions = {
         data: {
           type: 'transactions-source',
           attributes: {
-            token: state.stripeToken,
+            token: token,
             type: 'stripe'
           },
           relationships: {
             user: { data: { id: rootState.session.userId } },
-            address: { data: { id: state.addressId } }
+            address: { data: { id: addressId } }
           }
         }
       })
@@ -275,23 +277,19 @@ export const actions = {
     if (res.ok) {
       const body = await res.json()
 
-      commit('setSourceData', body.data)
-      return body.data.id
+      commit('setSource', body.data)
+
+      return true
     } else {
-      commit('setError', 'Error creating transaction source')
+      commit('setError', 'Error creating payment method')
+
       return false
     }
   },
 
-  async fetchSources ({ commit }) {
-    const res = await fetch(`${process.env.API_URL}/transactions/sources`, {
-      method: 'GET'
-    })
+  async createSubscription ({ commit }) {
+    commit('setPage', 'success')
 
-    const body = await res.json()
-
-    commit('setSources', body.data)
-
-    return body.data
+    return true
   }
 }
