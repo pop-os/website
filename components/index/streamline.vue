@@ -22,8 +22,26 @@
         both organized and efficient, and is especially convenient on large
         displays.
       </sys-paragraph-1>
-
-      <div class="video" />
+      <div
+        class="video-wrap"
+        @click.prevent="toggleVideo('-fltwBKsMY0')"
+      >
+        <div class="play-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 494.148 494.148"
+            xml:space="preserve"
+          >
+            <path
+              d="M405.284,201.188L130.804,13.28C118.128,4.596,105.356,0,94.74,0C74.216,0,61.52,16.472,61.52,44.044v406.124c0,27.54,12.68,43.98,33.156,43.98c10.632,0,23.2-4.6,35.904-13.308l274.608-187.904c17.66-12.104,27.44-28.392,27.44-45.884C432.632,229.572,422.964,213.288,405.284,201.188z"
+            />
+          </svg>
+        </div>
+        <img
+          src="https://i.ytimg.com/vi/-fltwBKsMY0/maxresdefault.jpg"
+          class="video"
+        >
+      </div>
     </div>
 
     <div class="block">
@@ -34,8 +52,26 @@
         When the clutter overwhelms you, just toss it onto another desktop.
         Problem solved.
       </sys-paragraph-1>
-
-      <div class="video" />
+      <div
+        class="video-wrap"
+        @click.prevent="toggleVideo('v9oVZwJrjOc')"
+      >
+        <div class="play-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 494.148 494.148"
+            xml:space="preserve"
+          >
+            <path
+              d="M405.284,201.188L130.804,13.28C118.128,4.596,105.356,0,94.74,0C74.216,0,61.52,16.472,61.52,44.044v406.124c0,27.54,12.68,43.98,33.156,43.98c10.632,0,23.2-4.6,35.904-13.308l274.608-187.904c17.66-12.104,27.44-28.392,27.44-45.884C432.632,229.572,422.964,213.288,405.284,201.188z"
+            />
+          </svg>
+        </div>
+        <img
+          src="https://i.ytimg.com/vi/v9oVZwJrjOc/maxresdefault.jpg"
+          class="video"
+        >
+      </div>
     </div>
 
     <div class="block">
@@ -51,9 +87,32 @@
           <li>launch applications</li>
         </ul>
       </sys-paragraph-1>
-
-      <div class="video" />
+      <div
+        class="video-wrap"
+        @click.prevent="toggleVideo('aqj0cRTZaVE')"
+      >
+        <div class="play-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 494.148 494.148"
+            xml:space="preserve"
+          >
+            <path
+              d="M405.284,201.188L130.804,13.28C118.128,4.596,105.356,0,94.74,0C74.216,0,61.52,16.472,61.52,44.044v406.124c0,27.54,12.68,43.98,33.156,43.98c10.632,0,23.2-4.6,35.904-13.308l274.608-187.904c17.66-12.104,27.44-28.392,27.44-45.884C432.632,229.572,422.964,213.288,405.284,201.188z"
+            />
+          </svg>
+        </div>
+        <img
+          src="https://i.ytimg.com/vi/aqj0cRTZaVE/maxresdefault.jpg"
+          class="video"
+        >
+      </div>
     </div>
+    <light-box v-model="active">
+      <div class="youtube">
+        <youtube-responsive :video="video" />
+      </div>
+    </light-box>
   </section>
 </template>
 
@@ -129,10 +188,32 @@
     content: "- ";
   }
 
-  .block .video {
+  .block .video-wrap {
     margin: 1rem 0 0;
+    position: relative;
+    cursor: pointer;
+  }
+  .video-wrap .play-btn {
+    position: absolute;
+    max-width: 700px;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-25%, -25%);
+    z-index: 99;
+  }
+  .video-wrap .play-btn svg {
+    transition: all .2s ease;
+    fill: rgba(255,255,255, 0.8);
+    width: 50%;
+  }
+  .video-wrap .play-btn:hover svg,
+  .video-wrap .play-btn:focus svg {
+    fill: #fff;
+  }
+  .block .video {
     overflow: hidden;
-    padding-bottom: 56.25%;
     position: relative;
     width: 100%;
   }
@@ -145,6 +226,11 @@
     right: 0;
     top: 0;
     width: 100%;
+    cursor: pointer;
+  }
+
+  .youtube {
+    width: 90vw;
   }
 
   @media (width >= 120ch) {
@@ -195,15 +281,37 @@
       grid-row: 1 / 3;
       width: 20ch;
     }
+    .youtube {
+      width: 60vw;
+    }
   }
 </style>
 
 <script>
+  import LightBox from '~/components/light-box'
+  import YoutubeResponsive from '~/components/youtube-responsive'
   import color from '~/mixins/color'
 
   export default {
+
+    components: {
+      LightBox,
+      YoutubeResponsive
+    },
+
     mixins: [
       color
-    ]
+    ],
+
+    data: () => ({
+      active: false,
+      video: null
+    }),
+    methods: {
+      toggleVideo (video) {
+        this.video = video
+        this.active = true
+      }
+    }
   }
 </script>
