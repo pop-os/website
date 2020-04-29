@@ -30,12 +30,13 @@
 
       <div>
         <sys-form-button
-          ref="noopener"
           color="primary"
           ghost
+          href="https://support.system76.com/articles/use-tensorman/"
+          ref="noopener"
           target="_blank"
         >
-          AHHHHHHHHHHHHH
+          Learn about Tensorman
         </sys-form-button>
       </div>
     </div>
