@@ -22,7 +22,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Encryption out of the box</sys-header-3>
+      <sys-subheader-2>Encryption out of the box</sys-subheader-2>
 
       <sys-paragraph-1>
         Pop!_OS encrypts your installation by default, and is the only Linux
@@ -33,7 +33,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Update on Your Terms</sys-header-3>
+      <sys-subheader-2>Update on Your Terms</sys-subheader-2>
 
       <sys-paragraph-1>
         Pop!_OS provides the latest features and security patches through
@@ -44,7 +44,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Privacy</sys-header-3>
+      <sys-subheader-2>Privacy</sys-subheader-2>
 
       <sys-paragraph-1>
         Pop!_OS does not collect or store any info from user installations.
@@ -55,7 +55,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Firmware Management</sys-header-3>
+      <sys-subheader-2>Firmware Management</sys-subheader-2>
 
       <sys-paragraph-1>
         Automatic firmware updates can be accessed from your software settings
@@ -120,7 +120,7 @@
     color: #ccc;
   }
 
-  .block h3 {
+  .block h2 {
     margin: 0 0 1rem;
   }
 

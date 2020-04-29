@@ -6,7 +6,7 @@
       <sys-header-2>Best paired with System76 hardware</sys-header-2>
     </div>
 
-    <sys-header-3>We’re sciencing the sh*t out of this.</sys-header-3>
+    <sys-subheader-2>We’re sciencing the sh*t out of this.</sys-subheader-2>
 
     <sys-paragraph-1>
       System76 is a U.S. manufacturer of portable and powerful laptops,
@@ -71,11 +71,11 @@
     flex-direction: column;
   }
 
-  h2 {
+  .top h2 {
     margin: 2rem 0 0;
   }
 
-  h3,
+  section > h2,
   p {
     margin: 0;
   }
@@ -158,12 +158,12 @@
       grid-column: 1 / 3;
     }
 
-    h2 {
+    .top h2 {
       flex: 0 0 auto;
       margin: 0 1rem 0 0;
     }
 
-    h3 {
+    section > h2 {
       grid-row: 2 / 3;
       grid-column: 1 / 2;
     }

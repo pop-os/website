@@ -4,7 +4,7 @@
 
     <div :class="[classes, 'block']">
       <div class="text">
-        <sys-header-3>Hybrid Graphics</sys-header-3>
+        <sys-subheader-2>Hybrid Graphics</sys-subheader-2>
 
         <sys-paragraph-1>
           Toggle between battery-saving and high-powered graphics, or designate
@@ -33,7 +33,7 @@
 
     <div :class="[classes, 'block']">
       <div class="text">
-        <sys-header-3>Gaming</sys-header-3>
+        <sys-subheader-2>Gaming</sys-subheader-2>
 
         <sys-paragraph-1>
           Steam, Lutris, and GameHub combine to create an incredible gaming
@@ -62,7 +62,7 @@
 
     <div :class="[classes, 'block']">
       <div class="text">
-        <sys-header-3>Do Not Disturb</sys-header-3>
+        <sys-subheader-2>Do Not Disturb</sys-subheader-2>
 
         <sys-paragraph-1>
           Get rid of any and all notifications for however long you like. Cast out
@@ -90,7 +90,7 @@
 
     <div :class="[classes, 'block']">
       <div class="text">
-        <sys-header-3>Dark mode</sys-header-3>
+        <sys-subheader-2>Dark mode</sys-subheader-2>
 
         <sys-paragraph-1>
           It’s dark, like your afternoon coffee—but with high-contrast accent
@@ -138,7 +138,7 @@
     padding: 0 1rem;
   }
 
-  h2 {
+  section > h2 {
     grid-column: 1 / 2;
     margin-top: 0;
     text-align: center;
@@ -168,7 +168,7 @@
     flex: 1 1 auto;
   }
 
-  h3 {
+  .block h2 {
     margin-top: 0;
     text-align: center;
   }
@@ -242,7 +242,7 @@
       grid-template-rows: auto repeat(2, 1fr)
     }
 
-    h2 {
+    section > h2 {
       grid-column: 1 / 3;
     }
   }
@@ -253,7 +253,7 @@
       grid-template-rows: auto 1fr auto;
     }
 
-    h2 {
+    section > h2 {
       grid-column: 1 / 4;
     }
 
@@ -267,7 +267,7 @@
       flex-direction: column;
     }
 
-    .block:last-of-type h3 {
+    .block:last-of-type h2 {
       text-align: left;
     }
 

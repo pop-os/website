@@ -12,7 +12,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Auto-Tiling With Pop Shell</sys-header-3>
+      <sys-subheader-2>Auto-Tiling With Pop Shell</sys-subheader-2>
 
       <sys-paragraph-1>
         Pop!_OS uses auto-tiling for the same reason that people hire
@@ -45,7 +45,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Workspaces</sys-header-3>
+      <sys-subheader-2>Workspaces</sys-subheader-2>
 
       <sys-paragraph-1>
         Keep relevant content together and irrelevant content out of sight.
@@ -75,7 +75,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Keyboard Navigation</sys-header-3>
+      <sys-subheader-2>Keyboard Navigation</sys-subheader-2>
 
       <sys-paragraph-1>
         Arm yourself with a dark-lord level of power at your fingertips. Use
@@ -163,7 +163,7 @@
     color: #ccc;
   }
 
-  .block h3 {
+  .block h2 {
     margin: 0 auto 1rem;
     max-width: 80ch;
     text-align: center;
@@ -273,8 +273,8 @@
       text-align: left;
     }
 
-    .block:nth-child(3) h3,
-    .block:nth-child(4) h3 {
+    .block:nth-child(3) h2,
+    .block:nth-child(4) h2 {
       grid-column: 1 / 2;
       grid-row: 1 / 2;
     }

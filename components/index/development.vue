@@ -11,7 +11,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Deep Learning</sys-header-3>
+      <sys-subheader-2>Deep Learning</sys-subheader-2>
 
       <sys-paragraph-1>
         Code life into the machinery of the future. Perfect your model for
@@ -41,7 +41,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Engineering</sys-header-3>
+      <sys-subheader-2>Engineering</sys-subheader-2>
 
       <sys-paragraph-1>
         Secure data inside an impenetrable fortress. Break ground, then leave
@@ -71,7 +71,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Media Production</sys-header-3>
+      <sys-subheader-2>Media Production</sys-subheader-2>
 
       <sys-paragraph-1>
         Design a character. Animate it. Give it a voice, then tell its story.
@@ -101,7 +101,7 @@
     </div>
 
     <div :class="[classes, 'block']">
-      <sys-header-3>Bioinformatics</sys-header-3>
+      <sys-subheader-2>Bioinformatics</sys-subheader-2>
 
       <sys-paragraph-1>
         Discover new treatments for bacterial diseases. Explore the vast
@@ -188,7 +188,7 @@
     margin: 0;
   }
 
-  .block h3 {
+  .block h2 {
     margin: 1rem 1rem 0;
   }
 
@@ -261,7 +261,7 @@
       grid-template-rows: auto 1fr auto;
     }
 
-    .block h3 {
+    .block h2 {
       margin: 1rem 1rem 0 0;
     }
 
