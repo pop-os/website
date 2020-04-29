@@ -140,7 +140,7 @@ jobs:
       - Test_Browser_Windows
       - Build
 
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/staging'
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/20.04-release'
 
     steps:
       - name: Checkout
@@ -169,7 +169,7 @@ jobs:
             echo "::set-env name=AWS_SECRET_ACCESS_KEY::${{ secrets.PRODUCTION_ACCESS_SECRET }}"
             echo "::set-env name=AWS_DEFAULT_REGION::${{ secrets.PRODUCTION_REGION }}"
             echo "::set-env name=AWS_BUCKET::${{ secrets.PRODUCTION_BUCKET }}"
-          elif [ $GITHUB_REF == "refs/heads/staging" ]; then
+          elif [ $GITHUB_REF == "refs/heads/20.04-release" ]; then
             echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets.STAGING_ACCESS_KEY }}"
             echo "::set-env name=AWS_SECRET_ACCESS_KEY::${{ secrets.STAGING_ACCESS_SECRET }}"
             echo "::set-env name=AWS_DEFAULT_REGION::${{ secrets.STAGING_REGION }}"
