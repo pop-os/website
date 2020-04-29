@@ -26,9 +26,9 @@
 
       <sys-paragraph-1>
         Pop!_OS encrypts your installation by default, and is the only Linux
-        distribution that enables full-disk encryption out of the box. A unique
-        private encryption key is generated during setup after you receive your
-        computer.
+        distribution that enables pre-installed full-disk encryption out of the box.
+        A unique private encryption key is generated during setup after you receive
+        your computer.
       </sys-paragraph-1>
     </div>
 

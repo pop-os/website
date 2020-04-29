@@ -3,15 +3,15 @@
     <div class="top">
       <gradient-br />
 
-      <sys-header-2>Best paired with System76 hardware</sys-header-2>
+      <sys-header-2>GET EVERY ADVANTAGE ON SYSTEM76 HARDWARE</sys-header-2>
     </div>
 
-    <sys-subheader-2>We’re sciencing the sh*t out of this.</sys-subheader-2>
+    <sys-subheader-2>Form of: An amazing computer.</sys-subheader-2>
 
     <sys-paragraph-1>
-      System76 is a U.S. manufacturer of portable and powerful laptops,
-      desktops, and servers. We make computers to empower creators, makers, and
-      builders to go forth and discover.
+      System76 hardware is engineered together with Pop!_OS for optimal
+      performance and user experience. Our computers empower creators,
+      makers, and builders to go forth and discover.
     </sys-paragraph-1>
 
     <div class="grid">

@@ -37,12 +37,13 @@
     content: '“';
     color: #FFAD00;
     font-size: 50px;
+    margin-left: -25px;
   }
 
   .quote p {
     padding: 0;
     margin: 0;
-    margin-top: -40px;
+    margin-top: -55px;
   }
 
   .item {

@@ -4,9 +4,9 @@
       <sys-header-2>Development toolkits work flawlessly</sys-header-2>
 
       <sys-paragraph-1>
-        Develop software out of the box with a vast array of libraries and tools
-        at your disposal. Pop!_OS uses an APT package manager, meaning it’s easy
-        to install, remove, and update all software on the OS in one fell swoop.
+        Develop software out of the box with a vast array of libraries and tools at
+        your disposal. Pop!_OS uses APT and Flatpak package management, meaning it’s
+        easy to install, remove, and update all software on the OS.
       </sys-paragraph-1>
     </div>
 
@@ -30,10 +30,10 @@
 
       <div>
         <sys-form-button
+          ref="noopener"
           color="primary"
           ghost
           href="https://support.system76.com/articles/use-tensorman/"
-          ref="noopener"
           target="_blank"
         >
           Learn about Tensorman
@@ -58,17 +58,6 @@
         <li>Android Studio</li>
         <li>Arduino IDE</li>
       </ul>
-
-      <div>
-        <sys-form-button
-          ref="noopener"
-          color="primary"
-          ghost
-          target="_blank"
-        >
-          ERRRRRRRRRRRRRRR
-        </sys-form-button>
-      </div>
     </div>
 
     <div :class="[classes, 'block']">
@@ -96,7 +85,7 @@
           ghost
           target="_blank"
         >
-          OOOOOOHHHHHHHHHHHH
+          Learn more
         </sys-form-button>
       </div>
     </div>
@@ -127,7 +116,7 @@
           rel="noopener"
           target="_blank"
         >
-          See user story
+          Read User Story
         </sys-form-button>
       </div>
     </div>

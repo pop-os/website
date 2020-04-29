@@ -7,9 +7,8 @@
         <sys-subheader-2>Hybrid Graphics</sys-subheader-2>
 
         <sys-paragraph-1>
-          Toggle between battery-saving and high-powered graphics, or designate
-          specific applications to use the GPU by default. Power you shall have,
-          young Padawan.
+          Set phasers to stunning performance. Toggle between battery-saving and
+          high-powered graphics, or tell an application to use your GPU on launch.
         </sys-paragraph-1>
       </div>
 
@@ -36,9 +35,8 @@
         <sys-subheader-2>Gaming</sys-subheader-2>
 
         <sys-paragraph-1>
-          Steam, Lutris, and GameHub combine to create an incredible gaming
-          experience in both selection and performance. Do you want to ditch
-          Windows? Because this is how you ditch Windows.
+          Steam, Lutris, and GameHub create an incredible gaming experience
+          in selection and performance. Let your game library roam free on a single-OS PC.
         </sys-paragraph-1>
       </div>
 

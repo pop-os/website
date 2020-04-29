@@ -4,10 +4,9 @@
       <sys-header-2>Streamline your workflow</sys-header-2>
 
       <sys-paragraph-1>
-        Pop!_OS is designed for fast navigation, easy workspace organization, and
-        (dunking on demons who have foolishly invaded the Earth) fluid, convenient
-        workflow. Your operating system should encourage discovery, not obstruct
-        it.
+        Pop!_OS is designed for fast navigation, easy workspace organization,
+        and fluid, convenient workflow. Your operating system should encourage
+        discovery, not obstruct it.
       </sys-paragraph-1>
     </div>
 
