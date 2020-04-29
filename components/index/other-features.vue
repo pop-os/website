@@ -236,6 +236,12 @@
     width: 100%;
   }
 
+  @media (width >= 700px) {
+    .block {
+      padding: 2rem;
+    }
+  }
+
   @media (width >= 120ch) {
     section {
       grid-template-columns: repeat(2, 1fr);
@@ -282,7 +288,7 @@
       padding-bottom: 337.5px;
       padding-right: 600px;
       margin-top: 0;
-      margin-left: 1rem;
+      margin-left: 2rem;
     }
   }
 </style>

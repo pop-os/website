@@ -128,6 +128,12 @@
     margin: 0;
   }
 
+  @media (width >= 600px) {
+    .block {
+      padding: 2rem;
+    }
+  }
+
   @media (width >= 800px) {
     section {
       grid-template-columns: repeat(2, 1fr);

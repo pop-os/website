@@ -243,6 +243,10 @@
       grid-template-rows: auto auto 1fr;
     }
 
+    .block {
+      padding: 2rem;
+    }
+
     .copy,
     .block:nth-child(2) {
       grid-column: 1 / 3;
@@ -288,7 +292,7 @@
 
     .block:nth-child(3) .video-wrap,
     .block:nth-child(4) .video-wrap {
-      align-self: flex-end;
+      align-self: center;
     }
 
     .youtube {

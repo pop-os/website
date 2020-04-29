@@ -287,6 +287,12 @@
     }
   }
 
+  @media (width >= 750px) {
+    .block {
+      padding: 0 1rem;
+    }
+  }
+
   @media (width >= 110ch) {
     section {
       grid-template-columns: repeat(2, 1fr);
