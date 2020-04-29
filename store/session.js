@@ -1,5 +1,5 @@
 const REQUEST_HEADERS = {
-  'Accept': 'application/json',
+  Accept: 'application/json',
   'Content-Type': 'application/json',
   'User-Agent': 'pop-os/website (https://github.com/pop-os/website)'
 }
@@ -47,7 +47,7 @@ export const actions = {
       headers: new Headers({
         ...REQUEST_HEADERS,
         'Content-Type': 'application/vnd.api+json',
-        'Accept': 'application/vnd.api+json'
+        Accept: 'application/vnd.api+json'
       }),
       body: JSON.stringify({
         data: {
@@ -74,7 +74,7 @@ export const actions = {
       headers: new Headers({
         ...REQUEST_HEADERS,
         'Content-Type': 'application/vnd.api+json',
-        'Accept': 'application/vnd.api+json'
+        Accept: 'application/vnd.api+json'
       }),
       body: JSON.stringify({
         data: {

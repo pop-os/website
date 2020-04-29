@@ -11,9 +11,9 @@
     </p>
 
     <sys-form-input
+      id="given_name"
       v-model="firstName"
       autocomplete="given-name"
-      id="given_name"
       label="First Name"
       name="given_name"
       placeholder="John"
@@ -21,9 +21,9 @@
     />
 
     <sys-form-input
+      id="family_name"
       v-model="lastName"
       autocomplete="family-name"
-      id="family_name"
       label="Last Name"
       name="family_name"
       placeholder="Smith"
@@ -31,33 +31,33 @@
     />
 
     <sys-form-email
+      id="email"
       v-model="email"
       autocomplete="username"
-      id="email"
       name="email"
       validation="required"
     />
 
     <sys-form-telephone
+      id="phone_number"
       v-model="phoneNumber"
       autocomplete="tel"
-      id="phone_number"
       name="phone_number"
       validation="required"
     />
 
     <sys-form-password
+      id="new_password"
       v-model="password"
       autocomplete="new-password"
-      id="new_password"
       name="new_password"
       validation="required"
     />
 
     <sys-form-password
+      id="password_confirm"
       v-model="confirmPassword"
       autocomplete="new-password"
-      id="password_confirm"
       label="Confirm Password"
       name="new_password_confirm"
       validation="required|confirmed:new_password"
@@ -67,7 +67,7 @@
       <input
         v-model="newsletter"
         type="checkbox"
-      />
+      >
 
       Subscribe to our newsletter
     </label>

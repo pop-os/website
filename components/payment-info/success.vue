@@ -8,7 +8,7 @@
     <img
       alt="Pop!_OS"
       src="~/assets/images/payment/logo.png"
-    />
+    >
   </div>
 </template>
 

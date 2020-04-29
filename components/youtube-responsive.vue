@@ -42,45 +42,45 @@
 </style>
 
 <script>
-export default {
-  name: 'YoutubeResponsive',
+  export default {
+    name: 'YoutubeResponsive',
 
-  props: {
-    height: {
-      type: Number,
-      default: () => 315
+    props: {
+      height: {
+        type: Number,
+        default: () => 315
+      },
+
+      /**
+       * Youtube video ID.
+       *
+       * @example `3cZFPRrRN_g` from `/watch?v=3cZFPRrRN_g`
+       *
+       * @var {string}
+       */
+      video: {
+        type: String,
+        required: true
+      },
+
+      width: {
+        type: Number,
+        default: () => 560
+      }
     },
 
-    /**
-     * Youtube video ID.
-     *
-     * @example `3cZFPRrRN_g` from `/watch?v=3cZFPRrRN_g`
-     *
-     * @var {string}
-     */
-    video: {
-      type: String,
-      required: true
-    },
+    computed: {
+      ratio () {
+        return ((this.height / this.width) * 100)
+      },
 
-    width: {
-      type: Number,
-      default: () => 560
-    }
-  },
+      style () {
+        return { 'padding-bottom': `${this.ratio}%` }
+      },
 
-  computed: {
-    ratio () {
-      return ((this.height / this.width) * 100)
-    },
-
-    style () {
-      return { 'padding-bottom': `${this.ratio}%` }
-    },
-
-    src () {
-      return `https://www.youtube-nocookie.com/embed/${this.video}?rel=0&amp;controls=0&amp;showinfo=0`
+      src () {
+        return `https://www.youtube-nocookie.com/embed/${this.video}?rel=0&amp;controls=0&amp;showinfo=0`
+      }
     }
   }
-}
 </script>

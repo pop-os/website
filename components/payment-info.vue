@@ -6,13 +6,16 @@
     >
       <sys-header-2>Support Pop!_OS</sys-header-2>
 
-      <progress-dots :number="5" :value="currentProgress" />
+      <progress-dots
+        :number="5"
+        :value="currentProgress"
+      />
     </div>
 
     <div>
       <component
-        :key="currentComponent.name"
         :is="currentComponent"
+        :key="currentComponent.name"
       />
     </div>
   </div>
@@ -66,8 +69,6 @@
 <script>
   import { mapGetters } from 'vuex'
 
-  import ProgressDots from './progress-dots'
-
   import PaymentInfoBillingCreate from './payment-info/billing-create'
   import PaymentInfoBillingSelect from './payment-info/billing-select'
   import PaymentInfoError from './payment-info/error'
@@ -76,6 +77,7 @@
   import PaymentInfoReview from './payment-info/review'
   import PaymentInfoSuccess from './payment-info/success'
   import PaymentInfoSupport from './payment-info/support'
+  import ProgressDots from './progress-dots'
 
   export default {
     components: {
@@ -90,29 +92,29 @@
 
       currentComponent () {
         switch (this.currentPage) {
-          case 'login':
-            return PaymentInfoLogin
+        case 'login':
+          return PaymentInfoLogin
 
-          case 'register':
-            return PaymentInfoRegister
+        case 'register':
+          return PaymentInfoRegister
 
-          case 'billing-select':
-            return PaymentInfoBillingSelect
+        case 'billing-select':
+          return PaymentInfoBillingSelect
 
-          case 'billing-create':
-            return PaymentInfoBillingCreate
+        case 'billing-create':
+          return PaymentInfoBillingCreate
 
-          case 'review':
-            return PaymentInfoReview
+        case 'review':
+          return PaymentInfoReview
 
-          case 'error':
-            return PaymentInfoError
+        case 'error':
+          return PaymentInfoError
 
-          case 'success':
-            return PaymentInfoSuccess
+        case 'success':
+          return PaymentInfoSuccess
 
-          default:
-            return PaymentInfoSupport
+        default:
+          return PaymentInfoSupport
         }
       },
 

@@ -20,5 +20,5 @@ if (configFiles.includes(secretConfigFile)) {
   }
 }
 
-module.exports['DEPLOY_ENV'] = DEPLOY_ENV
-module.exports['NODE_ENV'] = NODE_ENV
+module.exports.DEPLOY_ENV = DEPLOY_ENV
+module.exports.NODE_ENV = NODE_ENV

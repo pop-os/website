@@ -1,5 +1,5 @@
 const REQUEST_HEADERS = {
-  'Accept': 'application/json',
+  Accept: 'application/json',
   'Content-Type': 'application/json',
   'User-Agent': 'pop-os/website (https://github.com/pop-os/website)'
 }
@@ -42,7 +42,7 @@ export const getters = {
     return state.page
   },
 
-   currentProgress (state) {
+  currentProgress (state) {
     switch (state.page) {
       case 'support':
         return 1
@@ -202,10 +202,10 @@ export const actions = {
 
     const addressId = await dispatch('completeAddress')
 
-    if (addressId != false) {
+    if (addressId !== false) {
       const sourceId = await dispatch('completeTransaction')
 
-      if (sourceId != false) {
+      if (sourceId !== false) {
         return dispatch('gotoNextPage')
       }
     }
@@ -216,9 +216,9 @@ export const actions = {
       method: 'POST',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        'Authorization': `Token ${rootState.session.token}`,
+        Authorization: `Token ${rootState.session.token}`,
         'Content-Type': 'application/vnd.api+json',
-        'Accept': 'application/vnd.api+json'
+        Accept: 'application/vnd.api+json'
       }),
       body: JSON.stringify({
         address: {
@@ -253,9 +253,9 @@ export const actions = {
       method: 'POST',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        'Authorization': `Token ${rootState.session.token}`,
+        Authorization: `Token ${rootState.session.token}`,
         'Content-Type': 'application/vnd.api+json',
-        'Accept': 'application/vnd.api+json'
+        Accept: 'application/vnd.api+json'
       }),
       body: JSON.stringify({
         data: {
@@ -265,8 +265,8 @@ export const actions = {
             type: 'stripe'
           },
           relationships: {
-            user: { data: { id: rootState.session.userId }},
-            address: { data: { id: state.addressId }}
+            user: { data: { id: rootState.session.userId } },
+            address: { data: { id: state.addressId } }
           }
         }
       })

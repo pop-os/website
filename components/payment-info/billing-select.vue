@@ -12,9 +12,7 @@
       Error: {{ $fetchState.error }}
     </template>
 
-    <template v-else>
-
-    </template>
+    <template v-else />
   </div>
 </template>
 
@@ -26,10 +24,10 @@
 </style>
 
 <script>
-  import { mapState } from 'vuex'
 
   import { faChevronLeft, faSpinner } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'PaymentInfoBillingSelect',
@@ -56,8 +54,6 @@
       if (this.sources.length < 1) {
         this.$store.commit('payment/gotoPage', 'billing-create')
       }
-
-      w
     },
 
     methods: {

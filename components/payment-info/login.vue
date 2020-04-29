@@ -12,18 +12,18 @@
 
     <sys-form-email
       id="email"
+      v-model="email"
       autocomplete="username"
       name="email"
       validation="required"
-      v-model="email"
     />
 
     <sys-form-password
-      autocomplete="current-password"
       id="password"
+      v-model="password"
+      autocomplete="current-password"
       name="password"
       validation="required"
-      v-model="password"
     />
 
     <template v-slot:actions="{ submittable }">

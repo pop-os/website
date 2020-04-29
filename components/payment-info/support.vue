@@ -3,7 +3,7 @@
     <img
       alt="Zoe"
       src="~/assets/images/payment/zoe.png"
-    />
+    >
 
     <sys-paragraph-1>
       System76 is continuing to make Pop!_OS the most convenient, fun-to-use OS

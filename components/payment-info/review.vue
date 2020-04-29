@@ -36,9 +36,17 @@
 
     <p class="terms">
       By completing the purchase, I agree with System76’s
-      <a target="_blank" rel="noopener" href="https://system76.com/privacy">Privacy Policy</a>
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://system76.com/privacy"
+      >Privacy Policy</a>
       and
-      <a target="_blank" rel="noopener" href="https://system76.com/terms">
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://system76.com/terms"
+      >
         Terms and Conditions
       </a>
       .
@@ -105,10 +113,10 @@
 </style>
 
 <script>
-  import { mapGetters, mapState } from 'vuex'
 
   import { faChevronLeft, faCreditCard } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+  import { mapGetters, mapState } from 'vuex'
 
   import SubscriptionPrice from '~/components/subscription-price'
 

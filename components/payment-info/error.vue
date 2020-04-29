@@ -36,9 +36,6 @@
 <script>
   import { mapState } from 'vuex'
 
-  import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
   export default {
     name: 'PaymentInfoError',
 
@@ -47,9 +44,7 @@
     },
 
     computed: {
-      ...mapState('payment', ['error']),
-
-      faChevronLeft: () => faChevronLeft
+      ...mapState('payment', ['error'])
     }
   }
 </script>

@@ -74,8 +74,8 @@
   import { mapGetters } from 'vuex'
 
   import DownloadInfo from '~/components/download-info'
-  import PaymentInfo from '~/components/payment-info'
   import LightBox from '~/components/light-box'
+  import PaymentInfo from '~/components/payment-info'
 
   export default {
     components: {
