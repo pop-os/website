@@ -1,8 +1,9 @@
 <template>
-  <div class="container">
+  <div>
     <template v-if="$fetchState.pending">
       <font-awesome-icon
         :icon="faSpinner"
+        class="loading"
         size="3x"
         spin
       />
