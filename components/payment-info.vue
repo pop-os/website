@@ -68,12 +68,14 @@
 
   import ProgressDots from './progress-dots'
 
-  import PaymentInfoSupport from './payment-info/support'
+  import PaymentInfoBillingCreate from './payment-info/billing-create'
+  import PaymentInfoBillingSelect from './payment-info/billing-select'
+  import PaymentInfoError from './payment-info/error'
   import PaymentInfoLogin from './payment-info/login'
   import PaymentInfoRegister from './payment-info/register'
-  import PaymentInfoBilling from './payment-info/billing'
   import PaymentInfoReview from './payment-info/review'
-  import PaymentInfoError from './payment-info/error'
+  import PaymentInfoSuccess from './payment-info/success'
+  import PaymentInfoSupport from './payment-info/support'
 
   export default {
     components: {
@@ -94,14 +96,20 @@
           case 'register':
             return PaymentInfoRegister
 
-          case 'billing':
-            return PaymentInfoBilling
+          case 'billing-select':
+            return PaymentInfoBillingSelect
+
+          case 'billing-create':
+            return PaymentInfoBillingCreate
 
           case 'review':
             return PaymentInfoReview
 
           case 'error':
             return PaymentInfoError
+
+          case 'success':
+            return PaymentInfoSuccess
 
           default:
             return PaymentInfoSupport

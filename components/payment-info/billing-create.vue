@@ -435,7 +435,7 @@
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
   export default {
-    name: 'PaymentInfoBilling',
+    name: 'PaymentInfoBillingCreate',
 
     components: {
       FontAwesomeIcon

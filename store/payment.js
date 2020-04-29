@@ -12,6 +12,7 @@ export const state = () => ({
 
   error: null,
 
+  stripeId: null,
   stripeRef: null,
   stripeExpMonth: null,
   stripeExpYear: null,
@@ -20,6 +21,7 @@ export const state = () => ({
   addressId: null,
   address: null,
 
+  sources: [],
   sourceId: null
 })
 
@@ -49,11 +51,15 @@ export const getters = {
       case 'register':
         return 2
 
-      case 'billing':
+      case 'billing-select':
+      case 'billing-create':
         return 3
 
       case 'review':
         return 4
+
+      case 'success':
+        return 5
     }
   },
 
@@ -64,20 +70,24 @@ export const getters = {
         if (getters.canReview) {
           return 'review'
         } else if (rootGetters['session/isLoggedIn']) {
-          return 'billing'
+          return 'billing-select'
         } else {
           return 'login'
         }
 
       case 'login':
       case 'register':
-        return 'billing'
+        return 'billing-select'
 
-      case 'billing':
+      case 'billing-select':
+      case 'billing-create':
         return 'review'
 
       case 'error':
         return 'support'
+
+      case 'review':
+        return 'success'
 
       default:
         return null
@@ -92,11 +102,21 @@ export const getters = {
       case 'register':
         return 'login'
 
-      case 'billing':
+      case 'billing-select':
         return 'support'
 
+      case 'billing-create':
+        if (state.sources.length) {
+          return 'billing-select'
+        } else {
+          return 'support'
+        }
+
       case 'review':
-        return 'billing'
+        return 'billing-select'
+
+      case 'success':
+        return 'review'
 
       default:
         return null
@@ -118,8 +138,13 @@ export const mutations = {
     state.addressId = value
   },
 
-  setSourceId (state, value) {
-    state.sourceid = value
+  setSources (state, value) {
+    state.sources = value
+  },
+
+  setSourceData (state, value) {
+    state.stripeId = value.attributes.stripe_id
+    state.sourceId = value.id
   },
 
   setStripeToken (state, value) {
@@ -176,7 +201,14 @@ export const actions = {
     }
 
     const addressId = await dispatch('completeAddress')
-    const sourceId = await dispatch('completeTransaction')
+
+    if (addressId != false) {
+      const sourceId = await dispatch('completeTransaction')
+
+      if (sourceId != false) {
+        return dispatch('gotoNextPage')
+      }
+    }
   },
 
   async completeAddress ({ commit, rootState, state }) {
@@ -212,6 +244,7 @@ export const actions = {
       return body.data.id
     } else {
       commit('setError', 'Error creating address')
+      return false
     }
   },
 
@@ -242,10 +275,23 @@ export const actions = {
     if (res.ok) {
       const body = await res.json()
 
-      commit('setSourceId', body.data.id)
+      commit('setSourceData', body.data)
       return body.data.id
     } else {
       commit('setError', 'Error creating transaction source')
+      return false
     }
+  },
+
+  async fetchSources ({ commit }) {
+    const res = await fetch(`${process.env.API_URL}/transactions/sources`, {
+      method: 'GET'
+    })
+
+    const body = await res.json()
+
+    commit('setSources', body.data)
+
+    return body.data
   }
 }

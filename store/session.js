@@ -21,10 +21,11 @@ export const getters = {
 
 export const mutations = {
   login (state, data) {
-    state.userId = data.user
+    console.log('data', data)
+    state.userId = data.relationships.user.data.id
 
-    state.token = data.token
-    state.jwt = data.jwt
+    state.token = data.attributes.token
+    state.jwt = data.attributes.jwt
 
     state.loggedInAt = new Date()
   },
@@ -43,11 +44,19 @@ export const actions = {
   async authenticate ({ commit, getters, state }, { email, password }) {
     const req = {
       method: 'POST',
-      headers: new Headers(REQUEST_HEADERS),
-      body: JSON.stringify({ email, password })
+      headers: new Headers({
+        ...REQUEST_HEADERS,
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/vnd.api+json'
+      }),
+      body: JSON.stringify({
+        data: {
+          attributes: { email, password }
+        }
+      })
     }
 
-    const res = await fetch(`${process.env.API_URL}/session`, req)
+    const res = await fetch(`${process.env.API_URL}/accounts/session`, req)
 
     if (res.status === 401) {
       throw new Error('Incorrect username or password')
@@ -55,7 +64,7 @@ export const actions = {
       throw new Error(res.statusText)
     } else {
       const body = await res.json()
-      commit('login', body)
+      commit('login', body.data)
     }
   },
 
@@ -75,7 +84,8 @@ export const actions = {
             type: 'individual',
             email: data.email,
             phone_number: data.phoneNumber,
-            password: data.password
+            password: data.password,
+            newsletter: data.newsletter
           }
         }
       })
@@ -88,8 +98,7 @@ export const actions = {
     } else if (!res.ok) {
       throw new Error(res.statusText)
     } else {
-      const body = await res.json()
-      commit('login', body)
+      return res.json()
     }
   }
 }

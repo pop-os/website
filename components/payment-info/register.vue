@@ -63,6 +63,15 @@
       validation="required|confirmed:new_password"
     />
 
+    <label>
+      <input
+        v-model="newsletter"
+        type="checkbox"
+      />
+
+      Subscribe to our newsletter
+    </label>
+
     <template v-slot:actions="{ submittable }">
       <div class="buttons">
         <sys-form-button
@@ -94,6 +103,11 @@
     color: #AF5C02;
     text-decoration: none;
   }
+
+  form > label {
+    display: block;
+    margin: 1rem 0;
+  }
 </style>
 
 <script>
@@ -113,7 +127,8 @@
       email: '',
       phoneNumber: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      newsletter: false
     }),
 
     computed: {
@@ -126,10 +141,10 @@
       },
 
       async submit () {
-        const { firstName, lastName, email, phoneNumber, password } = this
+        const { firstName, lastName, email, phoneNumber, password, newsletter } = this
 
         await this.$store.dispatch('session/register', {
-          firstName, lastName, email, phoneNumber, password
+          firstName, lastName, email, phoneNumber, password, newsletter
         })
 
         await this.$store.dispatch('session/authenticate', { email, password })
