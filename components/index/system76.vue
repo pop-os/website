@@ -21,7 +21,7 @@
         rel="noopener"
         title="Lemur"
       >
-        <sys-product-thumbnail product="lemp9" />
+        <img src="~/assets/images/index/thumbnail_lemp9.png">
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>
 
@@ -31,7 +31,10 @@
         rel="noopener"
         title="Thelio"
       >
-        <sys-product-thumbnail product="thelio-r1" />
+        <img
+          src="~/assets/images/index/thumbnail_thelios.png"
+          class="pad"
+        >
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>
 
@@ -41,7 +44,7 @@
         rel="noopener"
         title="Meerkat"
       >
-        <sys-product-thumbnail product="meer4" />
+        <img src="~/assets/images/index/thumbnail_meerkat.png">
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>
     </div>
@@ -89,7 +92,7 @@
   }
 
   .grid a {
-    border-radius: 3px;
+    border-radius: 12px;
     border: 1px solid transparent;
     outline: none;
     transition: box-shadow 250ms ease;
@@ -120,7 +123,9 @@
     width: 100%;
     max-width: 300px;
   }
-
+  .grid .pad {
+    padding: 1em;
+  }
   .grid svg {
     bottom: 0.5rem;
     height: 1rem;
