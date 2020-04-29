@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <div v-if="!isSuccessPage">
+    <div
+      v-if="!isErrorPage && !isSuccessPage"
+      class="header"
+    >
       <sys-header-2>Support Pop!_OS</sys-header-2>
 
       <progress-dots :number="5" :value="currentProgress" />
@@ -24,8 +27,17 @@
     padding: 1rem;
   }
 
+  .header {
+    margin-bottom: 3rem;
+  }
+
   h2 {
     text-align: center;
+  }
+
+  >>> a {
+    color: #AF5C02;
+    text-decoration: none;
   }
 
   >>> .buttons {
@@ -60,6 +72,8 @@
   import PaymentInfoLogin from './payment-info/login'
   import PaymentInfoRegister from './payment-info/register'
   import PaymentInfoBilling from './payment-info/billing'
+  import PaymentInfoReview from './payment-info/review'
+  import PaymentInfoError from './payment-info/error'
 
   export default {
     components: {
@@ -83,9 +97,19 @@
           case 'billing':
             return PaymentInfoBilling
 
+          case 'review':
+            return PaymentInfoReview
+
+          case 'error':
+            return PaymentInfoError
+
           default:
             return PaymentInfoSupport
         }
+      },
+
+      isErrorPage () {
+        return (this.currentPage === 'error')
       },
 
       isSuccessPage () {

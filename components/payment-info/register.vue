@@ -63,7 +63,7 @@
       validation="required|confirmed:new_password"
     />
 
-    <template v-slot:actions="{ submitting, submittable, valid }">
+    <template v-slot:actions="{ submittable }">
       <div class="buttons">
         <sys-form-button
           ghost
@@ -76,7 +76,7 @@
         <sys-form-button
           type="submit"
           color="primary"
-          :disabled="!valid || submitting"
+          :disabled="!submittable"
         >
           Create Account
         </sys-form-button>
@@ -126,10 +126,13 @@
       },
 
       async submit () {
-        await this.$store.dispatch('session/authenticate', {
-          email: this.email,
-          password: this.password
+        const { firstName, lastName, email, phoneNumber, password } = this
+
+        await this.$store.dispatch('session/register', {
+          firstName, lastName, email, phoneNumber, password
         })
+
+        await this.$store.dispatch('session/authenticate', { email, password })
 
         await this.$store.dispatch('payment/gotoNextPage')
       }

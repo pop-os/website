@@ -62,13 +62,26 @@ export const actions = {
   async register ({ commit, getters, state }, data) {
     const req = {
       method: 'POST',
-      headers: new Headers(REQUEST_HEADERS),
+      headers: new Headers({
+        ...REQUEST_HEADERS,
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/vnd.api+json'
+      }),
       body: JSON.stringify({
-        email, password
+        data: {
+          attributes: {
+            first_name: data.firstName,
+            last_name: data.lastName,
+            type: 'individual',
+            email: data.email,
+            phone_number: data.phoneNumber,
+            password: data.password
+          }
+        }
       })
     }
 
-    const res = await fetch(process.env.API_URL, req)
+    const res = await fetch(`${process.env.API_URL}/accounts/users`, req)
 
     if (res.status === 401) {
       throw new Error('Incorrect username or password')

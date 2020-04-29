@@ -1,12 +1,40 @@
 <template>
-  <sys-form
-    v-else
-    :submit-function="submit"
-  >
-    <label for="stripe-form">
-      Credit or debit card
-    </label>
-    <div id="stripe-form" />
+  <sys-form :submit-function="submit">
+    <div>
+      <sys-label for="stripe-card-input">
+        Card number
+      </sys-label>
+
+      <div id="stripe-card-input" />
+
+      <sys-input-error>
+        {{ stripeCardError }}
+      </sys-input-error>
+    </div>
+
+    <div class="half">
+      <sys-label for="stripe-expiration-input">
+        Expiration
+      </sys-label>
+
+      <div id="stripe-expiration-input" />
+
+      <sys-input-error>
+        {{ stripeExpirationError }}
+      </sys-input-error>
+    </div>
+
+    <div class="half">
+      <sys-label for="stripe-cvc-input">
+        CVC
+      </sys-label>
+
+      <div id="stripe-cvc-input" />
+
+      <sys-input-error>
+        {{ stripeCVCError }}
+      </sys-input-error>
+    </div>
 
     <sys-form-input
       v-model="firstName"
@@ -328,7 +356,7 @@
       <option value="ZW" :selected="(country === 'ZW')">Zimbabwe</option>
     </sys-form-select>
 
-    <template v-slot:actions="{ submitting, submittable, valid }">
+    <template v-slot:actions="{ submittable }">
       <div class="buttons">
         <sys-form-button
           ghost
@@ -341,7 +369,7 @@
         <sys-form-button
           type="submit"
           color="primary"
-          :disabled="!valid || submitting"
+          :disabled="!submittable || !valid"
         >
           Review
         </sys-form-button>
@@ -362,7 +390,7 @@
     margin: 0 -1rem;
   }
 
-  form > div {
+  form >>> > div {
     margin: 0.6rem 1rem 0;
     flex: 1 1 100%;
   }
@@ -375,6 +403,30 @@
 
   .half {
     flex: 1 1 40%;
+  }
+
+  >>> .StripeElement {
+    background-color: var(--color-light-form-input-background);
+    border-radius: 3px;
+    border: 1px solid var(--color-light-form-input-border);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.06);
+    color: var(--color-light-form-input-foreground);
+    display: block;
+    font-family: var(--font-family-sans);
+    font-size: 1rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    margin: 0;
+    padding: 0.5rem;
+    transition: border-color 0.2s ease;
+  }
+
+  >>> .StripeElement--focus {
+    border-color: var(--color-light-form-input-active);
+  }
+
+  >>> .StripeElement--invalid {
+    border-color: var(--color-light-form-input-invalid);
   }
 </style>
 
@@ -399,44 +451,146 @@
       zip: '',
       country: 'US',
 
-      stripeCard: null
+      stripe: null,
+
+      stripeCard: null,
+      stripeCardError: null,
+      stripeCardValid: false,
+
+      stripeExpiration: null,
+      stripeExpirationError: null,
+      stripeExpirationValid: false,
+
+      stripeCVC: null,
+      stripeCVCError: null,
+      stripeCVCValid: false
     }),
 
     computed: {
       faChevronLeft: () => faChevronLeft,
-      faSpinner: () => faSpinner
+      faSpinner: () => faSpinner,
+
+      valid () {
+        return [
+          this.stripeCardValid,
+          this.stripeExpirationValid,
+          this.stripeCVCValid
+        ].every((v) => v)
+      }
     },
 
     mounted () {
+      // HACK: vee-validate is not initiating corretly preventing the submit
+      // button from ever being _not_ disabled. This is a hacky hack fix
+      this.$children[0].$children[0].validate({ silent: true })
+
       this.setupStripeCard()
+
+      this.maybeGrabFromStore()
     },
 
     methods: {
+      commitAddress () {
+        this.$store.commit('payment/setAddress', {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          address1: this.address1,
+          address2: this.address2,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          country: this.country
+        })
+      },
+
+      async createStripeToken () {
+        const stripe = await this.waitForStripe()
+        const { token, error } = await stripe.createToken(this.stripeCard, {
+          name: `${this.firstName} ${this.lastName}`,
+          address_line1: this.address1,
+          address_line2: this.address2,
+          address_city: this.city,
+          address_state: this.state,
+          address_zip: this.zip,
+          address_country: this.country,
+          currency: 'USD'
+        })
+
+        if (token != null) {
+          this.$store.commit('payment/setStripeToken', token)
+        } else {
+          throw new Error(error.message)
+        }
+      },
+
+      maybeGrabFromStore () {
+        const storeData = this.$store.getters['payment/address']
+
+        if (storeData != null) {
+          this.firstName = storeData.firstName || ''
+          this.lastName = storeData.lastName || ''
+          this.address1 = storeData.address1 || ''
+          this.address2 = storeData.address2 || ''
+          this.city = storeData.city || ''
+          this.state = storeData.state || ''
+          this.zip = storeData.zip || ''
+          this.country = storeData.country || 'US'
+        }
+      },
+
       async setupStripeCard () {
         const stripe = await this.waitForStripe()
+        const elements = stripe.elements()
+        const style = {
+          base: {
+            height: '1.5rem',
+            lineHeight: '1.5rem'
+          }
+        }
 
-        this.stripeCard = stripe.elements().create('card', {
-          style: {
-            base: {
-              color: '#574F4A',
-              fontWeight: 500,
-              fontSize: '16px',
-              fontSmoothing: 'antialiased',
-              '::placeholder': {
-                color: '#909090'
-              }
-            },
-            invalid: {
-              color: '#F15D22'
-            }
+        this.stripeCard = elements.create('cardNumber', { style })
+        this.stripeCard.mount('#stripe-card-input')
+
+        this.stripeCard.addEventListener('change', (event) => {
+          if (event.error) {
+            this.stripeCardError = event.error.message
+            this.stripeCardValid = false
+          } else {
+            this.stripeCardError = null
+            this.stripeCardValid = true
           }
         })
 
-        this.stripeCard.mount('#stripe-form')
+        this.stripeExpiration = elements.create('cardExpiry')
+        this.stripeExpiration.mount('#stripe-expiration-input', { style })
+
+        this.stripeExpiration.addEventListener('change', (event) => {
+          if (event.error) {
+            this.stripeExpirationError = event.error.message
+            this.stripeExpirationValid = false
+          } else {
+            this.stripeExpirationError = null
+            this.stripeExpirationValid = true
+          }
+        })
+
+        this.stripeCVC = elements.create('cardCvc')
+        this.stripeCVC.mount('#stripe-cvc-input', { style })
+
+        this.stripeCVC.addEventListener('change', (event) => {
+          if (event.error) {
+            this.stripeCVCError = event.error.message
+            this.stipreCVCValid = false
+          } else {
+            this.stripeCVCError = null
+            this.stripeCVCValid = true
+          }
+        })
       },
 
       async submit () {
-        //
+        this.commitAddress()
+        await this.createStripeToken()
 
         await this.$store.dispatch('payment/gotoNextPage')
       },
@@ -446,8 +600,8 @@
         const src = 'https://js.stripe.com/v3/'
         const key = process.env.STRIPE_KEY
 
-        if (window[namespace] != null) {
-          return window[namespace](key)
+        if (window[`${namespace}Instance`] != null) {
+          return window[`${namespace}Instance`]
         }
 
         let el = document.querySelector(`[src="${src}"]`)
@@ -460,7 +614,8 @@
 
         return new Promise((resolve, reject) => {
           el.addEventListener('load', () => {
-            return resolve(window[namespace](key))
+            window[`${namespace}Instance`] = window[namespace](key)
+            return resolve(window[`${namespace}Instance`])
           })
 
           el.addEventListener('error', (err) => {

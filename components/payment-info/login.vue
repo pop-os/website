@@ -26,7 +26,7 @@
       v-model="password"
     />
 
-    <template v-slot:actions="{ submitting, submittable, valid }">
+    <template v-slot:actions="{ submittable }">
       <div class="buttons">
         <sys-form-button
           ghost
@@ -39,7 +39,7 @@
         <sys-form-button
           type="submit"
           color="primary"
-          :disabled="!valid || submitting"
+          :disabled="!submittable"
         >
           Log In
         </sys-form-button>
@@ -77,6 +77,12 @@
 
     computed: {
       faChevronLeft: () => faChevronLeft
+    },
+
+    mounted () {
+      // HACK: vee-validate is not initiating corretly preventing the submit
+      // button from ever being _not_ disabled. This is a hacky hack fix
+      this.$children[0].$children[0].validate({ silent: true })
     },
 
     methods: {
