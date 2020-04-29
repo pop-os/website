@@ -4,6 +4,7 @@
 
     <index-streamline />
     <index-development />
+    <index-testimonials />
     <index-system76 />
     <index-security />
     <index-software />
@@ -51,6 +52,7 @@
   import IndexSoftware from '~/components/index/software'
   import IndexStreamline from '~/components/index/streamline'
   import IndexSystem76 from '~/components/index/system76'
+  import IndexTestimonials from '~/components/index/testimonials'
   import color from '~/mixins/color'
 
   export default {
@@ -63,7 +65,8 @@
       IndexSecurity,
       IndexSoftware,
       IndexStreamline,
-      IndexSystem76
+      IndexSystem76,
+      IndexTestimonials
     },
 
     mixins: [
