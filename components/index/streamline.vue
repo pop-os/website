@@ -170,6 +170,8 @@
   }
 
   .block p {
+    align-self: center;
+    flex: 1 1 auto;
     margin: 1rem auto;
     max-width: 60ch;
     text-align: center;
@@ -190,10 +192,14 @@
   }
 
   .block .video-wrap {
-    margin: 1rem 0 0;
-    position: relative;
     cursor: pointer;
+    height: 0;
+    margin: 1rem 0 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
   }
+
   .video-wrap .play-btn {
     position: absolute;
     max-width: 700px;
@@ -204,30 +210,27 @@
     transform: translate(-25%, -25%);
     z-index: 99;
   }
+
   .video-wrap .play-btn svg {
     transition: all .2s ease;
     fill: rgba(255,255,255, 0.8);
     width: 50%;
   }
+
   .video-wrap .play-btn:hover svg,
   .video-wrap .play-btn:focus svg {
     fill: #fff;
   }
-  .block .video {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-  }
 
   .block img {
     bottom: 0;
+    cursor: pointer;
     height: 100%;
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
     width: 100%;
-    cursor: pointer;
   }
 
   .youtube {
@@ -282,6 +285,12 @@
       grid-row: 1 / 3;
       width: 20ch;
     }
+
+    .block:nth-child(3) .video-wrap,
+    .block:nth-child(4) .video-wrap {
+      align-self: flex-end;
+    }
+
     .youtube {
       width: 60vw;
     }
