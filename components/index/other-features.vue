@@ -42,7 +42,22 @@
         </sys-paragraph-1>
       </div>
 
-      <div class="image" />
+      <div class="image">
+        <img
+          v-if="isLight"
+          v-lazy="require('~/assets/images/index/other-features-gaming-light.jpg')"
+          alt="Gaming in Pop!_OS light theme"
+          :data-loading="require('~/assets/images/index/other-features-gaming-light.jpg?lqip')"
+          :data-srcset="require('~/assets/images/index/other-features-gaming-light.jpg?resize&sizes[]=300&sizes[]=600&sizes[]=1000&sizes[]=1920').srcSet"
+        >
+        <img
+          v-if="isDark"
+          v-lazy="require('~/assets/images/index/other-features-gaming-dark.jpg')"
+          alt="Gaming in Pop!_OS dark theme"
+          :data-loading="require('~/assets/images/index/other-features-gaming-dark.jpg?lqip')"
+          :data-srcset="require('~/assets/images/index/other-features-gaming-dark.jpg?resize&sizes[]=300&sizes[]=600&sizes[]=1000&sizes[]=1920').srcSet"
+        >
+      </div>
     </div>
 
     <div class="block">
