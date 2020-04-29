@@ -4,7 +4,8 @@
       New to System76?
       <a
         href="#"
-        @click.prevent="$store.commit('payment/setPage', 'register')">
+        @click.prevent="$store.commit('payment/setPage', 'register')"
+      >
         Create Account
       </a>
     </p>

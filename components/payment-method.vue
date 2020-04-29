@@ -39,15 +39,15 @@
 </style>
 
 <script>
-  import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
   import { faCcAmex, faCcVisa, faCcMastercard, faCcDiscover } from '@fortawesome/free-brands-svg-icons'
+  import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
   const CARD_ICONS = {
     'American Express': faCcAmex,
-    'Discover': faCcDiscover,
-    'Mastercard': faCcMastercard,
-    'Visa': faCcVisa
+    Discover: faCcDiscover,
+    Mastercard: faCcMastercard,
+    Visa: faCcVisa
   }
 
   export default {

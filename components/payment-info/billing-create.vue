@@ -3,7 +3,8 @@
     <p v-if="canSelectSources">
       <a
         href="#"
-        @click.prevent="$store.commit('payment/setPage', 'billing-select')">
+        @click.prevent="$store.commit('payment/setPage', 'billing-select')"
+      >
         Select an existing payment method
       </a>
     </p>

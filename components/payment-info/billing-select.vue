@@ -17,7 +17,8 @@
       <p>
         <a
           href="#"
-          @click.prevent="$store.commit('payment/setPage', 'billing-create')">
+          @click.prevent="$store.commit('payment/setPage', 'billing-create')"
+        >
           Create a new payment method
         </a>
       </p>
@@ -28,10 +29,10 @@
           :key="s.id"
         >
           <input
+            v-model="sourceId"
             type="radio"
             name="method"
             :value="s.id"
-            v-model="sourceId"
           >
 
           <payment-method

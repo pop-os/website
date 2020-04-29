@@ -9,8 +9,8 @@
       class="payment"
       :brand="source.attributes.brand"
       :reference="source.attributes.reference"
-      :expirationMonth="source.attributes['expiration-month']"
-      :expirationYear="source.attributes['expiration-year']"
+      :expiration-month="source.attributes['expiration-month']"
+      :expiration-year="source.attributes['expiration-year']"
     />
 
     <template v-if="address">
@@ -103,8 +103,8 @@
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
   import { mapGetters, mapState } from 'vuex'
 
-  import SubscriptionPrice from '~/components/subscription-price'
   import PaymentMethod from '~/components/payment-method'
+  import SubscriptionPrice from '~/components/subscription-price'
 
   export default {
     name: 'PaymentInfoReview',
