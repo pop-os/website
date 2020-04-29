@@ -1,18 +1,19 @@
 <template>
   <div class="container">
     <div
+      class="close"
+      @click.prevent="$store.commit('payment/setShowing', false)"
+    >
+      <font-awesome-icon
+        :icon="faTimes"
+        size="1x"
+      />
+    </div>
+
+    <div
       v-if="showProgress"
       class="header"
     >
-      <div class="close">
-        <span @click="closeLightBox">
-          <font-awesome-icon
-            :icon="faTimes"
-            size="1x"
-          />
-        </span>
-      </div>
-
       <sys-header-2>Support Pop!_OS</sys-header-2>
 
       <progress-dots
@@ -37,6 +38,25 @@
     border: 1px solid #C8C8C8;
     color: #272727;
     padding: 1rem;
+    position: relative;
+  }
+
+  .close {
+    align-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 48px;
+    justify-content: center;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 48px;
+  }
+
+  .close:hover {
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
   .header {
@@ -65,14 +85,6 @@
 
   >>> .buttons > * {
     margin: 0 1rem !important;
-  }
-
-  .close {
-    text-align: right;
-  }
-
-  .close span {
-    cursor: pointer;
   }
 
   @media (width > 600px) {
@@ -136,12 +148,6 @@
         default:
           return PaymentInfoSupport
         }
-      }
-    },
-
-    methods: {
-      closeLightBox () {
-        this.$parent.close()
       }
     }
   }

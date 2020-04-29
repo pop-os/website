@@ -1,13 +1,15 @@
 <template>
   <div :class="[classes, 'container']">
-    <div class="close">
-      <span @click="closeLightBox">
-        <font-awesome-icon
-          :icon="faTimes"
-          size="1x"
-        />
-      </span>
+    <div
+      class="close"
+      @click.prevent="$store.commit('download/toggleShowing')"
+    >
+      <font-awesome-icon
+        :icon="faTimes"
+        size="1x"
+      />
     </div>
+
     <template v-if="$fetchState.pending">
       <font-awesome-icon
         :icon="faSpinner"
@@ -115,6 +117,7 @@
     border-radius: 3px;
     border: 1px solid transparent;
     padding: 1rem;
+    position: relative;
   }
 
   .light-mode {
@@ -127,6 +130,24 @@
     background-color: #272727;
     border-color: #171717;
     color: #ccc;
+  }
+
+  .close {
+    align-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 48px;
+    justify-content: center;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 48px;
+  }
+
+  .close:hover {
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
   h2 {
@@ -207,6 +228,7 @@
   .foot > * {
     margin: 0.5rem auto 0.5rem 0;
   }
+
   a.download {
     color: #AF5C02;
     font-family: Roboto Slab;
@@ -216,15 +238,9 @@
     font-size: 16px;
     line-height: 28px;
   }
+
   a.download:hover {
     color: #FFAD00
-  }
-
-  .close {
-    text-align: right;
-  }
-  .close span {
-    cursor: pointer;
   }
 </style>
 
@@ -284,10 +300,6 @@
       ...mapActions('download', [
         'fetch'
       ]),
-
-      closeLightBox () {
-        this.$parent.close()
-      },
 
       toggle () {
         this.switchRelease()
