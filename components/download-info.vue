@@ -80,16 +80,16 @@
           <div>(NVIDIA)</div>
         </dd>
       </sys-paragraph-1>
-      <sys-paragraph-1>
-        <u>How to create a USB stick using this image?</u>
-      </sys-paragraph-1>
-      <sys-paragraph-1>
+
+      <p>
         <a
-          class="download"
+          class="help"
           target="_blank"
           href="https://support.system76.com/articles/install-pop/"
-        >DOWNLOAD 20.04 LTS</a>
-      </sys-paragraph-1>
+        >
+          How to create a USB stick using this image?
+        </a>
+      </p>
 
       <div class="foot">
         <sys-form-button
@@ -229,18 +229,11 @@
     margin: 0.5rem auto 0.5rem 0;
   }
 
-  a.download {
-    color: #AF5C02;
-    font-family: Roboto Slab;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: none;
-    font-size: 16px;
-    line-height: 28px;
-  }
-
-  a.download:hover {
-    color: #FFAD00
+  a.help {
+    color: inherit;
+    display: block;
+    padding: 1rem 0;
+    text-decoration: underline;
   }
 </style>
 
