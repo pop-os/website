@@ -28,7 +28,7 @@
         target="_blank"
       >
         <font-awesome-icon :icon="faGithub" />
-        Github
+        GitHub
       </a>
     </sys-subheader-1>
   </section>

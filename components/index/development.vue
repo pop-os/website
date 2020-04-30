@@ -54,7 +54,7 @@
         <li>VS Code</li>
         <li>ROS</li>
         <li>Postman</li>
-        <li>KiCAD</li>
+        <li>KiCad</li>
         <li>Android Studio</li>
         <li>Arduino IDE</li>
       </ul>
