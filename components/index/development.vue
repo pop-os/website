@@ -283,7 +283,7 @@
     }
   }
 
-  @media (width >= 110ch) {
+  @media (width >= 130ch) {
     section {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto repeat(2, 1fr)
