@@ -1,8 +1,14 @@
+import config from './config/index'
+
 export default {
   mode: 'spa',
 
   head: {
     title: 'Pop!_OS by System76',
+
+    htmlAttrs: {
+      lang: 'en'
+    },
 
     meta: [
       { charset: 'utf-8' },
@@ -37,7 +43,38 @@ export default {
     ]
   },
 
+  build: {
+    transpile: [
+      /@system76/
+    ]
+  },
+
+  css: [
+    '@system76/design/dist/index.common.css',
+    '@system76/components/dist/index.common.css',
+    '@system76/forms/dist/index.common.css',
+    '~/assets/styles/main.css'
+  ],
+
+  env: config,
+
   loading: {
     color: '#6ACAD8'
+  },
+
+  buildModules: [
+    '@nuxtjs/color-mode',
+    '@aceforth/nuxt-optimized-images'
+  ],
+
+  plugins: [
+    '~/plugins/components',
+    '~/plugins/design',
+    '~/plugins/forms',
+    '~/plugins/lazyload'
+  ],
+
+  optimizedImages: {
+    optimizeImages: true
   }
 }

@@ -52,7 +52,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NODE_ENV: production
+          NODE_ENV: test
 
       - name: Test
         run: |
@@ -100,7 +100,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NODE_ENV: production
+          NODE_ENV: test
 
       - name: Test
         run: npx testcafe ${{ matrix.browser }} test/browser/**
@@ -140,7 +140,7 @@ jobs:
       - Test_Browser_Windows
       - Build
 
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/staging'
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/20.04-release'
 
     steps:
       - name: Checkout
@@ -157,27 +157,43 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build
-        run: npm run build
-        env:
-          NODE_ENV: production
-
       - name: Environment
         run: |
           if [ $GITHUB_REF == "refs/heads/master" ]; then
+            echo "::set-env name=DEPLOY_ENV::production"
+
             echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets.PRODUCTION_ACCESS_KEY }}"
             echo "::set-env name=AWS_SECRET_ACCESS_KEY::${{ secrets.PRODUCTION_ACCESS_SECRET }}"
             echo "::set-env name=AWS_DEFAULT_REGION::${{ secrets.PRODUCTION_REGION }}"
             echo "::set-env name=AWS_BUCKET::${{ secrets.PRODUCTION_BUCKET }}"
-          elif [ $GITHUB_REF == "refs/heads/staging" ]; then
+          elif [ $GITHUB_REF == "refs/heads/20.04-release" ]; then
+            echo "::set-env name=DEPLOY_ENV::staging"
+
             echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets.STAGING_ACCESS_KEY }}"
             echo "::set-env name=AWS_SECRET_ACCESS_KEY::${{ secrets.STAGING_ACCESS_SECRET }}"
             echo "::set-env name=AWS_DEFAULT_REGION::${{ secrets.STAGING_REGION }}"
             echo "::set-env name=AWS_BUCKET::${{ secrets.STAGING_BUCKET }}"
           fi
 
+      - name: Build
+        run: npm run build
+
       - name: Upload
         run: |
-          aws s3 sync \
+          aws s3 sync dist s3://$AWS_BUCKET/ \
             --acl public-read \
-            ./dist/ "s3://$AWS_BUCKET"
+            --cache-control public,max-age=31556952,immutable \
+            --exclude "*" \
+            --include "/_nuxt/*"
+
+          aws s3 sync dist s3://$AWS_BUCKET/ \
+            --acl public-read \
+            --cache-control public,max-age=86400 \
+            --exclude "/_nuxt/*" \
+            --exclude "*.html"
+
+          aws s3 sync dist s3://$AWS_BUCKET/ \
+            --acl public-read \
+            --cache-control public,max-age=3600,stale-while-revalidate=300 \
+            --exclude "*" \
+            --include "*.html"
