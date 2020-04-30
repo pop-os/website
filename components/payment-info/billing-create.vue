@@ -1613,7 +1613,7 @@
     flex: 1 1 100%;
   }
 
-  form >>> > div:last-child {
+  form >>> [class^="sys-actions"] {
     flex: 1 1 100%;
     margin: 0 1rem;
     width: 100%;
