@@ -65,7 +65,7 @@
     cursor: auto;
     max-height: 100%;
     max-width: 100%;
-    overflow: auto;
+    overflow: hidden auto;
   }
 
   @media only screen and (min-height: 600px) {
