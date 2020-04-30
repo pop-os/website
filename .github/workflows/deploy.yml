@@ -1,8 +1,12 @@
 ---
 
-name: CI
+name: Deploy
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+      - staging
 
 jobs:
   Lint:
@@ -131,3 +135,67 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+
+  Deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - Lint
+      - Test_Browser_Ubuntu
+      - Test_Browser_Windows
+      - Build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup AWS
+        run: sudo apt install -y awscli
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Install
+        run: npm ci
+
+      - name: Environment
+        run: |
+          if [ $GITHUB_REF == "refs/heads/master" ]; then
+            echo "::set-env name=DEPLOY_ENV::production"
+
+            echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets.PRODUCTION_ACCESS_KEY }}"
+            echo "::set-env name=AWS_SECRET_ACCESS_KEY::${{ secrets.PRODUCTION_ACCESS_SECRET }}"
+            echo "::set-env name=AWS_DEFAULT_REGION::${{ secrets.PRODUCTION_REGION }}"
+            echo "::set-env name=AWS_BUCKET::${{ secrets.PRODUCTION_BUCKET }}"
+          else
+            echo "::set-env name=DEPLOY_ENV::staging"
+
+            echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets.STAGING_ACCESS_KEY }}"
+            echo "::set-env name=AWS_SECRET_ACCESS_KEY::${{ secrets.STAGING_ACCESS_SECRET }}"
+            echo "::set-env name=AWS_DEFAULT_REGION::${{ secrets.STAGING_REGION }}"
+            echo "::set-env name=AWS_BUCKET::${{ secrets.STAGING_BUCKET }}"
+          fi
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload
+        run: |
+          aws s3 sync dist s3://$AWS_BUCKET/ \
+            --acl public-read \
+            --cache-control public,max-age=31556952,immutable \
+            --exclude "*" \
+            --include "/_nuxt/*"
+
+          aws s3 sync dist s3://$AWS_BUCKET/ \
+            --acl public-read \
+            --cache-control public,max-age=86400 \
+            --exclude "/_nuxt/*" \
+            --exclude "*.html"
+
+          aws s3 sync dist s3://$AWS_BUCKET/ \
+            --acl public-read \
+            --cache-control public,max-age=3600,stale-while-revalidate=300 \
+            --exclude "*" \
+            --include "*.html"
