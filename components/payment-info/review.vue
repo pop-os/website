@@ -68,14 +68,6 @@
 
       <div>
         <sys-form-button
-          v-if="alreadySubscribed"
-          @click.prevent="$store.dispatch('payment/deleteSubscription')"
-        >
-          Cancel Subscription
-        </sys-form-button>
-
-        <sys-form-button
-          v-else
           color="primary"
           :disabled="!canReview"
           @click.prevent="submit"
