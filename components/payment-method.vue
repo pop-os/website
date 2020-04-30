@@ -5,8 +5,11 @@
       class="icon"
     />
 
-    <span>Ending in: {{ reference }}</span>
-    <span>Expires: {{ expirationMonth }}/{{ expirationYear }}</span>
+    <span class="ref">Ending in: {{ reference }}</span>
+
+    <template v-if="expirationMonth && expirationYear">
+      <span class="exp">Expires: {{ expirationMonth }}/{{ expirationYear }}</span>
+    </template>
   </div>
 </template>
 
@@ -27,12 +30,12 @@
     grid-row: 1 / 3;
   }
 
-  span:first-of-type {
+  .ref {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
   }
 
-  span:last-of-type {
+  .exp {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
