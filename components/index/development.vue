@@ -84,6 +84,7 @@
           color="primary"
           ghost
           target="_blank"
+          href="https://support.system76.com/articles/media-production-on-pop/"
         >
           Learn more
         </sys-form-button>
