@@ -204,6 +204,10 @@
     width: 36px;
   }
 
+  .switch input:focus {
+    outline: none !important;
+  }
+
   .light-mode.switch input {
     background-color: #fff;
     left: 4px;
