@@ -135,15 +135,15 @@
       </a>
 
       <a
-        href="https://github.com/alacritty/alacritty"
+        href="https://slack.com"
         target="_blank"
         rel="noopener"
       >
         <img
-          alt="Alacritty"
-          title="Alacritty"
-          :data-src="require('~/assets/images/index/apps/alacritty.png?size=60')"
-          :data-loading="require('~/assets/images/index/apps/alacritty.png?lqip')"
+          alt="Slack"
+          title="Slack"
+          :data-src="require('~/assets/images/index/apps/slack.png?size=60')"
+          :data-loading="require('~/assets/images/index/apps/slack.png?lqip')"
         >
       </a>
 
