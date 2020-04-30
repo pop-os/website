@@ -98,16 +98,17 @@
   }
 
   .links a {
-    color: inherit;
     border-radius: 3px;
+    color: inherit;
     flex: 1 1 100%;
-    padding: 1rem;
     margin: 1rem;
     outline: none;
+    padding: 1rem;
     text-decoration: none;
-    transition-properties: box-shadow, color;
     transition-duration: 100ms;
+    transition-properties: box-shadow, color;
     transition-timing-function: ease;
+    user-select: none;
   }
 
   .light-mode .links a:hover,
