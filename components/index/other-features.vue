@@ -168,7 +168,6 @@
 
   .block h2 {
     margin-top: 0;
-    text-align: center;
   }
 
   .switch {

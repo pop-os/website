@@ -131,11 +131,11 @@
     grid-column: 1 / 2;
     margin: 0 auto 1rem;
     max-width: 80ch;
-    text-align: center;
   }
 
   .copy > *:first-child {
     margin-top: 0;
+    text-align: center;
   }
 
   .copy > *:last-child {
@@ -165,7 +165,6 @@
   .block h2 {
     margin: 0 auto 1rem;
     max-width: 80ch;
-    text-align: center;
   }
 
   .block p {
@@ -173,7 +172,6 @@
     flex: 1 1 auto;
     margin: 1rem auto;
     max-width: 60ch;
-    text-align: center;
   }
 
   .block:nth-child(4) p {

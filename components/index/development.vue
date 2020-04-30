@@ -139,11 +139,11 @@
     grid-column: 1 / 2;
     margin: 0 auto 1rem;
     max-width: 80ch;
-    text-align: center;
   }
 
   .copy > *:first-child {
     margin-top: 0;
+    text-align: center;
   }
 
   .copy > *:last-child {
