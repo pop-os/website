@@ -32,7 +32,7 @@
 
         <img
           class="avatar"
-          :src="require(`~/assets/images/index/testimonials/${current.image}`)"
+          :src="require(`~/assets/images/index/testimonials/${current.image}?sizes=200`)"
           :alt="current.name"
         >
       </div>
