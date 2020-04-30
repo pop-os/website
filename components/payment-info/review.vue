@@ -70,7 +70,7 @@
           v-if="alreadySubscribed"
           @click.prevent="$store.dispatch('payment/deleteSubscription')"
         >
-          Delete
+          Cancel Subscription
         </sys-form-button>
 
         <sys-form-button
