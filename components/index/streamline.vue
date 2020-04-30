@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-lazy-container="{ selector: 'img' }">
     <div class="copy">
       <sys-header-2>Streamline your workflow</sys-header-2>
 
@@ -37,7 +37,8 @@
           </svg>
         </div>
         <img
-          src="https://i.ytimg.com/vi/-fltwBKsMY0/maxresdefault.jpg"
+          alt="Auto-tiling with Pop shell video"
+          data-src="https://i.ytimg.com/vi/-fltwBKsMY0/mqdefault.jpg"
           class="video"
         >
       </div>
@@ -67,7 +68,8 @@
           </svg>
         </div>
         <img
-          src="https://i.ytimg.com/vi/v9oVZwJrjOc/maxresdefault.jpg"
+          alt="Pop!_OS workspaces video"
+          data-src="https://i.ytimg.com/vi/v9oVZwJrjOc/mqdefault.jpg"
           class="video"
         >
       </div>
@@ -102,7 +104,8 @@
           </svg>
         </div>
         <img
-          src="https://i.ytimg.com/vi/aqj0cRTZaVE/maxresdefault.jpg"
+          alt="Keyboard navigation video"
+          data-src="https://i.ytimg.com/vi/aqj0cRTZaVE/mqdefault.jpg"
           class="video"
         >
       </div>

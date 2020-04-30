@@ -132,7 +132,7 @@
 
   @media (width >= 800px) {
     section.light-mode::before {
-      background-image: url("~assets/images/index/head-texture-light.png?size=2000");
+      background-image: url("~assets/images/index/head-texture-light.png?size=1200");
     }
 
     section.light-mode::after {

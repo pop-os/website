@@ -14,7 +14,10 @@
       makers, and builders to go forth and discover.
     </sys-paragraph-1>
 
-    <div class="grid">
+    <div
+      v-lazy-container="{ selector: 'img' }"
+      class="grid"
+    >
       <a
         :class="classes"
         href="https://system76.com/laptops"
@@ -22,7 +25,10 @@
         rel="noopener"
         title="Lemur"
       >
-        <img src="~/assets/images/index/thumbnail_lemp9.png">
+        <img
+          alt="Lemur Pro"
+          :data-src="require('~/assets/images/index/thumbnail_lemp9.png?sizes=300')"
+        >
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>
 
@@ -34,8 +40,8 @@
         title="Thelio"
       >
         <img
-          src="~/assets/images/index/thumbnail_thelios.png"
-          class="pad"
+          alt="Thelio Desktops"
+          :data-src="require('~/assets/images/index/thumbnail_thelios.png?sizes=300')"
         >
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>
@@ -47,7 +53,10 @@
         rel="noopener"
         title="Meerkat"
       >
-        <img src="~/assets/images/index/thumbnail_meerkat.png">
+        <img
+          alt="Meerkat"
+          :data-src="require('~/assets/images/index/thumbnail_meerkat.png?sizes=300')"
+        >
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>
     </div>
@@ -95,11 +104,15 @@
   }
 
   .grid a {
+    align-content: center;
+    align-items: center;
     border-radius: 12px;
     border: 1px solid transparent;
+    display: flex;
+    justify-content: center;
     outline: none;
-    transition: box-shadow 250ms ease;
     position: relative;
+    transition: box-shadow 250ms ease;
   }
 
   .grid a.light-mode {
@@ -122,10 +135,9 @@
   .grid img {
     width: 100%;
     max-width: 300px;
+    padding: 2rem;
   }
-  .grid .pad {
-    padding: 1em;
-  }
+
   .grid svg {
     bottom: 0.5rem;
     height: 1rem;
@@ -140,9 +152,9 @@
     }
   }
 
-  @media (width >= 1000px) {
+  @media (width >= 1200px) {
     section {
-      grid-template-columns: 5fr 7fr;
+      grid-template-columns: 5fr 8fr;
       grid-template-rows: auto auto 1fr auto;
     }
 

@@ -30,7 +30,7 @@
 
       <div>
         <sys-form-button
-          ref="noopener"
+          rel="noopener"
           color="primary"
           ghost
           href="https://support.system76.com/articles/use-tensorman/"
@@ -80,7 +80,8 @@
 
       <div>
         <sys-form-button
-          ref="noopener"
+          aria-label="learn more about media production on pop"
+          rel="noopener"
           color="primary"
           ghost
           target="_blank"

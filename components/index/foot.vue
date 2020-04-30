@@ -8,6 +8,7 @@
         <a
           class="help"
           target="_blank"
+          rel="noopener"
           href="https://support.system76.com/articles/install-pop/"
         >Here’s how</a>. Like what we’re doing? Subscribe to fund more
         awesome features down the road. We’ve always got something exciting in
@@ -120,7 +121,7 @@
 
   @media (width >= 800px) {
     section.light-mode::before {
-      background-image: url("~assets/images/index/foot-texture-light.png?size=2000");
+      background-image: url("~assets/images/index/foot-texture-light.png?size=1200");
     }
   }
 
