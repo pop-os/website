@@ -201,7 +201,7 @@ export const actions = {
   },
 
   async fetchApiData ({ commit, rootState }) {
-    const res = await fetch(`${process.env.API_URL}/transactions/sources?filter[type]=stripe&include=address`, {
+    const res = await fetch(`${process.env.API_URL}/transactions/sources?filter[type]=stripe&filter[user]=${rootState.session.userId}&include=address`, {
       method: 'GET',
       headers: new Headers({
         ...REQUEST_HEADERS,
