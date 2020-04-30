@@ -1,5 +1,19 @@
 <template>
   <section>
+    <div
+      :class="['icon', 'previous', (hasPrevious ? null : 'disabled')]"
+      @click.prevent="gotoPrevious"
+    >
+      <font-awesome-icon :icon="faChevronLeft" />
+    </div>
+
+    <div
+      :class="['icon', 'next', (hasNext ? null : 'disabled')]"
+      @click.prevent="gotoNext"
+    >
+      <font-awesome-icon :icon="faChevronRight" />
+    </div>
+
     <transition
       mode="out-in"
       :name="transition"
@@ -23,22 +37,6 @@
         >
       </div>
     </transition>
-
-    <div
-      v-if="hasPrevious"
-      class="icon previous"
-      @click.prevent="gotoPrevious"
-    >
-      <font-awesome-icon :icon="faChevronLeft" />
-    </div>
-
-    <div
-      v-if="hasNext"
-      class="icon next"
-      @click.prevent="gotoNext"
-    >
-      <font-awesome-icon :icon="faChevronRight" />
-    </div>
   </section>
 </template>
 
@@ -104,6 +102,11 @@
     background-color: rgba(0, 0, 0, 0.2);
   }
 
+  .icon.disabled {
+    background-color: transparent !important;
+    opacity: 0.2;
+  }
+
   .icon.previous {
     left: 0;
   }
@@ -124,14 +127,14 @@
 
   .item p {
     grid-column: 1 / 2;
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
     margin: 0;
     padding: 0;
   }
 
   .item h5 {
     grid-column: 1 / 2;
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     margin: 0 0;
   }
 
@@ -139,7 +142,7 @@
     border-radius: 50%;
     display: block;
     grid-column: 1 / 2;
-    grid-row: 3 / 4;
+    grid-row: 1 / 2;
     height: 8rem;
     margin: 0 auto;
     object-fit: cover;
@@ -149,6 +152,16 @@
   }
 
   @media (width >= 600px) {
+    .item p {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+
+    .item h5 {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+    }
+
     .avatar {
       grid-column: 2 / 3;
       grid-row: 1 / 3;
