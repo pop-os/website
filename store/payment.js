@@ -62,9 +62,13 @@ export const getters = {
   },
 
   nextPage (state, getters, rootState, rootGetters) {
+    if (getters.alreadySubscribed) {
+      return 'success'
+    }
+
     switch (state.page) {
       case 'support':
-        if (getters.alreadySubscribed || getters.canReview) {
+        if (getters.canReview) {
           return 'review'
         } else if (rootGetters['session/isLoggedIn']) {
           return getters.defaultBillingPage
@@ -356,26 +360,6 @@ export const actions = {
       return false
     } else {
       commit('setError', 'Error creating subscription')
-
-      return false
-    }
-  },
-
-  async deleteSubscription ({ commit, state, rootState }) {
-    const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions/${state.subscription.id}`, {
-      method: 'DELETE',
-      headers: new Headers({
-        ...REQUEST_HEADERS,
-        Authorization: `Bearer ${rootState.session.jwt}`
-      })
-    })
-
-    if (res.ok) {
-      commit('setSubscription', null)
-
-      return true
-    } else {
-      commit('setError', 'Error deleting subscription')
 
       return false
     }
