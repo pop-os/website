@@ -23,6 +23,10 @@ export const getters = {
     return (state.subscription != null)
   },
 
+  canGoBack (state) {
+    return false
+  },
+
   canReview (state) {
     return (state.source != null)
   },

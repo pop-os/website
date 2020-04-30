@@ -75,20 +75,21 @@
     <template v-slot:actions="{ submittable }">
       <div class="buttons">
         <sys-form-button
+          type="submit"
+          color="primary"
+          :disabled="!submittable"
+        >
+          Create Account
+        </sys-form-button>
+
+        <sys-form-button
+          v-if="canGoBack"
           type="button"
           ghost
           @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
         >
           <font-awesome-icon :icon="faChevronLeft" />
           <span>Back</span>
-        </sys-form-button>
-
-        <sys-form-button
-          type="submit"
-          color="primary"
-          :disabled="!submittable"
-        >
-          Create Account
         </sys-form-button>
       </div>
     </template>
@@ -114,6 +115,7 @@
 <script>
   import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'PaymentInfoRegister',
@@ -129,10 +131,12 @@
       phoneNumber: '',
       password: '',
       confirmPassword: '',
-      newsletter: false
+      newsletter: true
     }),
 
     computed: {
+      ...mapGetters('payment', ['canGoBack']),
+
       faChevronLeft: () => faChevronLeft
     },
 

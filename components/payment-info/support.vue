@@ -14,19 +14,20 @@
 
     <div class="buttons">
       <sys-form-button
+        color="primary"
+        @click.prevent="$store.dispatch('payment/gotoNextPage')"
+      >
+        Pay Now
+      </sys-form-button>
+
+      <sys-form-button
+        v-if="canGoBack"
         type="button"
         ghost
         @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
       >
         <font-awesome-icon :icon="faChevronLeft" />
         <span>Back</span>
-      </sys-form-button>
-
-      <sys-form-button
-        color="primary"
-        @click.prevent="$store.dispatch('payment/gotoNextPage')"
-      >
-        Pay Now
       </sys-form-button>
     </div>
   </div>
@@ -45,6 +46,7 @@
 <script>
   import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+  import { mapGetters } from 'vuex'
 
   import SubscriptionPrice from '~/components/subscription-price'
 
@@ -57,6 +59,8 @@
     },
 
     computed: {
+      ...mapGetters('payment', ['canGoBack']),
+
       faChevronLeft: () => faChevronLeft
     }
   }

@@ -1573,20 +1573,21 @@
     <template v-slot:actions="{ submittable }">
       <div class="buttons">
         <sys-form-button
+          type="submit"
+          color="primary"
+          :disabled="!submittable || !valid"
+        >
+          Review
+        </sys-form-button>
+
+        <sys-form-button
+          v-if="canGoBack"
           type="button"
           ghost
           @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
         >
           <font-awesome-icon :icon="faChevronLeft" />
           <span>Back</span>
-        </sys-form-button>
-
-        <sys-form-button
-          type="submit"
-          color="primary"
-          :disabled="!submittable || !valid"
-        >
-          Review
         </sys-form-button>
       </div>
     </template>
@@ -1687,7 +1688,7 @@
     }),
 
     computed: {
-      ...mapGetters('payment', ['canSelectSources']),
+      ...mapGetters('payment', ['canGoBack', 'canSelectSources']),
 
       faChevronLeft: () => faChevronLeft,
       faSpinner: () => faSpinner,

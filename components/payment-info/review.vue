@@ -57,15 +57,6 @@
     </p>
 
     <div class="buttons">
-      <sys-form-button
-        type="button"
-        ghost
-        @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
-      >
-        <font-awesome-icon :icon="faChevronLeft" />
-        <span>Back</span>
-      </sys-form-button>
-
       <div>
         <sys-form-button
           color="primary"
@@ -73,6 +64,16 @@
           @click.prevent="submit"
         >
           Confirm
+        </sys-form-button>
+
+        <sys-form-button
+          v-if="canGoBack"
+          type="button"
+          ghost
+          @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
+        >
+          <font-awesome-icon :icon="faChevronLeft" />
+          <span>Back</span>
         </sys-form-button>
       </div>
     </div>
@@ -122,7 +123,7 @@
 
     computed: {
       ...mapState('payment', ['source', 'address', 'subscription']),
-      ...mapGetters('payment', ['alreadySubscribed', 'canReview']),
+      ...mapGetters('payment', ['alreadySubscribed', 'canGoBack', 'canReview']),
 
       faChevronLeft: () => faChevronLeft,
 

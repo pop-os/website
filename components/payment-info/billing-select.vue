@@ -46,19 +46,20 @@
 
       <div class="buttons">
         <sys-form-button
+          color="primary"
+          @click.prevent="$store.dispatch('payment/gotoNextPage')"
+        >
+          Review
+        </sys-form-button>
+
+        <sys-form-button
+          v-if="canGoBack"
           type="button"
           ghost
           @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
         >
           <font-awesome-icon :icon="faChevronLeft" />
           <span>Back</span>
-        </sys-form-button>
-
-        <sys-form-button
-          color="primary"
-          @click.prevent="$store.dispatch('payment/gotoNextPage')"
-        >
-          Review
         </sys-form-button>
       </div>
     </template>
@@ -100,7 +101,7 @@
 <script>
   import { faChevronLeft, faSpinner } from '@fortawesome/free-solid-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-  import { mapState } from 'vuex'
+  import { mapGetters, mapState } from 'vuex'
 
   import PaymentMethod from '~/components/payment-method'
 
@@ -114,6 +115,7 @@
 
     computed: {
       ...mapState('payment', ['sources', 'addresses']),
+      ...mapGetters('payment', ['canGoBack']),
 
       faChevronLeft: () => faChevronLeft,
       faSpinner: () => faSpinner,

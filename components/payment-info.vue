@@ -76,11 +76,12 @@
     align-content: center;
     align-items: center;
     display: flex;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
+    flex: 1 1 100%;
     justify-content: space-between;
     margin: 1rem -1rem 0;
     width: calc(100% + 2rem);
-    flex: 1 1 100%;
   }
 
   >>> .buttons > * {
