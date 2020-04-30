@@ -57,8 +57,8 @@
       </div>
 
       <sys-paragraph-1 class="disclaimer">
-        If you have NVIDIA graphics, you can download the ISO with the
-        proprietary NVIDIA driver preinstalled.
+        If you have NVIDIA graphics, download the ISO with the proprietary
+        NVIDIA driver preinstalled.
       </sys-paragraph-1>
 
       <sys-paragraph-1 tag="dl">
