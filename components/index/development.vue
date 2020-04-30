@@ -23,7 +23,7 @@
         <li>Tensorman</li>
         <li>Tensorflow</li>
         <li>PyTorch</li>
-        <li>Caffee</li>
+        <li>Caffe</li>
         <li>Jupyter</li>
         <li>MATLAB</li>
       </ul>
