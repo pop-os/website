@@ -179,8 +179,8 @@
         rel="noopener"
       >
         <img
-          alt="Gimp"
-          title="Gimp"
+          alt="GIMP"
+          title="GIMP"
           :data-src="require('~/assets/images/index/apps/gimp.png?size=60')"
           :data-loading="require('~/assets/images/index/apps/gimp.png?lqip')"
         >
