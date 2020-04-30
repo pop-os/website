@@ -1,10 +1,5 @@
 <template>
   <div>
-    <img
-      alt="Zoe"
-      src="~/assets/images/payment/zoe.png"
-    >
-
     <sys-paragraph-1>
       System76 is continuing to make Pop!_OS the most convenient, fun-to-use OS
       known to man, woman, child, and machine. And you can help make it happen.
@@ -37,11 +32,6 @@
 </template>
 
 <style scoped>
-  img {
-    display: block;
-    margin: 0 auto;
-  }
-
   p {
     max-width: 40ch;
   }
