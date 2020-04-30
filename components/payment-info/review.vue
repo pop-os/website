@@ -60,7 +60,7 @@
       <div>
         <sys-form-button
           color="primary"
-          :disabled="!canReview"
+          :disabled="!canReview || subscribing"
           @click.prevent="submit"
         >
           Confirm
@@ -122,7 +122,7 @@
     },
 
     computed: {
-      ...mapState('payment', ['source', 'address', 'subscription']),
+      ...mapState('payment', ['source', 'address', 'subscription', 'subscribing']),
       ...mapGetters('payment', ['alreadySubscribed', 'canGoBack', 'canReview']),
 
       faChevronLeft: () => faChevronLeft,

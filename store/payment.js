@@ -6,6 +6,7 @@ const REQUEST_HEADERS = {
 
 export const state = () => ({
   showing: false,
+  subscribing: false,
 
   error: null,
   page: 'support',
@@ -152,6 +153,10 @@ export const mutations = {
       state.page = 'support'
       this.error = null
     }
+  },
+
+  setSubscribing (state, value) {
+    state.subscribing = value
   },
 
   setError (state, message) {
@@ -339,7 +344,9 @@ export const actions = {
     }
   },
 
-  async createSubscription ({ commit, rootState }, { stripeId }) {
+  async createSubscription ({ commit, state, rootState }, { stripeId }) {
+    commit('setSubscribing', true)
+
     const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions`, {
       method: 'POST',
       headers: new Headers({
@@ -356,14 +363,17 @@ export const actions = {
       const body = await res.json()
 
       commit('setSubscription', body)
+      commit('setSubscribing', false)
 
       return true
     } else if (res.status === 402) {
       commit('setError', 'Payment failed')
+      commit('setSubscribing', false)
 
       return false
     } else {
       commit('setError', 'Error creating subscription')
+      commit('setSubscribing', false)
 
       return false
     }
