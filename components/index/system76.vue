@@ -116,10 +116,7 @@
 
   .grid a:focus,
   .grid a:active {
-    border-color: var(--color-orange);
-    box-shadow:
-      0 0 12px var(--color-orange),
-      0 0 1px var(--color-orange);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   }
 
   .grid img {

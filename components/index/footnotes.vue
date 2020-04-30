@@ -5,7 +5,7 @@
       class="links content"
     >
       <a
-        href="https://support.system76.com/#pop-ubuntu"
+        href="https://support.system76.com/#pop"
         rel="noopener"
         target="_blank"
       >
@@ -29,11 +29,6 @@
       >
         <font-awesome-icon :icon="faGithub" />
         Github
-      </a>
-
-      <a>
-        <font-awesome-icon :icon="faCog" />
-        Tech details
       </a>
     </sys-subheader-1>
   </section>
@@ -89,11 +84,11 @@
   }
 
   .links {
-    align-content: stretch;
-    align-items: stretch;
+    align-content: center;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: stretch;
+    justify-content: center;
     text-align: center;
   }
 
@@ -138,13 +133,13 @@
 
   @media (width >= 80ch) {
     .links a {
-      flex: 1 1 40%;
+      flex: 0 1 auto;
     }
   }
 
-  @media (width >= 150ch) {
+  @media (width >= 120ch) {
     .links a {
-      flex: 1 1 20%;
+      padding: 1rem 2rem;
     }
   }
 </style>
