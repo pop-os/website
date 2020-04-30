@@ -180,6 +180,12 @@ jobs:
 
       - name: Upload
         run: |
-          aws s3 sync \
+          aws s3 sync dist s3://$AWS_BUCKET/ \
             --acl public-read \
-            ./dist/ "s3://$AWS_BUCKET"
+            --cache-control public,max-age=31556952,immutable \
+            --exclude "*.html"
+
+          aws s3 sync dist s3://$AWS_BUCKET/ \
+            --acl public-read \
+            --cache-control public,max-age=3600,stale-while-revalidate=300 \
+            --include "*.html"
