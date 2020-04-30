@@ -46,6 +46,7 @@
 
       <div class="buttons">
         <sys-form-button
+          type="button"
           ghost
           @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
         >

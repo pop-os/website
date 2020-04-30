@@ -1573,6 +1573,7 @@
     <template v-slot:actions="{ submittable }">
       <div class="buttons">
         <sys-form-button
+          type="button"
           ghost
           @click.prevent="$store.dispatch('payment/gotoPreviousPage')"
         >
