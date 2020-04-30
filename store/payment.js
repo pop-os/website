@@ -230,7 +230,7 @@ export const actions = {
       method: 'GET',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: `Token ${rootState.session.jwt}`
+        Authorization: `Bearer ${rootState.session.jwt}`
       })
     })
 
@@ -357,7 +357,7 @@ export const actions = {
       method: 'DELETE',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: `Token ${rootState.session.jwt}`
+        Authorization: `Bearer ${rootState.session.jwt}`
       }),
       body: JSON.stringify({ id: state.subscription.id })
     })
