@@ -7,7 +7,7 @@ export default {
     title: 'Pop!_OS by System76',
 
     htmlAttrs: {
-      lang: 'en',
+      lang: 'en'
     },
 
     meta: [
