@@ -17,7 +17,7 @@
     <div class="grid">
       <a
         :class="classes"
-        href="https://system76.com/laptops/lemur"
+        href="https://system76.com/laptops"
         target="_blank"
         rel="noopener"
         title="Lemur"

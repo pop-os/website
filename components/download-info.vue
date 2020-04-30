@@ -87,7 +87,7 @@
           target="_blank"
           href="https://support.system76.com/articles/install-pop/"
         >
-          How to create a USB stick using this image?
+          Learn how to create installation media.
         </a>
       </p>
 

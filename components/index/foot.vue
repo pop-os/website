@@ -4,7 +4,12 @@
       <sys-paragraph-1>
         Pop!_OS is free to download. If you want to try it out before you
         commit, you can download the .iso file to a USB and boot the OS from
-        there. Here’s how.  Like what we’re doing? Subscribe to fund more
+        there.
+        <a
+          class="help"
+          target="_blank"
+          href="https://support.system76.com/articles/install-pop/"
+        >Here’s how</a>. Like what we’re doing? Subscribe to fund more
         awesome features down the road. We’ve always got something exciting in
         the works for you to experience.
       </sys-paragraph-1>
@@ -91,6 +96,18 @@
     top: 0;
     width: 100%;
     z-index: 2;
+  }
+
+  section.dark-mode a {
+    color: var(--color-orange);
+  }
+
+  section.light-mode a {
+    color: #AF5C02;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   .content {
