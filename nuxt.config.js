@@ -39,6 +39,12 @@ export default {
     ]
   },
 
+  build: {
+    transpile: [
+      /@system76/
+    ]
+  },
+
   css: [
     '@system76/design/dist/index.common.css',
     '@system76/components/dist/index.common.css',
@@ -58,7 +64,6 @@ export default {
   ],
 
   plugins: [
-    '~/plugins/asset-components',
     '~/plugins/components',
     '~/plugins/design',
     '~/plugins/forms',
