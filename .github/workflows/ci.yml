@@ -183,6 +183,12 @@ jobs:
           aws s3 sync dist s3://$AWS_BUCKET/ \
             --acl public-read \
             --cache-control public,max-age=31556952,immutable \
+            --include "/_nuxt/*"
+
+          aws s3 sync dist s3://$AWS_BUCKET/ \
+            --acl public-read \
+            --cache-control public,max-age=86400 \
+            --exclude "/nuxt/*"
             --exclude "*.html"
 
           aws s3 sync dist s3://$AWS_BUCKET/ \
