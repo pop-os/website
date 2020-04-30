@@ -19,6 +19,10 @@ export const state = () => ({
 })
 
 export const getters = {
+  alreadySubscribed (state) {
+    return (state.subscription != null)
+  },
+
   canReview (state) {
     return (state.source != null)
   },
@@ -60,8 +64,7 @@ export const getters = {
   nextPage (state, getters, rootState, rootGetters) {
     switch (state.page) {
       case 'support':
-        // TODO: if already subscribed
-        if (getters.canReview) {
+        if (getters.alreadySubscribed || getters.canReview) {
           return 'review'
         } else if (rootGetters['session/isLoggedIn']) {
           return getters.defaultBillingPage
@@ -290,7 +293,7 @@ export const actions = {
     }
   },
 
-  async createSource ({ commit, rootState, state }, { addressId, token }) {
+  async createSource ({ commit, dispatch, rootState, state }, { addressId, token }) {
     const res = await fetch(`${process.env.API_URL}/transactions/sources`, {
       method: 'POST',
       headers: new Headers({
@@ -318,6 +321,7 @@ export const actions = {
       const body = await res.json()
 
       commit('setSource', body.data)
+      await dispatch('session/fetchData', null, { root: true })
 
       return true
     } else {
@@ -332,10 +336,11 @@ export const actions = {
       method: 'POST',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: `Token ${rootState.session.jwt}`
+        Authorization: `Bearer ${rootState.session.jwt}`
       }),
       body: JSON.stringify({
-        stripe_customer_id: stripeId
+        stripe_customer_id: rootState.session.stripeId,
+        stripe_source_id: stripeId
       })
     })
 
@@ -345,6 +350,10 @@ export const actions = {
       commit('setSubscription', body)
 
       return true
+    } else if (res.status === 402) {
+      commit('setError', 'Payment failed')
+
+      return false
     } else {
       commit('setError', 'Error creating subscription')
 
@@ -352,14 +361,13 @@ export const actions = {
     }
   },
 
-  async deleteSubscription ({ commit, rootState }) {
-    const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions`, {
+  async deleteSubscription ({ commit, state, rootState }) {
+    const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions/${state.subscription.id}`, {
       method: 'DELETE',
       headers: new Headers({
         ...REQUEST_HEADERS,
         Authorization: `Bearer ${rootState.session.jwt}`
-      }),
-      body: JSON.stringify({ id: state.subscription.id })
+      })
     })
 
     if (res.ok) {

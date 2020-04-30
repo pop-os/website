@@ -67,17 +67,17 @@
 
       <div>
         <sys-form-button
-          v-if="subscription"
-          :disabled="!canReview"
+          v-if="alreadySubscribed"
           @click.prevent="$store.dispatch('payment/deleteSubscription')"
         >
           Delete
         </sys-form-button>
 
         <sys-form-button
+          v-else
           color="primary"
           :disabled="!canReview"
-          @click.prevent="$store.dispatch('payment/createSubscription')"
+          @click.prevent="submit"
         >
           Confirm
         </sys-form-button>
@@ -129,7 +129,7 @@
 
     computed: {
       ...mapState('payment', ['source', 'address', 'subscription']),
-      ...mapGetters('payment', ['canReview']),
+      ...mapGetters('payment', ['alreadySubscribed', 'canReview']),
 
       faChevronLeft: () => faChevronLeft,
 
@@ -153,6 +153,18 @@
         return lines
           .splice(0, (lines.length - 1))
           .join('')
+      }
+    },
+
+    methods: {
+      async submit () {
+        const subRes = await this.$store.dispatch('payment/createSubscription', {
+          stripeId: this.source.attributes['stripe-id']
+        })
+
+        if (subRes) {
+          await this.$store.dispatch('payment/gotoNextPage')
+        }
       }
     }
   }
