@@ -58,7 +58,7 @@
           title="Download for systems with NVIDIA GPUs"
           :ghost="!preferNvidia"
           :href="nvidiaUrl"
-          @click="$ga.event('download', 'download', 'intel', nvidiaUrl)"
+          @click="$ga.event('download', 'download', 'nvidia', nvidiaUrl)"
         >
           Download (nVidia)
         </sys-form-button>
