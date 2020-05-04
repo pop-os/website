@@ -1,3 +1,5 @@
+import { event } from 'vue-analytics'
+
 const REQUEST_HEADERS = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
@@ -70,6 +72,7 @@ export const actions = {
     } else {
       const body = await res.json()
       commit('login', body)
+      event('session', 'login')
     }
   },
 
@@ -119,6 +122,7 @@ export const actions = {
     } else if (!res.ok) {
       throw new Error(res.statusText)
     } else {
+      event('session', 'register')
       return res.json()
     }
   }

@@ -180,13 +180,13 @@
 
     methods: {
       toggleDownload () {
-        // TODO: analytics
+        this.$ga.event('download', 'toggle', 'header')
         this.$store.dispatch('download/detectChannel')
         this.$store.commit('download/toggleShowing')
       },
 
       togglePayment () {
-        // TODO: analytics
+        this.$ga.event('payment', 'toggle', 'header')
         this.$store.commit('payment/setShowing')
       }
     }
