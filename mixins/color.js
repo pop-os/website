@@ -14,6 +14,8 @@ export default {
       },
 
       set (value) {
+        this.$ga.set('color', value)
+        this.$ga.event('color', 'set', value)
         this.$colorMode.preference = value
       }
     },

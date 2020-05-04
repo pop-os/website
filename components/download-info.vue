@@ -46,6 +46,7 @@
           title="Download for Intel and AMD systems"
           :ghost="!preferIntel"
           :href="intelUrl"
+          @click="$ga.event('download', 'download', 'intel', intelUrl)"
         >
           Download (Intel/AMD)
         </sys-form-button>
@@ -57,6 +58,7 @@
           title="Download for systems with NVIDIA GPUs"
           :ghost="!preferNvidia"
           :href="nvidiaUrl"
+          @click="$ga.event('download', 'download', 'intel', nvidiaUrl)"
         >
           Download (nVidia)
         </sys-form-button>

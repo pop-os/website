@@ -63,8 +63,9 @@ export default {
   },
 
   buildModules: [
+    '@aceforth/nuxt-optimized-images',
     '@nuxtjs/color-mode',
-    '@aceforth/nuxt-optimized-images'
+    '@nuxtjs/google-analytics'
   ],
 
   plugins: [
@@ -73,6 +74,10 @@ export default {
     '~/plugins/forms',
     '~/plugins/lazyload'
   ],
+
+  googleAnalytics: {
+    id: 'UA-196052-6'
+  },
 
   optimizedImages: {
     optimizeImages: true

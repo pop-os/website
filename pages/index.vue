@@ -71,6 +71,10 @@
 
     mixins: [
       color
-    ]
+    ],
+
+    mounted () {
+      this.$ga.set('color', this.color)
+    }
   }
 </script>
