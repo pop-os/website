@@ -68,7 +68,9 @@
         If you have NVIDIA graphics, download the ISO with the proprietary
         NVIDIA driver preinstalled.
       </sys-paragraph-1>
-
+      <sys-paragraph-1 class="disclaimer">
+        Disable Secure Boot in your BIOS to install Pop!_OS.
+      </sys-paragraph-1>
       <sys-paragraph-1 tag="dl">
         <dt>Requirements:</dt>
         <dd>2 GB RAM, 16 GB storage, 64-bit processor</dd>
@@ -179,7 +181,7 @@
   }
 
   .disclaimer {
-    margin: 2rem auto 4rem;
+    margin: 2rem auto 2rem;
     max-width: 60ch;
     text-align: center;
   }
