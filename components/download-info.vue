@@ -43,19 +43,19 @@
           rel="noopener"
           target="_blank"
           color="secondary"
-          title="Download for Intel and AMD systems"
+          title="Download Pop!_OS"
           :ghost="!preferIntel"
           :href="intelUrl"
           @click="$ga.event('download', 'download', 'intel', intelUrl)"
         >
-          Download (Intel/AMD)
+          Download
         </sys-form-button>
 
         <sys-form-button
           rel="noopener"
           color="secondary"
           target="_blank"
-          title="Download for systems with NVIDIA GPUs"
+          title="Download Pop!_OS for systems with NVIDIA GPUs"
           :ghost="!preferNvidia"
           :href="nvidiaUrl"
           @click="$ga.event('download', 'download', 'nvidia', nvidiaUrl)"
@@ -79,15 +79,15 @@
         <dd>4 GB RAM, 16 GB storage, 64-bit processor</dd>
 
         <dt>Filesize:</dt>
-        <dd>{{ intelSize }} GB (Intel, AMD), {{ nvidiaSize }} GB (NVIDIA)</dd>
+        <dd>{{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA)</dd>
 
         <dt>SHA256 Sum:</dt>
         <dd class="sha">
           <code><span>{{ intelSha }}</span></code>
-          <div>(Intel/AMD)</div>
+          <div>Pop!_OS ISO Image</div>
 
           <code><span>{{ nvidiaSha }}</span></code>
-          <div>(NVIDIA)</div>
+          <div>Pop!_OS ISO Image (NVIDIA)</div>
         </dd>
       </sys-paragraph-1>
 
