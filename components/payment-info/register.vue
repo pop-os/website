@@ -38,14 +38,6 @@
       validation="required"
     />
 
-    <sys-form-telephone
-      id="phone_number"
-      v-model="phoneNumber"
-      autocomplete="tel"
-      name="phone_number"
-      validation="required"
-    />
-
     <sys-form-password
       id="new_password"
       v-model="password"
@@ -128,7 +120,6 @@
       firstName: '',
       lastName: '',
       email: '',
-      phoneNumber: '',
       password: '',
       confirmPassword: '',
       newsletter: true
@@ -142,10 +133,10 @@
 
     methods: {
       async submit () {
-        const { firstName, lastName, email, phoneNumber, password, newsletter } = this
+        const { firstName, lastName, email, password, newsletter } = this
 
         await this.$store.dispatch('session/register', {
-          firstName, lastName, email, phoneNumber, password, newsletter
+          firstName, lastName, email, password, newsletter
         })
 
         await this.$store.dispatch('session/authenticate', { email, password })
