@@ -21,7 +21,7 @@
     "@nuxtjs/google-analytics": "^2.2.3",
     "@system76/components": "^1.1.7",
     "@system76/design": "^5.2.1",
-    "@system76/forms": "^2.10.2",
+    "@system76/forms": "^2.11.2",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
     "imagemin-svgo": "^7.1.0",
