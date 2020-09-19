@@ -123,11 +123,17 @@
 </template>
 
 <style scoped>
+  .container::-webkit-scrollbar{
+  display: none; /* For Chrome */
+  }
+
   .container {
     border-radius: 3px;
     border: 1px solid transparent;
     padding: 1rem;
     position: relative;
+    -ms-overflow-style: none;  /* For Edge */
+    scrollbar-width: none;  /* For Firefox */
   }
 
   .light-mode {
