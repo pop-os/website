@@ -29,14 +29,31 @@
     </template>
 
     <template v-else>
-      <sys-header-2>
-        <template v-if="isLts">
-          Download {{ version }} LTS
-        </template>
-        <template v-else>
-          Download Latest {{ version }}
-        </template>
-      </sys-header-2>
+      <div
+        v-if="canSwitchRelease"
+        class="tab"
+      >
+        <div
+          :class="(!isLts) ? 'selected' : ''"
+          @click="toggle"
+        >
+          POP!_OS 20.10
+        </div>
+        <div
+          :class="(isLts) ? 'selected' : ''"
+          @click="toggle"
+        >
+          POP!_OS 20.04 LTS
+        </div>
+      </div>
+
+      <sys-paragraph-1 class="disclaimer">
+        If you have NVIDIA graphics, download the ISO with the proprietary
+        NVIDIA driver preinstalled.
+      </sys-paragraph-1>
+      <sys-paragraph-1 class="disclaimer">
+        Disable Secure Boot in your BIOS to install Pop!_OS.
+      </sys-paragraph-1>
 
       <div class="buttons">
         <sys-form-button
@@ -48,7 +65,7 @@
           :href="intelUrl"
           @click="$ga.event('download', 'download', 'intel', intelUrl)"
         >
-          Download
+          Download {{ version }}{{ (isLts) ? ' LTS' : '' }}
         </sys-form-button>
 
         <sys-form-button
@@ -60,17 +77,10 @@
           :href="nvidiaUrl"
           @click="$ga.event('download', 'download', 'nvidia', nvidiaUrl)"
         >
-          Download (nVidia)
+          Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (nVidia)
         </sys-form-button>
       </div>
 
-      <sys-paragraph-1 class="disclaimer">
-        If you have NVIDIA graphics, download the ISO with the proprietary
-        NVIDIA driver preinstalled.
-      </sys-paragraph-1>
-      <sys-paragraph-1 class="disclaimer">
-        Disable Secure Boot in your BIOS to install Pop!_OS.
-      </sys-paragraph-1>
       <sys-paragraph-1 tag="dl">
         <dt>Requirements:</dt>
         <dd>2 GB RAM, 16 GB storage, 64-bit processor</dd>
@@ -100,24 +110,6 @@
           Learn how to create installation media.
         </a>
       </p>
-
-      <div class="foot">
-        <sys-form-button
-          v-if="canSwitchRelease"
-          color="primary"
-          ghost
-          rel="noopener"
-          target="_blank"
-          @click.prevent="toggle"
-        >
-          <template v-if="isLts">
-            Download latest {{ alternativeVersion }}
-          </template>
-          <template v-else>
-            Download {{ alternativeVersion }} LTS
-          </template>
-        </sys-form-button>
-      </div>
     </template>
   </div>
 </template>
@@ -126,7 +118,7 @@
   .container {
     border-radius: 3px;
     border: 1px solid transparent;
-    padding: 1rem;
+    padding: 3rem 1rem;
     position: relative;
   }
 
@@ -160,16 +152,37 @@
     background-color: rgba(0, 0, 0, 0.2);
   }
 
-  h2 {
+  .tab {
+    font-family: var(--font-family-slab);
+    font-size: 1.2rem;
+    font-weight: 700;
+    max-width: 40ch;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+  }
+
+  .tab > div {
+    border: 1px solid #574F4A;
+    color: #574F4A;
+    width: 50%;
     text-align: center;
+    padding: .25em;
+    cursor: pointer;
+  }
+
+  .tab > div.selected {
+    background-color: #FFAD00;
+    color: #fff;
   }
 
   .buttons {
     align-content: center;
-    align-items: center;
+    align-items: stretch;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
     margin: 0 -0.5rem;
   }
 
@@ -182,14 +195,8 @@
 
   .disclaimer {
     margin: 2rem auto 2rem;
-    max-width: 60ch;
+    max-width: 40ch;
     text-align: center;
-  }
-
-  .foot {
-    display: flex;
-    flex-direction: column;
-    margin: -0.5rem 0;
   }
 
   dt {
@@ -229,14 +236,6 @@
 
   .sha div {
     margin: 0.2rem auto 1rem;
-  }
-
-  .foot {
-    margin: calc(-0.5rem - 0.4em) -0.6em;
-  }
-
-  .foot > * {
-    margin: 0.5rem auto 0.5rem 0;
   }
 
   a.help {
@@ -305,7 +304,7 @@
       ]),
 
       toggle () {
-        this.switchRelease()
+        this.switchRelease(this.release)
         this.$fetch()
       }
     }

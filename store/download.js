@@ -143,10 +143,10 @@ export const mutations = {
   },
 
   switchRelease (state, value) {
-    if (value === 'latest' && LATEST_VERSION != null) {
-      state.channel = 'latest'
-    } else if (value === 'lts' && LTS_VERSION != null) {
-      state.channel = 'lts'
+    if (value === 'lts' && LATEST_VERSION != null) {
+      state.release = 'latest'
+    } else if (value === 'latest' && LTS_VERSION != null) {
+      state.release = 'lts'
     }
   },
 
