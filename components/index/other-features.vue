@@ -1,5 +1,12 @@
 <template>
   <section>
+    <light-box v-model="active">
+      <div class="modal">
+        <img
+          :src="require(`~/assets/images/index/${image}-${ (isLight) ? 'light' : 'dark' }.jpg?resize&sizes[]=1920`).src"
+        >
+      </div>
+    </light-box>
     <sys-header-2>Other Features</sys-header-2>
 
     <div :class="[classes, 'block']">
@@ -12,7 +19,10 @@
         </sys-paragraph-1>
       </div>
 
-      <div class="image">
+      <div
+        class="image"
+        @click="toggleModal('other-features-hybrid')"
+      >
         <img
           v-if="isLight"
           v-lazy="require('~/assets/images/index/other-features-hybrid-light.jpg')"
@@ -40,7 +50,10 @@
         </sys-paragraph-1>
       </div>
 
-      <div class="image">
+      <div
+        class="image"
+        @click="toggleModal('other-features-gaming')"
+      >
         <img
           v-if="isLight"
           v-lazy="require('~/assets/images/index/other-features-gaming-light.jpg')"
@@ -68,7 +81,10 @@
         </sys-paragraph-1>
       </div>
 
-      <div class="image">
+      <div
+        class="image"
+        @click="toggleModal('other-features-dnd')"
+      >
         <img
           v-if="isLight"
           v-lazy="require('~/assets/images/index/other-features-dnd-light.jpg')"
@@ -106,7 +122,10 @@
         </label>
       </div>
 
-      <div class="image">
+      <div
+        class="image"
+        @click="toggleModal('other-features-mode')"
+      >
         <img
           v-if="isLight"
           v-lazy="require('~/assets/images/index/other-features-mode-light.jpg')"
@@ -127,6 +146,11 @@
 </template>
 
 <style scoped>
+
+  .modal > img {
+    width: 100%;
+  }
+
   section {
     display: grid;
     grid-gap: 1rem;
@@ -218,6 +242,7 @@
   }
 
   .block .image {
+    cursor: pointer;
     flex: 0 0 auto;
     margin-top: 1rem;
     overflow: hidden;
@@ -295,11 +320,28 @@
 </style>
 
 <script>
+  import LightBox from '~/components/light-box'
   import color from '~/mixins/color'
 
   export default {
+    components: {
+      LightBox
+    },
+
     mixins: [
       color
-    ]
+    ],
+
+    data: () => ({
+      active: false,
+      image: 'other-features-mode'
+    }),
+
+    methods: {
+      toggleModal (image) {
+        this.image = image
+        this.active = true
+      }
+    }
   }
 </script>
