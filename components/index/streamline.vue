@@ -111,6 +111,35 @@
       </div>
     </div>
 
+    <div :class="[classes, 'block']">
+      <sys-subheader-2>Stacking</sys-subheader-2>
+
+      <sys-paragraph-1>
+        Stack application windows atop one another like tabs in a web browser. Just remember to switch off of Steam when the boss walks in.
+      </sys-paragraph-1>
+      <div
+        class="video-wrap"
+        @click.prevent="toggleVideo('1TSdFWY_U9A')"
+      >
+        <div class="play-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 494.148 494.148"
+            xml:space="preserve"
+          >
+            <path
+              d="M405.284,201.188L130.804,13.28C118.128,4.596,105.356,0,94.74,0C74.216,0,61.52,16.472,61.52,44.044v406.124c0,27.54,12.68,43.98,33.156,43.98c10.632,0,23.2-4.6,35.904-13.308l274.608-187.904c17.66-12.104,27.44-28.392,27.44-45.884C432.632,229.572,422.964,213.288,405.284,201.188z"
+            />
+          </svg>
+        </div>
+        <img
+          alt="Keyboard navigation video"
+          data-src="https://i.ytimg.com/vi/1TSdFWY_U9A/mqdefault.jpg"
+          class="video"
+        >
+      </div>
+    </div>
+
     <light-box v-model="active">
       <div class="youtube">
         <youtube-responsive :video="video" />
@@ -123,7 +152,7 @@
   section {
     display: grid;
     grid-gap: 1rem;
-    grid-template-rows: repeat(4, auto);
+
     margin: 4rem auto;
     max-width: 1280px;
     padding: 0 1rem;
@@ -131,7 +160,7 @@
   }
 
   .copy {
-    grid-column: 1 / 2;
+    /* grid-column: 1 / 2; */
     margin: 0 auto 1rem;
     max-width: 80ch;
   }
@@ -239,60 +268,67 @@
 
   @media (width >= 120ch) {
     section {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: repeat(3, auto);
     }
 
     .block {
       padding: 2rem;
     }
 
-    .copy,
-    .block:nth-child(2) {
-      grid-column: 1 / 3;
+    .copy {
+      grid-area: 1 / 1 / 2 / 4;
     }
   }
 
   @media (width >= 1280px) {
-    section {
-      grid-template-rows: auto repeat(2, 1fr);
-    }
 
     .block:nth-child(2) {
-      grid-column: 1 / 2;
-      grid-row: 2 / 4;
-    }
-
-    .block:nth-child(3),
-    .block:nth-child(4) {
+      grid-area: 2 / 1 / 3 / 4;
       display: grid;
       grid-gap: 1rem;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto 1fr;
+    }
+    .block:nth-child(2) h2 { 
+      text-align: left;
+    }
+    .block:nth-child(2) h2,
+    .block:nth-child(2) p {
+      grid-area: 1 / 1 / 2 / 3;
+      width: 100%;
+    }
+
+    .block:nth-child(2) > .video-wrap {
+      grid-area: 1 / 3 / 2 / 4;
+    }
+
+    .block:nth-child(3) {
+       grid-area: 3 / 1 / 4 / 2;
+    }
+    .block:nth-child(4) {
+        grid-area: 3 / 2 / 4 / 3;
+    }
+    .block:nth-child(5) {
+      grid-area: 3 / 3 / 4 / 4;
     }
 
     .block:nth-child(3) > *,
-    .block:nth-child(4) > * {
+    .block:nth-child(4) > *,
+    .block:nth-child(5 ) > * {
       margin: 0;
       text-align: left;
     }
 
     .block:nth-child(3) h2,
-    .block:nth-child(4) h2 {
-      grid-column: 1 / 2;
-      grid-row: 1 / 2;
+    .block:nth-child(4) h2,
+    .block:nth-child(5) h2 {
+      text-align: center;
     }
 
     .block:nth-child(3) p,
-    .block:nth-child(4) p {
-      grid-column: 2 / 3;
-      grid-row: 1 / 3;
-      width: 20ch;
-    }
-
-    .block:nth-child(3) .video-wrap,
-    .block:nth-child(4) .video-wrap {
-      align-self: center;
+    .block:nth-child(4) p,
+    .block:nth-child(5) p {
+      margin-top: 1em;
     }
 
     .youtube {
