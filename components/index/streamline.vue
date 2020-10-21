@@ -289,7 +289,7 @@
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto 1fr;
     }
-    .block:nth-child(2) h2 { 
+    .block:nth-child(2) h2 {
       text-align: left;
     }
     .block:nth-child(2) h2,
