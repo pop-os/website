@@ -213,6 +213,11 @@
     margin: 1rem auto;
     max-width: 40ch;
     text-align: center;
+    font-size: 1rem;
+  }
+
+  dl {
+    font-size: 1rem;
   }
 
   dt {
