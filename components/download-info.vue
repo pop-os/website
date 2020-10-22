@@ -86,9 +86,6 @@
         <dt>Requirements:</dt>
         <dd>2 GB RAM, 16 GB storage, 64-bit processor</dd>
 
-        <dt>Recommended:</dt>
-        <dd>4 GB RAM, 16 GB storage, 64-bit processor</dd>
-
         <dt>Filesize:</dt>
         <dd>{{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA)</dd>
 
