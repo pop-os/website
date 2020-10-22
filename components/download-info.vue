@@ -13,6 +13,7 @@
     <template v-if="$fetchState.pending">
       <font-awesome-icon
         :icon="faSpinner"
+        class="loading"
         size="3x"
         spin
       />
@@ -37,13 +38,13 @@
           :class="(!isLts) ? 'selected' : ''"
           @click="toggle"
         >
-          POP!_OS 20.10
+          POP!_OS {{ latestVersion }}
         </div>
         <div
           :class="(isLts) ? 'selected' : ''"
           @click="toggle"
         >
-          POP!_OS 20.04 LTS
+          POP!_OS {{ ltsVersion }} LTS
         </div>
       </div>
 
@@ -118,7 +119,7 @@
   .container {
     border-radius: 3px;
     border: 1px solid transparent;
-    padding: 3rem 1rem;
+    padding: 3rem 1rem 0;
     position: relative;
   }
 
@@ -152,23 +153,41 @@
     background-color: rgba(0, 0, 0, 0.2);
   }
 
+  .loading {
+    display: block;
+    text-align: center;
+    margin: 2rem 4rem 4rem;
+  }
+
   .tab {
-    font-family: var(--font-family-slab);
-    font-size: 1.2rem;
-    font-weight: 700;
-    max-width: 40ch;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
+    font-family: var(--font-family-slab);
+    font-weight: 700;
+    margin: 0 auto 2rem;
+    max-width: 40ch;
   }
 
   .tab > div {
-    border: 1px solid #574F4A;
+    border: 2px solid #574F4A;
     color: #574F4A;
-    width: 50%;
-    text-align: center;
-    padding: .25em;
     cursor: pointer;
+    padding: 0.25em;
+    text-align: center;
+    width: 50%;
+  }
+
+  .tab > div:first-child {
+    border-bottom-left-radius: 0.25em;
+    border-top-left-radius: 0.25em;
+  }
+
+  .tab > div:not(:first-child) {
+    border-left: none;
+  }
+
+  .tab > div:last-child {
+    border-bottom-right-radius: 0.25em;
+    border-top-right-radius: 0.25em;
   }
 
   .tab > div.selected {
@@ -194,7 +213,7 @@
   }
 
   .disclaimer {
-    margin: 2rem auto 2rem;
+    margin: 1rem auto;
     max-width: 40ch;
     text-align: center;
   }
@@ -269,6 +288,8 @@
         'release',
         'isLts',
         'version',
+        'ltsVersion',
+        'latestVersion',
         'alternativeVersion',
         'channel',
 
