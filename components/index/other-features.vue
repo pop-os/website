@@ -2,11 +2,10 @@
   <section>
     <light-box v-model="active">
       <div class="modal">
-        <img
-          :src="require(`~/assets/images/index/${image}-${ (isLight) ? 'light' : 'dark' }.jpg?resize&sizes[]=1920`).src"
-        >
+        <img :src="require(`~/assets/images/index/${image}-${ (isLight) ? 'light' : 'dark' }.jpg?resize&sizes[]=1920`).src" />
       </div>
     </light-box>
+
     <sys-header-2>Other Features</sys-header-2>
 
     <div :class="[classes, 'block']">
@@ -146,6 +145,9 @@
 </template>
 
 <style scoped>
+  .modal {
+    width: 80vw;
+  }
 
   .modal > img {
     width: 100%;
