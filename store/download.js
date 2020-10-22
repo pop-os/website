@@ -1,6 +1,6 @@
 import { set } from 'vue-analytics'
 
-const LATEST_VERSION = null
+const LATEST_VERSION = '20.10'
 const LTS_VERSION = '20.04'
 
 const NVIDIA_KEYWORDS = [
@@ -68,6 +68,14 @@ export const getters = {
     } else {
       return LTS_VERSION
     }
+  },
+
+  ltsVersion () {
+    return LTS_VERSION
+  },
+
+  latestVersion () {
+    return LATEST_VERSION
   },
 
   alternativeVersion (state) {
