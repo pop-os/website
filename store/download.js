@@ -1,6 +1,6 @@
 import { set } from 'vue-analytics'
 
-const LATEST_VERSION = null
+const LATEST_VERSION = '20.10'
 const LTS_VERSION = '20.04'
 
 const NVIDIA_KEYWORDS = [
@@ -68,6 +68,14 @@ export const getters = {
     } else {
       return LTS_VERSION
     }
+  },
+
+  ltsVersion () {
+    return LTS_VERSION
+  },
+
+  latestVersion () {
+    return LATEST_VERSION
   },
 
   alternativeVersion (state) {
@@ -143,10 +151,10 @@ export const mutations = {
   },
 
   switchRelease (state, value) {
-    if (value === 'latest' && LATEST_VERSION != null) {
-      state.channel = 'latest'
-    } else if (value === 'lts' && LTS_VERSION != null) {
-      state.channel = 'lts'
+    if (value === 'lts' && LATEST_VERSION != null) {
+      state.release = 'latest'
+    } else if (value === 'latest' && LTS_VERSION != null) {
+      state.release = 'lts'
     }
   },
 

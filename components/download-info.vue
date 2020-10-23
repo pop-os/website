@@ -13,6 +13,7 @@
     <template v-if="$fetchState.pending">
       <font-awesome-icon
         :icon="faSpinner"
+        class="loading"
         size="3x"
         spin
       />
@@ -29,14 +30,31 @@
     </template>
 
     <template v-else>
-      <sys-header-2>
-        <template v-if="isLts">
-          Download {{ version }} LTS
-        </template>
-        <template v-else>
-          Download Latest {{ version }}
-        </template>
-      </sys-header-2>
+      <div
+        v-if="canSwitchRelease"
+        class="tab"
+      >
+        <div
+          :class="(!isLts) ? 'selected' : ''"
+          @click="toggle"
+        >
+          POP!_OS {{ latestVersion }}
+        </div>
+        <div
+          :class="(isLts) ? 'selected' : ''"
+          @click="toggle"
+        >
+          POP!_OS {{ ltsVersion }} LTS
+        </div>
+      </div>
+
+      <sys-paragraph-1 class="disclaimer">
+        If you have NVIDIA graphics, download the ISO with the proprietary
+        NVIDIA driver preinstalled.
+      </sys-paragraph-1>
+      <sys-paragraph-1 class="disclaimer">
+        Disable Secure Boot in your BIOS to install Pop!_OS.
+      </sys-paragraph-1>
 
       <div class="buttons">
         <sys-form-button
@@ -48,7 +66,7 @@
           :href="intelUrl"
           @click="$ga.event('download', 'download', 'intel', intelUrl)"
         >
-          Download
+          Download {{ version }}{{ (isLts) ? ' LTS' : '' }}
         </sys-form-button>
 
         <sys-form-button
@@ -60,23 +78,13 @@
           :href="nvidiaUrl"
           @click="$ga.event('download', 'download', 'nvidia', nvidiaUrl)"
         >
-          Download (nVidia)
+          Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (nVidia)
         </sys-form-button>
       </div>
 
-      <sys-paragraph-1 class="disclaimer">
-        If you have NVIDIA graphics, download the ISO with the proprietary
-        NVIDIA driver preinstalled.
-      </sys-paragraph-1>
-      <sys-paragraph-1 class="disclaimer">
-        Disable Secure Boot in your BIOS to install Pop!_OS.
-      </sys-paragraph-1>
       <sys-paragraph-1 tag="dl">
         <dt>Requirements:</dt>
         <dd>2 GB RAM, 16 GB storage, 64-bit processor</dd>
-
-        <dt>Recommended:</dt>
-        <dd>4 GB RAM, 16 GB storage, 64-bit processor</dd>
 
         <dt>Filesize:</dt>
         <dd>{{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA)</dd>
@@ -100,24 +108,6 @@
           Learn how to create installation media.
         </a>
       </p>
-
-      <div class="foot">
-        <sys-form-button
-          v-if="canSwitchRelease"
-          color="primary"
-          ghost
-          rel="noopener"
-          target="_blank"
-          @click.prevent="toggle"
-        >
-          <template v-if="isLts">
-            Download latest {{ alternativeVersion }}
-          </template>
-          <template v-else>
-            Download {{ alternativeVersion }} LTS
-          </template>
-        </sys-form-button>
-      </div>
     </template>
   </div>
 </template>
@@ -126,7 +116,7 @@
   .container {
     border-radius: 3px;
     border: 1px solid transparent;
-    padding: 1rem;
+    padding: 3rem 1rem 0;
     position: relative;
   }
 
@@ -160,16 +150,55 @@
     background-color: rgba(0, 0, 0, 0.2);
   }
 
-  h2 {
+  .loading {
+    display: block;
     text-align: center;
+    margin: 2rem 4rem 4rem;
+  }
+
+  .tab {
+    display: flex;
+    font-family: var(--font-family-slab);
+    font-weight: 700;
+    margin: 0 auto 2rem;
+    max-width: 40ch;
+  }
+
+  .tab > div {
+    border: 2px solid #574F4A;
+    color: #574F4A;
+    cursor: pointer;
+    padding: 0.25em;
+    text-align: center;
+    width: 50%;
+  }
+
+  .tab > div:first-child {
+    border-bottom-left-radius: 0.25em;
+    border-top-left-radius: 0.25em;
+  }
+
+  .tab > div:not(:first-child) {
+    border-left: none;
+  }
+
+  .tab > div:last-child {
+    border-bottom-right-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+  }
+
+  .tab > div.selected {
+    background-color: #FFAD00;
+    color: #fff;
   }
 
   .buttons {
     align-content: center;
-    align-items: center;
+    align-items: stretch;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
     margin: 0 -0.5rem;
   }
 
@@ -181,15 +210,14 @@
   }
 
   .disclaimer {
-    margin: 2rem auto 2rem;
-    max-width: 60ch;
+    margin: 1rem auto;
+    max-width: 40ch;
     text-align: center;
+    font-size: 1rem;
   }
 
-  .foot {
-    display: flex;
-    flex-direction: column;
-    margin: -0.5rem 0;
+  dl {
+    font-size: 1rem;
   }
 
   dt {
@@ -231,14 +259,6 @@
     margin: 0.2rem auto 1rem;
   }
 
-  .foot {
-    margin: calc(-0.5rem - 0.4em) -0.6em;
-  }
-
-  .foot > * {
-    margin: 0.5rem auto 0.5rem 0;
-  }
-
   a.help {
     color: inherit;
     display: block;
@@ -270,6 +290,8 @@
         'release',
         'isLts',
         'version',
+        'ltsVersion',
+        'latestVersion',
         'alternativeVersion',
         'channel',
 
@@ -305,7 +327,7 @@
       ]),
 
       toggle () {
-        this.switchRelease()
+        this.switchRelease(this.release)
         this.$fetch()
       }
     }
