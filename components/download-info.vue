@@ -1,5 +1,5 @@
 <template>
-  <div :class="[classes, 'container']">
+  <div class="container">
     <div
       class="close"
       @click.prevent="$store.commit('download/toggleShowing')"
@@ -114,22 +114,13 @@
 
 <style scoped>
   .container {
-    border-radius: 3px;
-    border: 1px solid transparent;
-    padding: 3rem 1rem 0;
-    position: relative;
-  }
-
-  .light-mode {
     background-color: #fff;
     border-color: #C8C8C8;
+    border-radius: 3px;
+    border: 1px solid transparent;
     color: #272727;
-  }
-
-  .dark-mode {
-    background-color: #272727;
-    border-color: #171717;
-    color: #ccc;
+    padding: 3rem 1rem 0;
+    position: relative;
   }
 
   .close {
@@ -272,16 +263,10 @@
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
   import { mapGetters, mapMutations, mapActions } from 'vuex'
 
-  import color from '~/mixins/color'
-
   export default {
     components: {
       FontAwesomeIcon
     },
-
-    mixins: [
-      color
-    ],
 
     computed: {
       ...mapGetters('download', [
