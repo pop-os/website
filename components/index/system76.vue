@@ -27,7 +27,7 @@
       >
         <img
           alt="Lemur Pro"
-          :data-src="require('~/assets/images/index/thumbnail_lemp9.png?sizes=300')"
+          :data-src="require('~/assets/images/index/thumbnail_lemp9.png?resize&sizes[]=300')"
         >
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>
@@ -41,7 +41,7 @@
       >
         <img
           alt="Thelio Desktops"
-          :data-src="require('~/assets/images/index/thumbnail_thelios.png?sizes=300')"
+          :data-src="require('~/assets/images/index/thumbnail_thelios.png?resize&sizes[]=300')"
         >
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>
@@ -55,7 +55,7 @@
       >
         <img
           alt="Meerkat"
-          :data-src="require('~/assets/images/index/thumbnail_meerkat.png?sizes=300')"
+          :data-src="require('~/assets/images/index/thumbnail_meerkat.png?resize&sizes[]=300')"
         >
         <font-awesome-icon :icon="faExternalLinkAlt" />
       </a>

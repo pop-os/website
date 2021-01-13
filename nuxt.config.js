@@ -1,7 +1,8 @@
 import config from './config/index'
 
 export default {
-  mode: 'spa',
+  ssr: false,
+  target: 'static',
 
   head: {
     title: 'Pop!_OS by System76',
