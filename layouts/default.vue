@@ -23,7 +23,11 @@
       url-pop-os="/"
       url-contact="https://system76.com/contact"
       url-account="https://system76.com/my-account"
-      url-login="https://system76.com/my-account"
+      url-admin="https://joshua.system76.com/admin"
+      url-login="/auth/login"
+      url-logout="/auth/logout"
+      :admin="isStaff"
+      :authenticated="isAuthenticated"
     />
 
     <nuxt :class="$style.page" />
@@ -86,7 +90,15 @@
 
     computed: {
       ...mapGetters('download', { isDownloadActive: 'showing' }),
-      ...mapState('payment', { isPaymentActive: 'showing' })
+      ...mapState('payment', { isPaymentActive: 'showing' }),
+
+      isAuthenticated () {
+        return this.$auth.loggedIn
+      },
+
+      isStaff () {
+        return this.$auth.user && this.$auth.user.staff
+      }
     },
 
     methods: {

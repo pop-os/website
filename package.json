@@ -12,11 +12,14 @@
     "test:browser": "testcafe remote --qr-code ./test/browser/**"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">= 10.0.0",
+    "npm": ">= 6.9.0"
   },
   "dependencies": {
     "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@nuxtjs/auth-next": "=5.0.0-1607600955.506103a",
+    "@nuxtjs/axios": "^5.12.3",
     "@nuxtjs/color-mode": "^2.0.2",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@system76/components": "^1.1.7",
@@ -25,6 +28,7 @@
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.1",
     "imagemin-svgo": "^8.0.0",
+    "lodash": "^4.17.20",
     "lqip-loader": "^2.2.1",
     "nuxt": "^2.14.12",
     "responsive-loader": "^2.3.0",

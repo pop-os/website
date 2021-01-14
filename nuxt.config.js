@@ -69,6 +69,11 @@ export default {
     '@nuxtjs/google-analytics'
   ],
 
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
+  ],
+
   plugins: [
     '~/plugins/components',
     '~/plugins/design',
@@ -82,5 +87,31 @@ export default {
 
   optimizedImages: {
     optimizeImages: true
+  },
+
+  auth: {
+    redirect: {
+      callback: '/auth/callback',
+      login: '/auth/login',
+      logout: '/auth/logout'
+    },
+    strategies: {
+      system76: {
+        scheme: '~/modules/auth-schema',
+        grantType: 'authorization_code',
+        responseType: 'code',
+        clientId: config.AUTH_CLIENT_ID,
+        scope: ['profile:write'],
+        endpoints: {
+          authorization: `${config.AUTH_URL}/oauth/authorize`,
+          token: `${config.AUTH_URL}/oauth/token`,
+          userInfo: `${config.AUTH_URL}/api/settings`,
+          logout: `${config.AUTH_URL}/logout?redirect_uri=${encodeURIComponent(config.PUBLIC_URL)}`
+        },
+        user: {
+          property: 'user'
+        }
+      }
+    }
   }
 }
