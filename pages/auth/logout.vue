@@ -3,11 +3,11 @@
 </template>
 
 <script>
-export default {
-  auth: false,
+  export default {
+    auth: false,
 
-  async fetch () {
-    await this.$auth.logout()
+    async fetch () {
+      await this.$auth.logout()
+    }
   }
-}
 </script>

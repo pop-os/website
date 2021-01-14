@@ -2,7 +2,7 @@
   <section>
     <light-box v-model="active">
       <div class="modal">
-        <img :src="require(`~/assets/images/index/${image}-${ (isLight) ? 'light' : 'dark' }.jpg?resize&sizes[]=1920`).src" />
+        <img :src="require(`~/assets/images/index/${image}-${ (isLight) ? 'light' : 'dark' }.jpg?resize&sizes[]=1920`).src">
       </div>
     </light-box>
 

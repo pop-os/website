@@ -228,7 +228,7 @@ export const actions = {
       method: 'GET',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: this.$auth.$storage._state['_token.system76'],
+        Authorization: this.$auth.$storage._state['_token.system76']
       })
     })
 
@@ -332,7 +332,7 @@ export const actions = {
       method: 'POST',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: this.$auth.$storage._state['_token.system76'],
+        Authorization: this.$auth.$storage._state['_token.system76']
       }),
       body: JSON.stringify({
         stripe_customer_id: this.$auth.user.stripeId,
