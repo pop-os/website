@@ -41,6 +41,19 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icon-32.png' },
       { rel: 'application-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#46bac8' }
+    ],
+
+    script: [
+      {
+        async: true,
+        defer: true,
+        'data-domain': 'pop.system76.com',
+        src: 'https://plausible.io/js/plausible.js'
+      },
+      {
+        innerHTML: 'window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }'
+      }
+
     ]
   },
 
