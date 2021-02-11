@@ -55,7 +55,7 @@ export default {
       }
     ],
 
-    dangerouslyDisableSanitizers: ['script']
+    __dangerouslyDisableSanitizers: ['script']
   },
 
   build: {
