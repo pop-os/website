@@ -43,20 +43,16 @@ export const getters = {
       case 'support':
         return 1
 
-      case 'login':
-      case 'register':
-        return 2
-
       case 'billing-select':
       case 'billing-create':
-        return 3
+        return 2
 
       case 'review':
-        return 4
+        return 3
 
       case 'success':
       case 'error':
-        return 5
+        return 4
     }
   },
 
@@ -68,23 +64,13 @@ export const getters = {
     }
   },
 
-  nextPage (state, getters, rootState, rootGetters) {
+  nextPage (state, getters) {
     if (getters.alreadySubscribed) {
       return 'success'
     }
 
     switch (state.page) {
       case 'support':
-        if (getters.canReview) {
-          return 'review'
-        } else if (rootGetters['session/isLoggedIn']) {
-          return getters.defaultBillingPage
-        } else {
-          return 'login'
-        }
-
-      case 'login':
-      case 'register':
         return getters.defaultBillingPage
 
       case 'billing-select':
@@ -104,12 +90,6 @@ export const getters = {
 
   previousPage (state, getters) {
     switch (state.page) {
-      case 'login':
-        return 'support'
-
-      case 'register':
-        return 'login'
-
       case 'billing-select':
         return 'support'
 
@@ -218,12 +198,12 @@ export const actions = {
     return (apiRes && sponsorRes)
   },
 
-  async fetchApiData ({ commit, rootState }) {
-    const res = await fetch(`${process.env.API_URL}/transactions/sources?filter[type]=stripe&filter[user]=${rootState.session.userId}&include=address`, {
+  async fetchApiData ({ commit }) {
+    const res = await fetch(`${process.env.API_URL}/transactions/sources?filter[type]=stripe&filter[user]=${this.$auth.user.id}&include=address`, {
       method: 'GET',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: `Token ${rootState.session.token}`,
+        Authorization: this.$auth.$storage._state['_token.system76'],
         'Content-Type': 'application/vnd.api+json',
         Accept: 'application/vnd.api+json'
       })
@@ -243,12 +223,12 @@ export const actions = {
     }
   },
 
-  async fetchSponsorData ({ commit, rootState }) {
+  async fetchSponsorData ({ commit }) {
     const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions`, {
       method: 'GET',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: `Bearer ${rootState.session.jwt}`
+        Authorization: this.$auth.$storage._state['_token.system76']
       })
     })
 
@@ -269,12 +249,12 @@ export const actions = {
     }
   },
 
-  async createAddress ({ commit, rootState, state }, fields) {
+  async createAddress ({ commit, state }, fields) {
     const res = await fetch(`${process.env.API_URL}/geography/addresses`, {
       method: 'POST',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: `Token ${rootState.session.token}`,
+        Authorization: this.$auth.$storage._state['_token.system76'],
         'Content-Type': 'application/vnd.api+json',
         Accept: 'application/vnd.api+json'
       }),
@@ -289,7 +269,7 @@ export const actions = {
           city: fields.city,
           zip: fields.zip,
           country: fields.country,
-          user_id: rootState.session.userId,
+          user_id: this.$auth.user.id,
           shipping: false
         }
       })
@@ -308,12 +288,12 @@ export const actions = {
     }
   },
 
-  async createSource ({ commit, dispatch, rootState, state }, { addressId, token }) {
+  async createSource ({ commit, dispatch, state }, { addressId, token }) {
     const res = await fetch(`${process.env.API_URL}/transactions/sources`, {
       method: 'POST',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: `Token ${rootState.session.token}`,
+        Authorization: this.$auth.$storage._state['_token.system76'],
         'Content-Type': 'application/vnd.api+json',
         Accept: 'application/vnd.api+json'
       }),
@@ -325,7 +305,7 @@ export const actions = {
             type: 'stripe'
           },
           relationships: {
-            user: { data: { id: rootState.session.userId } },
+            user: { data: { id: this.$auth.user.id } },
             address: { data: { id: addressId } }
           }
         }
@@ -336,7 +316,6 @@ export const actions = {
       const body = await res.json()
 
       commit('setSource', body.data)
-      await dispatch('session/fetchData', null, { root: true })
 
       return true
     } else {
@@ -346,17 +325,17 @@ export const actions = {
     }
   },
 
-  async createSubscription ({ commit, state, rootState }, { stripeId }) {
+  async createSubscription ({ commit, state }, { stripeId }) {
     commit('setSubscribing', true)
 
     const res = await fetch(`${process.env.SPONSOR_URL}/subscriptions`, {
       method: 'POST',
       headers: new Headers({
         ...REQUEST_HEADERS,
-        Authorization: `Bearer ${rootState.session.jwt}`
+        Authorization: this.$auth.$storage._state['_token.system76']
       }),
       body: JSON.stringify({
-        stripe_customer_id: rootState.session.stripeId,
+        stripe_customer_id: this.$auth.user.stripeId,
         stripe_source_id: stripeId
       })
     })

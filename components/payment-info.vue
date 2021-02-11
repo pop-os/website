@@ -17,7 +17,7 @@
       <sys-header-2>Support Pop!_OS</sys-header-2>
 
       <progress-dots
-        :number="5"
+        :number="4"
         :value="currentProgress"
       />
     </div>
@@ -104,8 +104,6 @@
   import PaymentInfoBillingCreate from './payment-info/billing-create'
   import PaymentInfoBillingSelect from './payment-info/billing-select'
   import PaymentInfoError from './payment-info/error'
-  import PaymentInfoLogin from './payment-info/login'
-  import PaymentInfoRegister from './payment-info/register'
   import PaymentInfoReview from './payment-info/review'
   import PaymentInfoSuccess from './payment-info/success'
   import PaymentInfoSupport from './payment-info/support'
@@ -125,12 +123,6 @@
 
       currentComponent () {
         switch (this.page) {
-        case 'login':
-          return PaymentInfoLogin
-
-        case 'register':
-          return PaymentInfoRegister
-
         case 'billing-select':
           return PaymentInfoBillingSelect
 

@@ -14,10 +14,19 @@
 
     <div class="buttons">
       <sys-form-button
+        v-if="$auth.loggedIn"
         color="primary"
         @click.prevent="$store.dispatch('payment/gotoNextPage')"
       >
         Pay Now
+      </sys-form-button>
+
+      <sys-form-button
+        v-else
+        color="primary"
+        @click.prevent="$auth.loginWith('system76')"
+      >
+        Log In or Register
       </sys-form-button>
 
       <sys-form-button
