@@ -64,7 +64,7 @@
           title="Download Pop!_OS"
           :ghost="!preferIntel"
           :href="intelUrl"
-          @click="$ga.event('download', 'download', 'intel', intelUrl)"
+          @click="trackDownload('intel', intelUrl)"
         >
           Download {{ version }}{{ (isLts) ? ' LTS' : '' }}
         </sys-form-button>
@@ -76,7 +76,7 @@
           title="Download Pop!_OS for systems with NVIDIA GPUs"
           :ghost="!preferNvidia"
           :href="nvidiaUrl"
-          @click="$ga.event('download', 'download', 'nvidia', nvidiaUrl)"
+          @click="trackDownload('nvidia', nvidiaUrl)"
         >
           Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (nVidia)
         </sys-form-button>
@@ -314,6 +314,11 @@
       toggle () {
         this.switchRelease(this.release)
         this.$fetch()
+      }
+
+      trackDownload (type, url) {
+        $ga.event('download', 'download', type, url)
+        plausible('Download Pop_OS')
       }
     }
   }
