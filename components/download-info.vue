@@ -317,8 +317,8 @@
       },
 
       trackDownload (type, url) {
-        $ga.event('download', 'download', type, url)
-        plausible('Download Pop_OS', {props: {architecture: type, url: url}})
+        this.$ga.event('download', 'download', type, url)
+        window.plausible('Download Pop_OS', { props: { architecture: type, url: url } })
       }
     }
   }
