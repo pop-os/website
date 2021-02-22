@@ -314,7 +314,7 @@
       toggle () {
         this.switchRelease(this.release)
         this.$fetch()
-      }
+      },
 
       trackDownload (type, url) {
         $ga.event('download', 'download', type, url)
