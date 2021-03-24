@@ -43,6 +43,8 @@
       url-privacy="https://system76.com/privacy"
       url-disclaimer="https://system76.com/disclaimer"
       url-terms="https://system76.com/terms"
+      show-newsletter-button
+      @subscribe="toggleSubscribeModal"
     />
 
     <light-box
@@ -57,6 +59,13 @@
       @input="togglePayment"
     >
       <payment-info />
+    </light-box>
+
+    <light-box :active="isSubscribeModalActive">
+      <modal-newsletter
+        validate-groups
+        @close="toggleSubscribeModal"
+      />
     </light-box>
   </div>
 </template>
@@ -79,17 +88,20 @@
 
   import DownloadInfo from '~/components/download-info'
   import LightBox from '~/components/light-box'
+  import ModalNewsletter from '~/components/modal-newsletter'
   import PaymentInfo from '~/components/payment-info'
 
   export default {
     components: {
       DownloadInfo,
+      ModalNewsletter,
       PaymentInfo,
       LightBox
     },
 
     computed: {
       ...mapGetters('download', { isDownloadActive: 'showing' }),
+      ...mapGetters('newsletter', { isSubscribeModalActive: 'showing' }),
       ...mapState('payment', { isPaymentActive: 'showing' }),
 
       isAuthenticated () {
@@ -111,6 +123,10 @@
       togglePayment () {
         this.$ga.event('payment', 'toggle', 'layout')
         this.$store.commit('payment/setShowing')
+      },
+
+      toggleSubscribeModal () {
+        this.$store.commit('newsletter/toggleShowing')
       }
     }
   }
