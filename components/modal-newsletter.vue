@@ -1,14 +1,7 @@
 <template>
   <div class="container">
     <div class="title">
-      <sys-header-3>
-        <template v-if="success">
-          Subscriptions have been updated.
-        </template>
-        <template v-else>
-          Subscribe and Manage
-        </template>
-      </sys-header-3>
+      <sys-header-3>{{ modalHeader }}</sys-header-3>
       <div
         class="close"
         @click.prevent="$emit('close')"
@@ -206,7 +199,8 @@
     },
 
     data: () => ({
-      email: '', // used when user is empty
+      email: '', // used when userAuth is empty
+      mailchimpStatus: 'pending',
       interests: [],
       groups: {}, // what we call interests internally
       saving: false,
@@ -222,7 +216,7 @@
 
       if (this.userFromAuth) {
         const mailchimp = await this.fetchMailchimpSettings()
-
+        this.mailchimpStatus = mailchimp.status
         if (mailchimp.interests) {
           for (const [key, val] of Object.entries(mailchimp.interests)) {
             this.$set(this.groups, key.toLowerCase(), val)
@@ -242,15 +236,39 @@
       saveButtonDisabled () {
         if (this.validateGroups) {
           let disabled = this.saving
-          if (!disabled) disabled = !this.subscribed
+          if (!disabled) disabled = !this.hasGroupSelected
           return disabled
         } else {
           return this.saving
         }
       },
 
-      subscribed () {
+      saveStatus () {
+        if (['pending', 'unsubscribed'].includes(this.mailchimpStatus)) {
+          return 'pending'
+        }
+        if (this.hasGroupSelected) {
+          return 'subscribed'
+        } else {
+          return 'unsubscribed'
+        }
+      },
+
+      hasGroupSelected () {
         return Object.values(this.groups).some((bool) => bool === true)
+      },
+      modalHeader () {
+        if (this.success) {
+          switch (this.saveStatus) {
+          case 'unsubscribed':
+            return 'Unsubscribed from all mailing lists.'
+          case 'pending':
+            return 'Check your email to confirm subscription.'
+          default:
+            return 'Subscriptions have been updated.'
+          }
+        }
+        return 'Subscribe and Manage'
       }
 
     },
@@ -265,14 +283,19 @@
       },
 
       async fetchMailchimpSettings () {
+        const email = (this.userFromAuth ? this.userFromAuth.email : this.email)
         return this.$hal()
           .get('/accounts/newsletter')
-          .parameter('email_address', this.userFromAuth.email)
+          .parameter('email_address', email)
           .flatten()
       },
 
       async saveMailchimpSettings () {
         this.saving = true
+        if (this.email) {
+          const mailchimp = await this.fetchMailchimpSettings()
+          this.mailchimpStatus = mailchimp.status
+        }
 
         const interests = {}
         for (const [key, val] of Object.entries(this.groups)) {
@@ -281,7 +304,7 @@
 
         const body = {
           email_address: (this.userFromAuth) ? this.userFromAuth.email : this.email,
-          status: (this.subscribed) ? 'subscribed' : 'unsubscribed',
+          status: this.saveStatus,
           interests: interests,
           merge_fields: {
             FNAME: (this.userFromAuth) ? this.userFromAuth.firstName : '',
@@ -298,6 +321,7 @@
           this.success = true
         } catch (e) {
           this.saving = false
+          this.success = false
           throw e
         }
       },
