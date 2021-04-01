@@ -92,6 +92,7 @@ export default {
     '~/plugins/components',
     '~/plugins/design',
     '~/plugins/forms',
+    '~/plugins/hal',
     '~/plugins/lazyload'
   ],
 
