@@ -1,5 +1,3 @@
-import { set } from 'vue-analytics'
-
 const LATEST_VERSION = '20.10'
 const LTS_VERSION = '20.04'
 
@@ -159,7 +157,6 @@ export const mutations = {
   },
 
   preferChannel (state, value) {
-    set('processor', value)
     state.channel = value
   },
 

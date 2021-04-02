@@ -317,7 +317,6 @@
       },
 
       trackDownload (type, url) {
-        this.$ga.event('download', 'download', type, url)
         window.plausible('download', { props: { version: `${this.version} ${type}` } })
       }
     }

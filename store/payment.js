@@ -1,5 +1,3 @@
-import { event } from 'vue-analytics'
-
 const REQUEST_HEADERS = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
