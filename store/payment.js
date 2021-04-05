@@ -344,21 +344,15 @@ export const actions = {
       commit('setSubscription', body)
       commit('setSubscribing', false)
 
-      event('payment', 'subscription', 'success')
-
       return true
     } else if (res.status === 402) {
       commit('setError', 'Payment failed')
       commit('setSubscribing', false)
 
-      event('payment', 'subscription', 'failure')
-
       return false
     } else {
       commit('setError', 'Error creating subscription')
       commit('setSubscribing', false)
-
-      event('payment', 'subscription', 'error')
 
       return false
     }
