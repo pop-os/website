@@ -33,7 +33,7 @@
           rel="noopener"
           color="primary"
           ghost
-          href="https://support.system76.com/articles/use-tensorman/"
+          href="https://support.system76.com/articles/tensorman/"
           target="_blank"
         >
           Learn about Tensorman
