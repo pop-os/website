@@ -19,7 +19,7 @@
         target="_blank"
       >
         <font-awesome-icon :icon="faMattermost" />
-        Pop!_community
+        Pop!_Chat
       </a>
 
       <a
