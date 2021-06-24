@@ -15,7 +15,7 @@
           :srcset="require('~/assets/images/index/security.png?size=700')"
         >
         <img
-          alt="Security robot"
+          alt="Robot performing ship security"
           src="~/assets/images/index/security.png?size=700"
         >
       </picture>
