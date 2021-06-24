@@ -329,6 +329,11 @@
       max-width: 80ch;
     }
 
+    .block:nth-child(2) h2,
+    .block:nth-child(3) h2 {
+      margin: 0 0 1em;
+    }
+
     .block:nth-child(2) {
       grid-column: 1 / span 3;
     }
