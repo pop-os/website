@@ -22,7 +22,7 @@
       </sys-paragraph-1>
       <div
         class="video-wrap"
-        @click.prevent="toggleVideo('-fltwBKsMY0')"
+        @click.prevent="toggleVideo('W84hRs8lyiM')"
       >
         <div class="play-btn">
           <svg
@@ -37,7 +37,7 @@
         </div>
         <img
           alt="Auto-tiling with Pop shell video"
-          data-src="https://i.ytimg.com/vi/-fltwBKsMY0/mqdefault.jpg"
+          data-src="https://i.ytimg.com/vi/W84hRs8lyiM/mqdefault.jpg"
           class="video"
         >
       </div>
@@ -87,7 +87,7 @@
       </sys-paragraph-1>
       <div
         class="video-wrap"
-        @click.prevent="toggleVideo('v9oVZwJrjOc')"
+        @click.prevent="toggleVideo('USQjxLP1Z5k')"
       >
         <div class="play-btn">
           <svg
@@ -102,7 +102,7 @@
         </div>
         <img
           alt="Pop!_OS workspaces video"
-          data-src="https://i.ytimg.com/vi/v9oVZwJrjOc/mqdefault.jpg"
+          data-src="https://i.ytimg.com/vi/USQjxLP1Z5k/mqdefault.jpg"
           class="video"
         >
       </div>
