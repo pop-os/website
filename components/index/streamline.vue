@@ -11,6 +11,39 @@
     </div>
 
     <div :class="[classes, 'block']">
+      <sys-subheader-2>Workflow Customization</sys-subheader-2>
+
+      <sys-paragraph-1>
+        While you’ve got your wheels turning, take the scenic route with a dock
+        and touchpad gestures, or race along a minimalist track from behind the
+        wheel of a revving keyboard. With a variety of both mouse-driven and
+        keyboard-driven customizations, you’re empowered to navigate your
+        workflow the way you’ve always wanted.
+      </sys-paragraph-1>
+      <div
+        class="video-wrap"
+        @click.prevent="toggleVideo('SrWw2LeZ21U')"
+      >
+        <div class="play-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 494.148 494.148"
+            xml:space="preserve"
+          >
+            <path
+              d="M405.284,201.188L130.804,13.28C118.128,4.596,105.356,0,94.74,0C74.216,0,61.52,16.472,61.52,44.044v406.124c0,27.54,12.68,43.98,33.156,43.98c10.632,0,23.2-4.6,35.904-13.308l274.608-187.904c17.66-12.104,27.44-28.392,27.44-45.884C432.632,229.572,422.964,213.288,405.284,201.188z"
+            />
+          </svg>
+        </div>
+        <img
+          alt="Auto-tiling with Pop shell video"
+          data-src="https://i.ytimg.com/vi/SrWw2LeZ21U/mqdefault.jpg"
+          class="video"
+        >
+      </div>
+    </div>
+
+    <div :class="[classes, 'block']">
       <sys-subheader-2>Auto-Tiling With Pop Shell</sys-subheader-2>
 
       <sys-paragraph-1>
@@ -54,7 +87,7 @@
       </sys-paragraph-1>
       <div
         class="video-wrap"
-        @click.prevent="toggleVideo('v9oVZwJrjOc')"
+        @click.prevent="toggleVideo('USQjxLP1Z5k')"
       >
         <div class="play-btn">
           <svg
@@ -69,7 +102,7 @@
         </div>
         <img
           alt="Pop!_OS workspaces video"
-          data-src="https://i.ytimg.com/vi/v9oVZwJrjOc/mqdefault.jpg"
+          data-src="https://i.ytimg.com/vi/USQjxLP1Z5k/mqdefault.jpg"
           class="video"
         >
       </div>
@@ -284,36 +317,41 @@
   }
 
   @media (width >= 1280px) {
+
     section {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       grid-template-rows: repeat(3, auto);
     }
 
-    .copy,
-    .block:nth-child(2) {
-      grid-column: 1 / 4;
+    .copy {
+      grid-column: 1 / span 6;
+      margin: 0 auto 1rem;
+      max-width: 80ch;
+    }
+
+    .block:nth-child(2) h2,
+    .block:nth-child(3) h2 {
+      margin: 0 0 1em;
     }
 
     .block:nth-child(2) {
-      display: grid;
-      grid-gap: 0 1rem;
-      grid-template-columns: auto 45%;
-      grid-template-rows: auto 1fr;
+      grid-column: 1 / span 3;
     }
 
-    .block:nth-child(2) > h2 {
-      grid-area: 1 / 1 / 2 / 2;
-      margin-left: 0;
+    .block:nth-child(3) {
+      grid-column: 4 / span 3;
     }
 
-    .block:nth-child(2) > p {
-      grid-area: 2 / 1 / 3 / 2;
-      align-self: flex-start;
+    .block:nth-child(4) {
+      grid-column: 1 / span 2;
     }
 
-    .block:nth-child(2) > .video-wrap {
-      grid-area: 1 / 2 / 3 / 3;
-      margin: 0;
+    .block:nth-child(5) {
+      grid-column: 3 / span 2;
+    }
+
+    .block:nth-child(6) {
+      grid-column: 5 / span 2;
     }
 
     .youtube {

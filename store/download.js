@@ -1,4 +1,4 @@
-const LATEST_VERSION = '20.10'
+const LATEST_VERSION = '21.04'
 const LTS_VERSION = '20.04'
 
 const NVIDIA_KEYWORDS = [
