@@ -22,7 +22,7 @@
       </sys-paragraph-1>
       <div
         class="video-wrap"
-        @click.prevent="toggleVideo('W84hRs8lyiM')"
+        @click.prevent="toggleVideo('SrWw2LeZ21U')"
       >
         <div class="play-btn">
           <svg
@@ -37,7 +37,7 @@
         </div>
         <img
           alt="Auto-tiling with Pop shell video"
-          data-src="https://i.ytimg.com/vi/W84hRs8lyiM/mqdefault.jpg"
+          data-src="https://i.ytimg.com/vi/SrWw2LeZ21U/mqdefault.jpg"
           class="video"
         >
       </div>
