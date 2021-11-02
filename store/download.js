@@ -1,4 +1,4 @@
-const LATEST_VERSION = '21.04'
+const LATEST_VERSION = '21.10'
 const LTS_VERSION = '20.04'
 
 const NVIDIA_KEYWORDS = [
@@ -29,11 +29,13 @@ export const state = () => ({
   data: {
     latest: {
       intel: null,
-      nvidia: null
+      nvidia: null,
+      rpi: null
     },
     lts: {
       intel: null,
-      nvidia: null
+      nvidia: null,
+      rpi: null
     }
   }
 })
@@ -100,6 +102,10 @@ export const getters = {
     }
   },
 
+  rpiSha (state, getters) {
+    return false
+  },
+
   intelSize (state, getters) {
     if (getters.loaded) {
       const raw = state.data[state.release].intel.size
@@ -114,6 +120,10 @@ export const getters = {
     }
   },
 
+  rpiSize (state, getters) {
+    return false
+  },
+
   intelUrl (state, getters) {
     if (getters.loaded) {
       return state.data[state.release].intel.url
@@ -126,6 +136,10 @@ export const getters = {
     }
   },
 
+  rpiUrl (state, getters) {
+    return false
+  },
+
   hasPreference (state) {
     return (state.channel != null)
   },
@@ -136,6 +150,10 @@ export const getters = {
 
   preferNvidia (state) {
     return (state.channel == null || state.channel === 'nvidia')
+  },
+
+  preferRpi (state) {
+    return (state.channel == null || state.channel === 'pi')
   }
 }
 
@@ -199,7 +217,7 @@ export const actions = {
 
   async fetch ({ commit }, release) {
     const version = (release === 'latest') ? LATEST_VERSION : LTS_VERSION
-
+    // todo: add the raspberry pi channel when it's available
     const [intel, nvidia] = await Promise.all([
       fetchRelease(version, 'intel'),
       fetchRelease(version, 'nvidia')

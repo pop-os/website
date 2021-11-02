@@ -80,14 +80,26 @@
         >
           Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (nVidia)
         </sys-form-button>
+
+        <sys-form-button
+          rel="noopener"
+          color="secondary"
+          target="_blank"
+          title="Download Pop!_OS for Raspberry Pi 4"
+          :ghost="!preferRpi"
+          :href="rpiUrl"
+          @click="trackDownload('raspi', rpiUrl)"
+        >
+          Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (RAS PI 4)
+        </sys-form-button>
       </div>
 
       <sys-paragraph-1 tag="dl">
-        <dt>Requirements:</dt>
-        <dd>2 GB RAM, 16 GB storage, 64-bit processor</dd>
+        <dt>Recommended:</dt>
+        <dd>4 GB RAM, 16 GB storage, 64-bit processor, USB 3 Storage (RAS Pi 4)</dd>
 
         <dt>Filesize:</dt>
-        <dd>{{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA)</dd>
+        <dd>{{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA), {{ rpiSize }} GB (RAS Pi 4)</dd>
 
         <dt>SHA256 Sum:</dt>
         <dd class="sha">
@@ -96,6 +108,9 @@
 
           <code><span>{{ nvidiaSha }}</span></code>
           <div>Pop!_OS ISO Image (NVIDIA)</div>
+
+          <code><span>{{ rpiSha }}</span></code>
+          <div>Pop!_OS ISO Image (RAS PI 4)</div>
         </dd>
       </sys-paragraph-1>
 
@@ -282,14 +297,18 @@
 
         'intelSha',
         'nvidiaSha',
+        'rpiSha',
         'intelSize',
         'nvidiaSize',
+        'rpiSize',
         'intelUrl',
         'nvidiaUrl',
+        'rpiUrl',
 
         'hasPreference',
         'preferIntel',
-        'preferNvidia'
+        'preferNvidia',
+        'preferRpi'
       ]),
 
       faSpinner: () => faSpinner,
