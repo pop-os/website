@@ -153,7 +153,11 @@ export const getters = {
   },
 
   preferRpi (state) {
-    return (state.channel == null || state.channel === 'pi')
+    return (state.channel == null || state.channel === 'raspi')
+  },
+
+  showFullModal (state) {
+    return (state.channel !== 'raspi')
   }
 }
 
@@ -215,15 +219,22 @@ export const actions = {
     }
   },
 
+  setPiMode ({ commit, getters }) {
+    commit('preferChannel', 'raspi')
+  },
+
   async fetch ({ commit }, release) {
     const version = (release === 'latest') ? LATEST_VERSION : LTS_VERSION
-    // todo: add the raspberry pi channel when it's available
+
+    // const [intel, nvidia, raspi] = await Promise.all([
     const [intel, nvidia] = await Promise.all([
       fetchRelease(version, 'intel'),
-      fetchRelease(version, 'nvidia')
+      fetchRelease(version, 'nvidia') //,
+      // fetchRelease(version, 'raspi')
     ])
 
     commit('setData', { ...intel, release })
     commit('setData', { ...nvidia, release })
+    // commit('setData', { ...raspi, release })
   }
 }

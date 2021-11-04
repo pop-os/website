@@ -80,8 +80,7 @@
 
     methods: {
       toggleDownload () {
-        // todo: "pi only" modal
-        this.$store.dispatch('download/detectChannel')
+        this.$store.dispatch('download/setPiMode')
         this.$store.commit('download/toggleShowing')
       }
     }
