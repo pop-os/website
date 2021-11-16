@@ -3,10 +3,18 @@
     <sys-omnibar>
       <template v-slot:global>
         <a href="https://system76.com/specials">
-          Special Offers
+          Power Up
         </a>
       </template>
-
+      <template v-slot:copy>
+        <a
+          href="https://system76.com/specials"
+          target="_blank"
+          :class="$style.specials"
+        >
+          Save up to $320 on select laptops and Meerkat through 1/4!
+        </a>
+      </template>
       <template v-slot:local>
         <button @click.prevent="toggleDownload">
           Download
@@ -28,6 +36,7 @@
       url-logout="/auth/logout"
       :admin="isStaff"
       :authenticated="isAuthenticated"
+      retro
     />
 
     <nuxt :class="$style.page" />
@@ -80,6 +89,11 @@
 
   .page {
     flex: 1 0 auto;
+  }
+
+  .specials {
+    color: #fff;
+    text-decoration: none;
   }
 </style>
 
