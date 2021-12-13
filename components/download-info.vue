@@ -87,6 +87,7 @@
         </sys-form-button>
 
         <sys-form-button
+          v-if="!isLts && rpiSha"
           rel="noopener"
           color="secondary"
           target="_blank"
@@ -102,7 +103,10 @@
       <sys-paragraph-1 tag="dl">
         <dt>Recommended:</dt>
         <dd v-if="showFullModal">
-          4 GB RAM, 16 GB storage, 64-bit processor, USB 3 Storage (RAS Pi 4)
+          4 GB RAM, 16 GB storage, 64-bit processor
+          <template v-if="!isLts && rpiSha">
+            , USB 3 Storage (RAS Pi 4)
+          </template>
         </dd>
         <dd v-else>
           4 GB RAM, 16 GB storage, USB 3 storage
@@ -110,7 +114,10 @@
 
         <dt>Filesize:</dt>
         <dd v-if="showFullModal">
-          {{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA), {{ rpiSize }} GB (RAS Pi 4)
+          {{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA)
+          <template v-if="!isLts && rpiSha">
+            , {{ rpiSize }} GB (RAS Pi 4)
+          </template>
         </dd>
         <dd v-else>
           {{ rpiSize }} GB
@@ -124,8 +131,10 @@
             <code><span>{{ nvidiaSha }}</span></code>
             <div>Pop!_OS ISO Image (NVIDIA)</div>
           </template>
-          <code><span>{{ rpiSha }}</span></code>
-          <div>Pop!_OS ISO Image (RAS PI 4)</div>
+          <template v-if="!isLts && rpiSha">
+            <code><span>{{ rpiSha }}</span></code>
+            <div>Pop!_OS ISO Image (RAS PI 4)</div>
+          </template>
         </dd>
       </sys-paragraph-1>
 

@@ -8,9 +8,8 @@ const NVIDIA_KEYWORDS = [
 ]
 
 async function fetchRelease (version, channel) {
-  const res = await fetch(`https://api.pop-os.org/builds/${version}/${channel}`)
+  const res = await fetch(`https://api.pop-os.org/builds/${version}/${channel}?arch=${(channel === 'raspi') ? 'arm64' : 'amd64'}`)
   const body = await res.json()
-
   if (body.errors != null) {
     throw new Error(body.errors[0].title)
   } else {
@@ -46,8 +45,8 @@ export const getters = {
   },
 
   loaded (state) {
-    const { intel, nvidia } = state.data[state.release]
-    return (intel != null && nvidia != null)
+    const { intel, nvidia, raspi } = state.data[state.release]
+    return (intel != null && nvidia != null && raspi != null)
   },
 
   canSwitchRelease () {
@@ -103,7 +102,9 @@ export const getters = {
   },
 
   rpiSha (state, getters) {
-    return false
+    if (getters.loaded) {
+      return state.data[state.release].raspi.sha
+    }
   },
 
   intelSize (state, getters) {
@@ -121,7 +122,10 @@ export const getters = {
   },
 
   rpiSize (state, getters) {
-    return false
+    if (getters.loaded) {
+      const raw = state.data[state.release].raspi.size
+      return (parseInt(raw, 10) / 1073741823).toFixed(2)
+    }
   },
 
   intelUrl (state, getters) {
@@ -137,7 +141,9 @@ export const getters = {
   },
 
   rpiUrl (state, getters) {
-    return false
+    if (getters.loaded) {
+      return state.data[state.release].raspi.url
+    }
   },
 
   hasPreference (state) {
@@ -219,22 +225,21 @@ export const actions = {
     }
   },
 
-  setPiMode ({ commit, getters }) {
+  setPiMode ({ commit }) {
     commit('preferChannel', 'raspi')
   },
 
   async fetch ({ commit }, release) {
     const version = (release === 'latest') ? LATEST_VERSION : LTS_VERSION
 
-    // const [intel, nvidia, raspi] = await Promise.all([
-    const [intel, nvidia] = await Promise.all([
+    const [intel, nvidia, raspi] = await Promise.all([
       fetchRelease(version, 'intel'),
-      fetchRelease(version, 'nvidia') //,
-      // fetchRelease(version, 'raspi')
+      fetchRelease(version, 'nvidia'),
+      fetchRelease(LATEST_VERSION, 'raspi')
     ])
 
     commit('setData', { ...intel, release })
     commit('setData', { ...nvidia, release })
-    // commit('setData', { ...raspi, release })
+    commit('setData', { ...raspi, release })
   }
 }

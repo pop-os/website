@@ -2,9 +2,10 @@
   <section>
     <div>
       <img
-        v-lazy="require('~/assets/images/index/pi400.png')"
-        alt="Pi400 Computer"
-        :data-loading="require('~/assets/images/index/pi400.png?lqip')"
+        v-lazy="require('~/assets/images/index/raspberry-pi-4.png')"
+        class="rpi"
+        alt="Raspberry Pi 4 board"
+        :data-loading="require('~/assets/images/index/raspberry-pi-4.png')"
       >
     </div>
     <div>
@@ -66,6 +67,10 @@
 
     .row .half {
       width: 50%;
+    }
+
+    img.rpi {
+      padding-right: 4em;
     }
   }
 </style>
