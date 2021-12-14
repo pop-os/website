@@ -9,6 +9,7 @@
     <index-security />
     <index-software />
     <index-other-features />
+    <index-pop-pi />
 
     <div class="end">
       <index-foot />
@@ -48,6 +49,7 @@
   import IndexFootnotes from '~/components/index/footnotes'
   import IndexHead from '~/components/index/head'
   import IndexOtherFeatures from '~/components/index/other-features'
+  import IndexPopPi from '~/components/index/pop-pi'
   import IndexSecurity from '~/components/index/security'
   import IndexSoftware from '~/components/index/software'
   import IndexStreamline from '~/components/index/streamline'
@@ -62,6 +64,7 @@
       IndexFootnotes,
       IndexHead,
       IndexOtherFeatures,
+      IndexPopPi,
       IndexSecurity,
       IndexSoftware,
       IndexStreamline,

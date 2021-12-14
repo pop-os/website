@@ -1,4 +1,4 @@
-const LATEST_VERSION = '21.04'
+const LATEST_VERSION = '21.10'
 const LTS_VERSION = '20.04'
 
 const NVIDIA_KEYWORDS = [
@@ -8,9 +8,8 @@ const NVIDIA_KEYWORDS = [
 ]
 
 async function fetchRelease (version, channel) {
-  const res = await fetch(`https://api.pop-os.org/builds/${version}/${channel}`)
+  const res = await fetch(`https://api.pop-os.org/builds/${version}/${channel}?arch=${(channel === 'raspi') ? 'arm64' : 'amd64'}`)
   const body = await res.json()
-
   if (body.errors != null) {
     throw new Error(body.errors[0].title)
   } else {
@@ -29,11 +28,13 @@ export const state = () => ({
   data: {
     latest: {
       intel: null,
-      nvidia: null
+      nvidia: null,
+      rpi: null
     },
     lts: {
       intel: null,
-      nvidia: null
+      nvidia: null,
+      rpi: null
     }
   }
 })
@@ -44,8 +45,8 @@ export const getters = {
   },
 
   loaded (state) {
-    const { intel, nvidia } = state.data[state.release]
-    return (intel != null && nvidia != null)
+    const { intel, nvidia, raspi } = state.data[state.release]
+    return (intel != null && nvidia != null && raspi != null)
   },
 
   canSwitchRelease () {
@@ -100,6 +101,12 @@ export const getters = {
     }
   },
 
+  rpiSha (state, getters) {
+    if (getters.loaded) {
+      return state.data[state.release].raspi.sha
+    }
+  },
+
   intelSize (state, getters) {
     if (getters.loaded) {
       const raw = state.data[state.release].intel.size
@@ -110,6 +117,13 @@ export const getters = {
   nvidiaSize (state, getters) {
     if (getters.loaded) {
       const raw = state.data[state.release].nvidia.size
+      return (parseInt(raw, 10) / 1073741823).toFixed(2)
+    }
+  },
+
+  rpiSize (state, getters) {
+    if (getters.loaded) {
+      const raw = state.data[state.release].raspi.size
       return (parseInt(raw, 10) / 1073741823).toFixed(2)
     }
   },
@@ -126,6 +140,12 @@ export const getters = {
     }
   },
 
+  rpiUrl (state, getters) {
+    if (getters.loaded) {
+      return state.data[state.release].raspi.url
+    }
+  },
+
   hasPreference (state) {
     return (state.channel != null)
   },
@@ -136,6 +156,14 @@ export const getters = {
 
   preferNvidia (state) {
     return (state.channel == null || state.channel === 'nvidia')
+  },
+
+  preferRpi (state) {
+    return (state.channel == null || state.channel === 'raspi')
+  },
+
+  showFullModal (state) {
+    return (state.channel !== 'raspi')
   }
 }
 
@@ -197,15 +225,21 @@ export const actions = {
     }
   },
 
+  setPiMode ({ commit }) {
+    commit('preferChannel', 'raspi')
+  },
+
   async fetch ({ commit }, release) {
     const version = (release === 'latest') ? LATEST_VERSION : LTS_VERSION
 
-    const [intel, nvidia] = await Promise.all([
+    const [intel, nvidia, raspi] = await Promise.all([
       fetchRelease(version, 'intel'),
-      fetchRelease(version, 'nvidia')
+      fetchRelease(version, 'nvidia'),
+      fetchRelease(LATEST_VERSION, 'raspi')
     ])
 
     commit('setData', { ...intel, release })
     commit('setData', { ...nvidia, release })
+    commit('setData', { ...raspi, release })
   }
 }

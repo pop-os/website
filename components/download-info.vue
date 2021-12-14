@@ -28,10 +28,13 @@
         Please try again
       </sys-paragraph-1>
     </template>
-
     <template v-else>
+      <sys-subheader-1 v-if="!showFullModal">
+        Pop!_Pi for Raspberry Pi 4<br>Tech Preview
+      </sys-subheader-1>
+
       <div
-        v-if="canSwitchRelease"
+        v-if="canSwitchRelease && showFullModal"
         class="tab"
       >
         <div
@@ -47,17 +50,18 @@
           POP!_OS {{ ltsVersion }} LTS
         </div>
       </div>
-
-      <sys-paragraph-1 class="disclaimer">
-        If you have NVIDIA graphics, download the ISO with the proprietary
-        NVIDIA driver preinstalled.
-      </sys-paragraph-1>
-      <sys-paragraph-1 class="disclaimer">
-        Disable Secure Boot in your BIOS to install Pop!_OS.
-      </sys-paragraph-1>
-
+      <template v-if="showFullModal">
+        <sys-paragraph-1 class="disclaimer">
+          If you have NVIDIA graphics, download the ISO with the proprietary
+          NVIDIA driver preinstalled.
+        </sys-paragraph-1>
+        <sys-paragraph-1 class="disclaimer">
+          Disable Secure Boot in your BIOS to install Pop!_OS.
+        </sys-paragraph-1>
+      </template>
       <div class="buttons">
         <sys-form-button
+          v-if="showFullModal"
           rel="noopener"
           target="_blank"
           color="secondary"
@@ -70,6 +74,7 @@
         </sys-form-button>
 
         <sys-form-button
+          v-if="showFullModal"
           rel="noopener"
           color="secondary"
           target="_blank"
@@ -80,22 +85,56 @@
         >
           Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (nVidia)
         </sys-form-button>
+
+        <sys-form-button
+          v-if="!isLts && rpiSha"
+          rel="noopener"
+          color="secondary"
+          target="_blank"
+          title="Download Pop!_OS for Raspberry Pi 4"
+          :ghost="!preferRpi"
+          :href="rpiUrl"
+          @click="trackDownload('raspi', rpiUrl)"
+        >
+          Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (RAS PI 4)
+        </sys-form-button>
       </div>
 
       <sys-paragraph-1 tag="dl">
-        <dt>Requirements:</dt>
-        <dd>2 GB RAM, 16 GB storage, 64-bit processor</dd>
+        <dt>Recommended:</dt>
+        <dd v-if="showFullModal">
+          4 GB RAM, 16 GB storage, 64-bit processor
+          <template v-if="!isLts && rpiSha">
+            , USB 3 Storage (RAS Pi 4)
+          </template>
+        </dd>
+        <dd v-else>
+          4 GB RAM, 16 GB storage, USB 3 storage
+        </dd>
 
         <dt>Filesize:</dt>
-        <dd>{{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA)</dd>
+        <dd v-if="showFullModal">
+          {{ intelSize }} GB, {{ nvidiaSize }} GB (NVIDIA)
+          <template v-if="!isLts && rpiSha">
+            , {{ rpiSize }} GB (RAS Pi 4)
+          </template>
+        </dd>
+        <dd v-else>
+          {{ rpiSize }} GB
+        </dd>
 
         <dt>SHA256 Sum:</dt>
         <dd class="sha">
-          <code><span>{{ intelSha }}</span></code>
-          <div>Pop!_OS ISO Image</div>
-
-          <code><span>{{ nvidiaSha }}</span></code>
-          <div>Pop!_OS ISO Image (NVIDIA)</div>
+          <template v-if="showFullModal">
+            <code><span>{{ intelSha }}</span></code>
+            <div>Pop!_OS ISO Image</div>
+            <code><span>{{ nvidiaSha }}</span></code>
+            <div>Pop!_OS ISO Image (NVIDIA)</div>
+          </template>
+          <template v-if="!isLts && rpiSha">
+            <code><span>{{ rpiSha }}</span></code>
+            <div>Pop!_OS ISO Image (RAS PI 4)</div>
+          </template>
         </dd>
       </sys-paragraph-1>
 
@@ -145,6 +184,10 @@
     display: block;
     text-align: center;
     margin: 2rem 4rem 4rem;
+  }
+
+  h1 {
+    text-align: center;
   }
 
   .tab {
@@ -282,14 +325,20 @@
 
         'intelSha',
         'nvidiaSha',
+        'rpiSha',
         'intelSize',
         'nvidiaSize',
+        'rpiSize',
         'intelUrl',
         'nvidiaUrl',
+        'rpiUrl',
 
         'hasPreference',
         'preferIntel',
-        'preferNvidia'
+        'preferNvidia',
+        'preferRpi',
+
+        'showFullModal'
       ]),
 
       faSpinner: () => faSpinner,
