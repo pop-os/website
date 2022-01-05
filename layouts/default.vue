@@ -3,16 +3,16 @@
     <sys-omnibar>
       <template v-slot:global>
         <a href="https://system76.com/specials">
-          Power Up
+          Specials
         </a>
       </template>
       <template v-slot:copy>
         <a
-          href="https://system76.com/specials"
+          href="https://system76.com/accessories/launch"
           target="_blank"
           :class="$style.specials"
         >
-          Save up to $320 on select laptops and Meerkat through 1/4!
+          Personalize your workflow with the Launch configurable keyboard!
         </a>
       </template>
       <template v-slot:local>
@@ -36,7 +36,6 @@
       url-logout="/auth/logout"
       :admin="isStaff"
       :authenticated="isAuthenticated"
-      retro
     />
 
     <nuxt :class="$style.page" />
