@@ -138,7 +138,7 @@
         </dd>
       </sys-paragraph-1>
 
-      <p>
+      <p v-if="showFullModal">
         <a
           class="help"
           target="_blank"
