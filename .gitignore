@@ -88,3 +88,9 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# VSCode files
+.vscode
+
+# mdBook build files
+static/docs
