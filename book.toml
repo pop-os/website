@@ -3,7 +3,7 @@ authors = ["System76"]
 language = "en"
 multilingual = false
 src = "docs"
-title = "Pop!_OS Documentation"
+title = "Pop!_Docs"
 
 [build]
 create-missing = false
@@ -12,6 +12,6 @@ build-dir = "static/docs"
 
 [output.html]
 theme = "static"
-additional-css = ["static/docs.css"]
+additional-css = ["static/docs.css", "static/minimal.common.css"]
 git-repository-url = "https://github.com/pop-os/website"
 git-repository-icon = "fa-github"
