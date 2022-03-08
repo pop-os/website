@@ -4,25 +4,81 @@
 
 .light {
   --sidebar-bg: #f6f6f6;
-  --sidebar-active: #af5c02;
+  --sidebar-fg: var(--color-warm-gray);
+  --sidebar-active: var(--color-warm-gray);
+
   --scrollbar: #a6a6a6;
+
   --icons: #a6a6a6;
   --icons-hover: #404040;
+
   --links: #af5c02;
-  --fg: #574F4A;
+  --fg: var(--color-warm-gray);
+
   --inline-code-color: #f6f6f6;
   --quote-bg: #f6f6f6;
   --quote-border: #e2e2e2;
   --table-header-bg: #e2e2e2;
   --table-alternate-bg: #f6f6f6;
+
+  --searchbar-border-color: var(--color-orange);
+  --searchbar-bg: var(--color-white);
+  --searchbar-fg: var(--color-warm-gray);
+
+  font-family: var(--font-family-sans);
+  font-style: normal;
+  font-weight: normal;
+
 }
 
 @media (prefers-color-scheme: dark) {
   .light.no-js {
-    --sidebar-active: #faa41a;
+    --sidebar-active: var(--color-orange);
 
-    --links: #faa41a;
+    --links: var(--color-orange);
   }
+}
+
+#searchbar {
+  transition: border-color 200ms ease;
+}
+
+#searchbar:hover,
+#searchbar:focus,
+#searchbar:active {
+  outline: none !important;
+}
+
+#searchbar:hover {
+  border-color: var(--color-orange) !important;
+}
+
+#searchbar:focus,
+#searchbar:active {
+  border-color: var(--color-orange) !important;
+  outline: none;
+}
+
+nav .sidebar-scrollbox {
+  padding: 0 !important;
+  margin: 0;
+}
+
+nav .chapter li {
+  display: block !important;
+}
+
+nav a {
+  padding: 8px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+nav a.active {
+  background-color: var(--color-blue);
+  --sidebar-active: #272727 !important;
 }
 
 .light .content {
@@ -91,7 +147,7 @@
 }
 
 .light main strong {
-  color: #080808;
+  color: var(--color-warm-gray);
 }
 
 .light main kbd {
