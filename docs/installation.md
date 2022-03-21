@@ -25,7 +25,7 @@ The Pop!_OS installer guides the user through setup of basic system settings:
 
 ![Keyboard Layout](images/installation/keyboard-language2.png)
 
-5. Choose the `Clean Install` option for a standard installation. This the best option for new Linux users. 
+5. Choose the `Clean Install` option for a standard installation. This is the best option for new Linux users. 
 
 >**Note**: The `Custom (Advanced)` option opens GParted. GParted allows users to choose partition tables and create custom partitions, among other options.  <!-- See Using [GParted Custom (Advanced)](advanced-installation.md) for more information. -->
 
