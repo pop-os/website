@@ -34,7 +34,7 @@ The Custom (Advanced) setup menu allows launching GParted. GParted is an open-so
 	- Naming the partition and specifying a partition label.
 	- Choosing a file system for the partition.
 
-> Tip: Go to View -> File System Support. to view file format information. This window describes the various formats, supported actions, restrictions, and software required to use the format. 
+> Tip: Go to View -> File System Support to view file format information. This window describes the various formats, supported actions, restrictions, and software required to use the format. 
 
 6. Use these two methods to make changes to an existing partition: 
 
