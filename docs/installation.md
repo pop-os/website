@@ -35,7 +35,7 @@ The Pop!_OS installer guides the user through setup of basic system settings:
 
 ![Select Drive](images/installation/select-system-drive.png)
 
-7. Enter your first and last name, or a display name. A suggested username will populate in the User Name field.
+7. Enter your first and last name (or a display name). A suggested username will populate in the User Name field.
 
 >**Tip**: You don't need to type your username when logging into Pop!_OS normally, but it can be handy to remember when logging into a terminal session, logging in remotely via SSH, or performing certain configurations.
 
