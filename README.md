@@ -27,10 +27,4 @@ npm start
 When changes get pushed into master, GitHub actions will start a deploy. No
 extra work is needed as a developer.
 
-## Pop!_Docs
-
-Pop!_OS documentation can be viewed at https://pop.system76.com/docs
-
-### Editing
-Documentation can be viewed and edited on GitHub from the `/docs` directory.
 
