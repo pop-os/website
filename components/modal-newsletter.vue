@@ -66,6 +66,8 @@
             <label :for="`interest-${i}`">{{ interest.name }}</label>
           </div>
         </sys-form>
+
+        <privacy-paragraph />
       </template>
       <template v-else>
         <div class="buttons">
@@ -185,10 +187,13 @@
 
   import { SysHeader3 } from '@system76/design'
 
+  import PrivacyParagraph from './privacy-paragraph'
+
   export default {
     components: {
       FontAwesomeIcon,
-      SysHeader3
+      SysHeader3,
+      PrivacyParagraph
     },
 
     props: {
