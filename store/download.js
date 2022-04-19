@@ -1,5 +1,5 @@
-const LATEST_VERSION = '21.10'
-const LTS_VERSION = '20.04'
+const LATEST_VERSION = '22.04'
+const LTS_VERSION = '22.04'
 
 const NVIDIA_KEYWORDS = [
   'nvidia',
@@ -235,7 +235,7 @@ export const actions = {
     const [intel, nvidia, raspi] = await Promise.all([
       fetchRelease(version, 'intel'),
       fetchRelease(version, 'nvidia'),
-      fetchRelease(LATEST_VERSION, 'raspi')
+      fetchRelease('21.10', 'raspi') // only
     ])
 
     commit('setData', { ...intel, release })
