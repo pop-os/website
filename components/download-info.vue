@@ -29,27 +29,12 @@
       </sys-paragraph-1>
     </template>
     <template v-else>
-      <sys-subheader-1 v-if="!showFullModal">
+      <sys-subheader-1 v-if="showFullModal">
+        Download Pop!_OS
+      </sys-subheader-1>
+      <sys-subheader-1 v-else>
         Pop!_Pi for Raspberry Pi 4<br>Tech Preview
       </sys-subheader-1>
-
-      <div
-        v-if="canSwitchRelease && showFullModal"
-        class="tab"
-      >
-        <div
-          :class="(!isLts) ? 'selected' : ''"
-          @click="toggle"
-        >
-          POP!_OS {{ latestVersion }}
-        </div>
-        <div
-          :class="(isLts) ? 'selected' : ''"
-          @click="toggle"
-        >
-          POP!_OS {{ ltsVersion }} LTS
-        </div>
-      </div>
       <template v-if="showFullModal">
         <sys-paragraph-1 class="disclaimer">
           If you have NVIDIA graphics, download the ISO with the proprietary
@@ -96,7 +81,7 @@
           :href="rpiUrl"
           @click="trackDownload('raspi', rpiUrl)"
         >
-          Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (RAS PI 4)
+          Download 21.10 (RAS PI 4)
         </sys-form-button>
       </div>
 
