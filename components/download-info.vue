@@ -53,9 +53,9 @@
           title="Download Pop!_OS"
           :ghost="!preferIntel"
           :href="intelUrl"
-          @click="trackDownload('intel', intelUrl)"
+          @click="trackDownload('intel', intelUrl, version)"
         >
-          Download {{ version }}{{ (isLts) ? ' LTS' : '' }}
+          Download {{ version }} LTS
         </sys-form-button>
 
         <sys-form-button
@@ -66,9 +66,9 @@
           title="Download Pop!_OS for systems with NVIDIA GPUs"
           :ghost="!preferNvidia"
           :href="nvidiaUrl"
-          @click="trackDownload('nvidia', nvidiaUrl)"
+          @click="trackDownload('nvidia', nvidiaUrl, version)"
         >
-          Download {{ version }}{{ (isLts) ? ' LTS' : '' }} (nVidia)
+          Download {{ version }} LTS (nVidia)
         </sys-form-button>
 
         <sys-form-button
@@ -79,7 +79,7 @@
           title="Download Pop!_OS for Raspberry Pi 4"
           :ghost="!preferRpi"
           :href="rpiUrl"
-          @click="trackDownload('raspi', rpiUrl)"
+          @click="trackDownload('raspi', rpiUrl, '21.10')"
         >
           Download 21.10 (RAS PI 4)
         </sys-form-button>
@@ -350,7 +350,7 @@
         this.$fetch()
       },
 
-      trackDownload (type, url) {
+      trackDownload (type, url, version) {
         window.plausible('download', { props: { version: `${this.version} ${type}` } })
       }
     }
