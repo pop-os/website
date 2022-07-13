@@ -12,7 +12,7 @@
       <sys-header-2>Pop!_PI for Raspberry Pi 4</sys-header-2>
       <sys-subheader-2>Tech Preview</sys-subheader-2>
       <sys-paragraph-1>
-        We’ve optimized Pop!_OS 21.10 for the Raspberry Pi 4/400, a mini
+        We’ve optimized Pop!_OS 22.04 for the Raspberry Pi 4/400, a mini
         computer which empowers people to learn and explore computing. Pop!_Pi
         adapts Pop!_OS to the Raspberry Pi, giving you the same powerful
         software tools at your disposal. So whether you’re programming a robot
