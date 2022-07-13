@@ -235,7 +235,7 @@ export const actions = {
     const [intel, nvidia, raspi] = await Promise.all([
       fetchRelease(version, 'intel'),
       fetchRelease(version, 'nvidia'),
-      fetchRelease('21.10', 'raspi') // only
+      fetchRelease(version, 'raspi')
     ])
 
     commit('setData', { ...intel, release })

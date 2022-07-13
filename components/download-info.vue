@@ -79,10 +79,16 @@
           title="Download Pop!_OS for Raspberry Pi 4"
           :ghost="!preferRpi"
           :href="rpiUrl"
-          @click="trackDownload('raspi', rpiUrl, '21.10')"
+          @click="trackDownload('raspi', rpiUrl, version)"
         >
-          Download 21.10 (RAS PI 4)
+          Download {{ version }} (RAS PI 4)
         </sys-form-button>
+        <sys-paragraph-1
+          v-if="showFullModal"
+          class="disclaimer note"
+        >
+          Note: Pop!_Pi for Raspberry Pi 4 is a Tech Preview
+        </sys-paragraph-1>
       </div>
 
       <sys-paragraph-1 tag="dl">
@@ -118,7 +124,7 @@
           </template>
           <template v-if="!isLts && rpiSha">
             <code><span>{{ rpiSha }}</span></code>
-            <div>Pop!_OS ISO Image (RAS PI 4)</div>
+            <div>Pop!_Pi Image (RAS PI 4)</div>
           </template>
         </dd>
       </sys-paragraph-1>
@@ -233,6 +239,10 @@
     max-width: 40ch;
     text-align: center;
     font-size: 1rem;
+  }
+
+  .disclaimer.note {
+    font-size: .85rem;
   }
 
   dl {
