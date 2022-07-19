@@ -25,13 +25,13 @@ export default {
       { name: 'og:type', content: 'website' },
       { name: 'og:title', content: 'Pop!_OS by System76' },
       { name: 'og:description', content: 'Imagine an OS for the software developer, maker and computer science professional who uses their computer as a tool to discover and create. Welcome to Pop!_OS.' },
-      { name: 'og:image', content: 'https://pop.system76.com/icon.png' },
+      { name: 'og:image', content: 'https://pop.system76.com/icon-512.png' },
       { name: 'og:url', content: 'https://pop.system76.com' },
 
       { name: 'twitter:site', content: '@system76' },
       { name: 'twitter:title', content: 'Pop!_OS by System76' },
       { name: 'twitter:description', content: 'Imagine an OS for the software developer, maker and computer science professional who uses their computer as a tool to discover and create. Welcome to Pop!_OS.' },
-      { name: 'twitter:image', content: 'https://pop.system76.com/icon.png' }
+      { name: 'twitter:image', content: 'https://pop.system76.com/icon-512.png' }
     ],
 
     link: [
