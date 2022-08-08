@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="pop-pi">
     <div>
       <img
         v-lazy="require('~/assets/images/index/raspberry-pi-4.png')"
