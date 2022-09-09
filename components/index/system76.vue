@@ -3,14 +3,14 @@
     <div class="top">
       <gradient-br />
 
-      <sys-header-2>GET EVERY ADVANTAGE ON SYSTEM76 HARDWARE</sys-header-2>
+      <sys-header-2>HARDWARE WITH POP!_OS</sys-header-2>
     </div>
     <div class="flexed">
       <div>
         <sys-subheader-2>Form of: An amazing computer.</sys-subheader-2>
 
         <sys-paragraph-1>
-          System76 hardware is engineered together with Pop!_OS for optimal performance and user experience. Our computers empower creators, makers, and builders to go forth and discover.
+          System76 and the HP Dev One hardware are engineered together with Pop!_OS for optimal performance and user experience. These computers empower creators, makers, and builders to go forth and discover.
         </sys-paragraph-1>
 
         <sys-paragraph-1>
@@ -65,14 +65,14 @@
 
         <a
           :class="classes"
-          href="https://system76.com/desktops/meerkat"
+          href="https://hpdevone.com/"
           target="_blank"
           rel="noopener"
-          title="Meerkat"
+          title="HP Dev One"
         >
           <img
-            alt="Meerkat"
-            :data-src="require('~/assets/images/index/thumbnail_meerkat.png?resize&sizes[]=300')"
+            alt="HP Dev One Laptop"
+            :data-src="require('~/assets/images/index/thumbnail_hp-dev-one.png?resize&sizes[]=300')"
           >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
