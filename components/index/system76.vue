@@ -10,7 +10,7 @@
         <sys-subheader-2>Form of: An amazing computer.</sys-subheader-2>
 
         <sys-paragraph-1>
-          System76 and the HP DevOne hardware are engineered together with Pop!_OS for optimal performance and user experience. These computers empower creators, makers, and builders to go forth and discover.
+          System76 and the HP Dev One hardware are engineered together with Pop!_OS for optimal performance and user experience. These computers empower creators, makers, and builders to go forth and discover.
         </sys-paragraph-1>
 
         <sys-paragraph-1>
@@ -72,7 +72,7 @@
         >
           <img
             alt="HP Dev One Laptop"
-            :data-src="require('~/assets/images/index/thumbnail_hp-devone.png?resize&sizes[]=300')"
+            :data-src="require('~/assets/images/index/thumbnail_hp-dev-one.png?resize&sizes[]=300')"
           >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
