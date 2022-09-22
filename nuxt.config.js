@@ -113,7 +113,8 @@ export default {
 
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/robots'
   ],
 
   plugins: [
@@ -122,6 +123,13 @@ export default {
     '~/plugins/forms',
     '~/plugins/hal',
     '~/plugins/lazyload'
+  ],
+
+  robots: [
+    {
+      UserAgent: '*',
+      Disallow: process.env.NODE_ENV !== 'production' ? '/' : null
+    }
   ],
 
   optimizedImages: {
