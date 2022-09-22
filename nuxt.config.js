@@ -128,7 +128,7 @@ export default {
   robots: [
     {
       UserAgent: '*',
-      Disallow: process.env.NODE_ENV !== 'production' ? '/' : null
+      Disallow: process.env.NODE_ENV === 'production' ? '' : '/'
     }
   ],
 
