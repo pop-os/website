@@ -39,7 +39,7 @@
             :data-src="require('~/assets/images/index/thumbnail_lemp9.png?resize&sizes[]=300')"
           >
 
-          <div class="s76-brand-logo"></div>
+          <div class="s76-brand-logo" />
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -55,7 +55,7 @@
             :data-src="require('~/assets/images/index/thumbnail_thelios.png?resize&sizes[]=300')"
           >
 
-          <div class="s76-brand-logo"></div>
+          <div class="s76-brand-logo" />
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -71,7 +71,7 @@
             :data-src="require('~/assets/images/index/thumbnail_launch.png?resize&sizes[]=300')"
           >
 
-          <div class="s76-brand-logo"></div>
+          <div class="s76-brand-logo" />
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -87,7 +87,7 @@
             :data-src="require('~/assets/images/index/thumbnail_hp-dev-one.png?resize&sizes[]=300')"
           >
 
-          <div class="hp-brand-logo"></div>
+          <div class="hp-brand-logo" />
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
       </div>
