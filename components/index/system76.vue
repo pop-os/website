@@ -11,7 +11,7 @@
 
         <sys-paragraph-1>
           System76 and the <a
-            href="https://hpdevone.com/"
+            href="https://www.hpdevone.com/?utm_source=system76_pop&utm_medium=referral&utm_campaign=devone"
             target="_blank"
             rel="noopener"
             title="HP Dev One website"
@@ -77,7 +77,7 @@
 
         <a
           :class="classes"
-          href="https://hpdevone.com/"
+          href="https://www.hpdevone.com/?utm_source=system76_pop&utm_medium=referral&utm_campaign=devone"
           target="_blank"
           rel="noopener"
           title="HP Dev One"
