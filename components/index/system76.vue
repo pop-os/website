@@ -35,8 +35,11 @@
         >
           <img
             alt="Lemur Pro"
+            class="small"
             :data-src="require('~/assets/images/index/thumbnail_lemp9.png?resize&sizes[]=300')"
           >
+
+          <div class="s76-brand-logo"></div>
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -51,6 +54,8 @@
             alt="Thelio Desktops"
             :data-src="require('~/assets/images/index/thumbnail_thelios.png?resize&sizes[]=300')"
           >
+
+          <div class="s76-brand-logo"></div>
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -65,6 +70,8 @@
             alt="Launch Configurable Keyboard"
             :data-src="require('~/assets/images/index/thumbnail_launch.png?resize&sizes[]=300')"
           >
+
+          <div class="s76-brand-logo"></div>
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -79,6 +86,8 @@
             alt="HP Dev One Laptop"
             :data-src="require('~/assets/images/index/thumbnail_hp-dev-one.png?resize&sizes[]=300')"
           >
+
+          <div class="hp-brand-logo"></div>
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
       </div>
@@ -160,11 +169,42 @@
     padding: 2rem;
   }
 
+  .grid img.small {
+    padding: 3.5rem;
+  }
+
   .grid svg {
     bottom: 0.5rem;
     height: 1rem;
     position: absolute;
     right: 0.5rem;
+  }
+
+  .grid .s76-brand-logo {
+    background-image: url("~assets/images/index/s76-logo.png");
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    height: 40px;
+    width: 40px;
+  }
+
+  .grid a.light-mode .hp-brand-logo {
+    background-image: url("~assets/images/index/hp-logo-black.png");
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    height: 40px;
+    width: 40px;
+  }
+
+  .grid a.dark-mode .hp-brand-logo {
+    background-image: url("~assets/images/index/hp-logo-white.png");
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    height: 40px;
+    width: 40px;
   }
 
   .flexed > div:nth-child(1) p:last-child {
