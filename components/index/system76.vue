@@ -35,11 +35,13 @@
         >
           <img
             alt="Lemur Pro"
-            class="small"
+            class="small thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_lemp9.png?resize&sizes[]=300')"
           >
-
-          <div class="s76-brand-logo" />
+          <img
+            class="brand"
+            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
+          >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -52,10 +54,13 @@
         >
           <img
             alt="Thelio Desktops"
+            class="thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_thelios.png?resize&sizes[]=300')"
           >
-
-          <div class="s76-brand-logo" />
+          <img
+            class="brand"
+            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
+          >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -68,10 +73,13 @@
         >
           <img
             alt="Launch Configurable Keyboard"
+            class="thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_launch.png?resize&sizes[]=300')"
           >
-
-          <div class="s76-brand-logo" />
+          <img
+            class="brand"
+            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
+          >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -84,10 +92,19 @@
         >
           <img
             alt="HP Dev One Laptop"
+            class="thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_hp-dev-one.png?resize&sizes[]=300')"
           >
-
-          <div class="hp-brand-logo" />
+          <img
+            v-if="isLight"
+            class="brand"
+            :data-srcset="require('~/assets/images/index/hp-logo-black.png?resize&sizes[]=40')"
+          >
+          <img
+            v-if="isDark"
+            class="brand"
+            :data-srcset="require('~/assets/images/index/hp-logo-white.png?resize&sizes[]=40')"
+          >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
       </div>
@@ -163,7 +180,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   }
 
-  .grid img {
+  .grid img.thumbnail {
     width: 100%;
     max-width: 300px;
     padding: 2rem;
@@ -180,26 +197,7 @@
     right: 0.5rem;
   }
 
-  .grid .s76-brand-logo {
-    background-image: url("~assets/images/index/s76-logo.png");
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    height: 40px;
-    width: 40px;
-  }
-
-  .grid a.light-mode .hp-brand-logo {
-    background-image: url("~assets/images/index/hp-logo-black.png");
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    height: 40px;
-    width: 40px;
-  }
-
-  .grid a.dark-mode .hp-brand-logo {
-    background-image: url("~assets/images/index/hp-logo-white.png");
+  .brand {
     position: absolute;
     top: 16px;
     left: 16px;
