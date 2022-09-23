@@ -11,7 +11,7 @@
 
         <sys-paragraph-1>
           System76 and the <a
-            href="https://hpdevone.com/"
+            href="https://www.hpdevone.com/?utm_source=system76_pop&utm_medium=referral&utm_campaign=devone"
             target="_blank"
             rel="noopener"
             title="HP Dev One website"
@@ -35,7 +35,12 @@
         >
           <img
             alt="Lemur Pro"
+            class="small thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_lemp9.png?resize&sizes[]=300')"
+          >
+          <img
+            class="brand"
+            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
           >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
@@ -49,7 +54,12 @@
         >
           <img
             alt="Thelio Desktops"
+            class="thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_thelios.png?resize&sizes[]=300')"
+          >
+          <img
+            class="brand"
+            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
           >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
@@ -63,21 +73,37 @@
         >
           <img
             alt="Launch Configurable Keyboard"
+            class="thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_launch.png?resize&sizes[]=300')"
+          >
+          <img
+            class="brand"
+            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
           >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
         <a
           :class="classes"
-          href="https://hpdevone.com/"
+          href="https://www.hpdevone.com/?utm_source=system76_pop&utm_medium=referral&utm_campaign=devone"
           target="_blank"
           rel="noopener"
           title="HP Dev One"
         >
           <img
             alt="HP Dev One Laptop"
+            class="thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_hp-dev-one.png?resize&sizes[]=300')"
+          >
+          <img
+            v-if="isLight"
+            class="brand"
+            :data-srcset="require('~/assets/images/index/hp-logo-black.png?resize&sizes[]=40')"
+          >
+          <img
+            v-if="isDark"
+            class="brand"
+            :data-srcset="require('~/assets/images/index/hp-logo-white.png?resize&sizes[]=40')"
           >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
@@ -154,10 +180,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   }
 
-  .grid img {
+  .grid img.thumbnail {
     width: 100%;
     max-width: 300px;
     padding: 2rem;
+  }
+
+  .grid img.small {
+    padding: 3.5rem;
   }
 
   .grid svg {
@@ -165,6 +195,14 @@
     height: 1rem;
     position: absolute;
     right: 0.5rem;
+  }
+
+  .brand {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    height: 40px;
+    width: 40px;
   }
 
   .flexed > div:nth-child(1) p:last-child {
