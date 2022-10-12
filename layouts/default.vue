@@ -1,20 +1,25 @@
 <template>
   <div :class="$style.layout">
-    <sys-omnibar>
+    <sys-omnibar :class="$style.spooky">
       <template v-slot:global>
-        <a href="https://system76.com/specials">
-          Specials
+        <a
+          href="https://system76.com/specials"
+          target="_blank"
+        >
+          Special Offers
         </a>
       </template>
+
       <template v-slot:copy>
         <a
-          href="https://system76.com/accessories/launch"
+          href="https://system76.com/specials"
           target="_blank"
           :class="$style.specials"
         >
-          Personalize your workflow with the Launch configurable keyboard!
+          Build Your Beast and save through Nov. 1!
         </a>
       </template>
+
       <template v-slot:local>
         <button @click.prevent="toggleDownload">
           Download
@@ -41,6 +46,7 @@
     <nuxt :class="$style.page" />
 
     <sys-footerbar
+      :class="$style.spooky"
       url-contact="https://system76.com/contact"
       url-about="https://system76.com/about"
       url-careers="https://system76.com/careers"
@@ -93,6 +99,18 @@
   .specials {
     color: #fff;
     text-decoration: none;
+  }
+
+  header.spooky {
+    background-color: rgba(41, 39, 41, 0.8) !important;
+  }
+
+  footer.spooky {
+    background-color: #292729 !important;
+  }
+
+  .hidden {
+    display: none !important;
   }
 </style>
 
