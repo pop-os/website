@@ -29,7 +29,7 @@ extra work is needed as a developer.
 
 ## Pop!_Docs
 
-Pop!_OS documentation can be viewed at https://pop.system76.com/docs
+Pop!_OS documentation can be viewed at https://support.system76.com/
 
 ### Editing
 Documentation can be viewed and edited on GitHub from the `/docs` directory.
