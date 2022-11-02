@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.layout">
-    <sys-omnibar :class="$style.spooky">
+    <sys-omnibar>
       <template v-slot:global>
         <a
           href="https://system76.com/specials"
@@ -12,11 +12,11 @@
 
       <template v-slot:copy>
         <a
-          href="https://system76.com/specials"
+          href="https://system76.com/desktops"
           target="_blank"
           :class="$style.specials"
         >
-          Build Your Beast and save through Nov. 1!
+          New Thelio Accent Panels! Learn More!
         </a>
       </template>
 
@@ -46,7 +46,6 @@
     <nuxt :class="$style.page" />
 
     <sys-footerbar
-      :class="$style.spooky"
       url-contact="https://system76.com/contact"
       url-about="https://system76.com/about"
       url-careers="https://system76.com/careers"
@@ -99,14 +98,6 @@
   .specials {
     color: #fff;
     text-decoration: none;
-  }
-
-  header.spooky {
-    background-color: rgba(41, 39, 41, 0.8) !important;
-  }
-
-  footer.spooky {
-    background-color: #292729 !important;
   }
 
   .hidden {
