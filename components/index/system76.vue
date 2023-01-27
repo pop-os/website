@@ -10,12 +10,7 @@
         <sys-subheader-2>Form of: An amazing computer.</sys-subheader-2>
 
         <sys-paragraph-1>
-          System76 and the <a
-            href="https://www.hpdevone.com/?utm_source=system76_pop&utm_medium=referral&utm_campaign=devone"
-            target="_blank"
-            rel="noopener"
-            title="HP Dev One website"
-          >HP Dev One</a> hardware are engineered together with Pop!_OS for optimal performance and user experience. These computers empower creators, makers, and builders to go forth and discover.
+          System76 hardware and Pop!_OS are engineered in harmony for optimal performance and user experience.
         </sys-paragraph-1>
 
         <sys-paragraph-1>
@@ -38,10 +33,6 @@
             class="small thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_lemp9.png?resize&sizes[]=300')"
           >
-          <img
-            class="brand"
-            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
-          >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
@@ -56,10 +47,6 @@
             alt="Thelio Desktops"
             class="thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_thelios.png?resize&sizes[]=300')"
-          >
-          <img
-            class="brand"
-            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
           >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
@@ -76,34 +63,20 @@
             class="thumbnail"
             :data-src="require('~/assets/images/index/thumbnail_launch.png?resize&sizes[]=300')"
           >
-          <img
-            class="brand"
-            :data-srcset="require('~/assets/images/index/s76-logo.png?resize&sizes[]=40')"
-          >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
 
         <a
           :class="classes"
-          href="https://www.hpdevone.com/?utm_source=system76_pop&utm_medium=referral&utm_campaign=devone"
+          href="https://system76.com/desktops/meerkat"
           target="_blank"
           rel="noopener"
-          title="HP Dev One"
+          title="Meerkat"
         >
           <img
-            alt="HP Dev One Laptop"
+            alt="Meerkat"
             class="thumbnail"
-            :data-src="require('~/assets/images/index/thumbnail_hp-dev-one.png?resize&sizes[]=300')"
-          >
-          <img
-            v-if="isLight"
-            class="brand"
-            :data-srcset="require('~/assets/images/index/hp-logo-black.png?resize&sizes[]=40')"
-          >
-          <img
-            v-if="isDark"
-            class="brand"
-            :data-srcset="require('~/assets/images/index/hp-logo-white.png?resize&sizes[]=40')"
+            :data-src="require('~/assets/images/index/thumbnail_meerkat.png?resize&sizes[]=300')"
           >
           <font-awesome-icon :icon="faExternalLinkAlt" />
         </a>
