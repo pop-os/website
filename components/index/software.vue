@@ -70,15 +70,15 @@
       </a>
 
       <a
-        href="https://atom.io/"
+        href="https://zoom.us/"
         target="_blank"
         rel="noopener"
       >
         <img
-          alt="Atom"
-          title="Atom"
-          :data-src="require('~/assets/images/index/apps/atom.png?size=60')"
-          :data-loading="require('~/assets/images/index/apps/atom.png?lqip')"
+          alt="Zoom"
+          title="Zoom"
+          :data-src="require('~/assets/images/index/apps/zoom.png?size=60')"
+          :data-loading="require('~/assets/images/index/apps/zoom.png?lqip')"
         >
       </a>
 
@@ -174,15 +174,15 @@
       </a>
 
       <a
-        href="https://www.gimp.org/"
+        href="https://obsproject.com/"
         target="_blank"
         rel="noopener"
       >
         <img
-          alt="GIMP"
-          title="GIMP"
-          :data-src="require('~/assets/images/index/apps/gimp.png?size=60')"
-          :data-loading="require('~/assets/images/index/apps/gimp.png?lqip')"
+          alt="Open Broadcaster Software"
+          title="Open Broadcaster Software"
+          :data-src="require('~/assets/images/index/apps/obs.png?size=60')"
+          :data-loading="require('~/assets/images/index/apps/obs.png?lqip')"
         >
       </a>
 
