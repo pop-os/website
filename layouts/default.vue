@@ -33,6 +33,7 @@
       url-desktops="https://system76.com/desktops"
       url-mini="https://system76.com/desktops/meerkat"
       url-servers="https://system76.com/servers"
+      url-keyboards="https://system76.com/accessories/launch"
       url-pop-os="/"
       url-contact="https://system76.com/contact"
       url-account="https://system76.com/my-account"
