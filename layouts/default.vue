@@ -18,7 +18,7 @@
         >
           New Thelio Accent Panels! Learn More!
         </a>
-      </template>
+    </template>
 
       <template v-slot:local>
         <button @click.prevent="toggleDownload">
@@ -33,6 +33,7 @@
       url-desktops="https://system76.com/desktops"
       url-mini="https://system76.com/desktops/meerkat"
       url-servers="https://system76.com/servers"
+      url-components="https://system76.com/components"
       url-keyboards="https://system76.com/accessories/launch"
       url-pop-os="/"
       url-contact="https://system76.com/contact"
