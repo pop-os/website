@@ -12,13 +12,13 @@
 
       <template v-slot:copy>
         <a
-          href="https://system76.com/desktops"
+          href="https://system76.com/specials"
           target="_blank"
           :class="$style.specials"
         >
-          New Thelio Accent Panels! Learn More!
+          Gear Up and SAVE up to $150!
         </a>
-    </template>
+      </template>
 
       <template v-slot:local>
         <button @click.prevent="toggleDownload">
