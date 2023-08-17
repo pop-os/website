@@ -22,7 +22,7 @@
     "@nuxtjs/axios": "^5.12.3",
     "@nuxtjs/color-mode": "^2.0.2",
     "@nuxtjs/robots": "^2.5.0",
-    "@system76/components": "^1.7.0",
+    "@system76/components": "^1.8.0",
     "@system76/design": "^5.4.2",
     "@system76/forms": "^3.1.1",
     "@system76/js-api": "^2.2.0",
