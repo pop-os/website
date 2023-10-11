@@ -6,7 +6,7 @@
           href="https://system76.com/specials"
           target="_blank"
         >
-          Special Offers
+          Specials
         </a>
       </template>
 
@@ -16,7 +16,7 @@
           target="_blank"
           :class="$style.specials"
         >
-          New Thelio Accent Panels! Learn More!
+          Computers Engineered to Unleash Your Potential
         </a>
       </template>
 
