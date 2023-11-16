@@ -2,21 +2,16 @@
   <div :class="$style.layout">
     <sys-omnibar>
       <template v-slot:global>
-        <a
-          href="https://system76.com/specials"
-          target="_blank"
-        >
-          Specials
-        </a>
+        <span :class="$style.hidden" />
       </template>
 
       <template v-slot:copy>
         <a
-          href="https://system76.com/desktops"
+          href="https://system76.com/specials"
           target="_blank"
           :class="$style.specials"
         >
-          Computers Engineered to Unleash Your Potential
+          Tuxmas holiday deals are here! Shop Now!
         </a>
       </template>
 
