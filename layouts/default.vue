@@ -11,7 +11,7 @@
           target="_blank"
           :class="$style.specials"
         >
-          Tuxmas holiday deals are here! Shop Now!
+          Tuxmas Black Friday Bundles are here! Shop Now!
         </a>
       </template>
 
