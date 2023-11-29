@@ -11,7 +11,7 @@
           target="_blank"
           :class="$style.specials"
         >
-          Tuxmas Black Friday Bundles are here! Shop Now!
+          Tuxmas: Upgrade & Save up to $460!
         </a>
       </template>
 
