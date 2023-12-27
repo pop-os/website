@@ -11,7 +11,7 @@
           target="_blank"
           :class="$style.specials"
         >
-          Tuxmas: Upgrade & Save up to $460!
+          Time off? Tinker & game with these deals!
         </a>
       </template>
 
