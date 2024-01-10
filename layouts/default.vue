@@ -7,11 +7,11 @@
 
       <template v-slot:copy>
         <a
-          href="https://system76.com/specials"
+          href="https://system76.com/desktops"
           target="_blank"
           :class="$style.specials"
         >
-          Time off? Tinker & game with these deals!
+          Computers Engineered to Unleash Your Potential
         </a>
       </template>
 
