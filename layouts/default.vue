@@ -49,7 +49,7 @@
       url-sustainability="https://system76.com/sustainability"
       url-shipping="https://system76.com/shipping"
       url-privacy="https://system76.com/privacy-and-legal"
-      show-newsletter-button
+      :show-newsletter-button="isAuthenticated"
       @subscribe="toggleSubscribeModal"
     />
 
