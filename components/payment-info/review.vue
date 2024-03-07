@@ -35,7 +35,7 @@
       :amount="12"
       class="subscription"
       length="year"
-      billing="annualy"
+      billing="annually"
     />
 
     <p class="terms">
