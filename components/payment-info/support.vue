@@ -9,7 +9,7 @@
       :amount="1"
       class="subscription"
       length="month"
-      billing="annualy"
+      billing="annually"
     />
 
     <div class="buttons">

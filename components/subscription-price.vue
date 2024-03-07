@@ -52,7 +52,7 @@
 
       billing: {
         type: String,
-        default: 'annualy'
+        default: 'annually'
       },
 
       length: {
