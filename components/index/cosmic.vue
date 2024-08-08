@@ -46,7 +46,9 @@
   .copy > *:last-child {
     margin-bottom: 0;
   }
-
+  .cta svg {
+    margin-left: 12px;
+  }
   @media (width >= 900px) {
     .copy {
       grid-column: 1 / 3;
