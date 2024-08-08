@@ -2,6 +2,7 @@
   <main :class="classes">
     <index-head />
 
+    <index-cosmic />
     <index-streamline />
     <index-development />
     <index-testimonials />
@@ -44,6 +45,7 @@
 </style>
 
 <script>
+  import IndexCosmic from '~/components/index/cosmic'
   import IndexDevelopment from '~/components/index/development'
   import IndexFoot from '~/components/index/foot'
   import IndexFootnotes from '~/components/index/footnotes'
@@ -59,6 +61,7 @@
 
   export default {
     components: {
+      IndexCosmic,
       IndexDevelopment,
       IndexFoot,
       IndexFootnotes,
