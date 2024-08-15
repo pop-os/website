@@ -26,7 +26,7 @@
             color="primary"
             @click.prevent="togglePayment"
           >
-            Support Pop
+            Donate to Pop
           </sys-form-button>
         </div>
       </div>
