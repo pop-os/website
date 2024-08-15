@@ -28,7 +28,7 @@
         />
 
         <p>{{ current.content }}</p>
-        <h5>{{ current.name }}</h5>
+        <span class="name">{{ current.name }}</span>
 
         <img
           class="avatar"
@@ -149,6 +149,13 @@
     object-position: center;
     user-select: none;
     width: 8rem;
+  }
+
+  .name {
+    font-size: 0.83em;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    font-weight: bold;
   }
 
   @media (width >= 600px) {
