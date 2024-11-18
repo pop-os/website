@@ -22,6 +22,14 @@
       </sys-form-button>
 
       <sys-form-button
+        v-if="$auth.loggedIn"
+        color="danger"
+        @click.prevent="getSupport()"
+      >
+        Unsubscribe
+      </sys-form-button>
+
+      <sys-form-button
         v-else
         color="primary"
         @click.prevent="$auth.loginWith('system76')"
@@ -71,6 +79,14 @@
       ...mapGetters('payment', ['canGoBack']),
 
       faChevronLeft: () => faChevronLeft
+    },
+
+    methods: {
+      getSupport () {
+        if (confirm('You will be redirected to a contact page. To get help with canceling your subscription, please fill out the form.\n\nThank you for your support.')) {
+          window.location = 'https://system76.com/contact/support'
+        }
+      }
     }
   }
 </script>
